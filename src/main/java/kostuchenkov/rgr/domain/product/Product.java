@@ -3,7 +3,6 @@ package kostuchenkov.rgr.domain.product;
 import kostuchenkov.rgr.domain.Review;
 
 import javax.persistence.*;
-import java.lang.annotation.Retention;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
