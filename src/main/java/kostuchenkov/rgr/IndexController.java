@@ -12,7 +12,6 @@ public class IndexController {
     @Autowired
     private ProductRepository productRepository;
 
-
     @GetMapping("")
     public String indexPage(Model model) {
         model.addAttribute("shoes", productRepository);
