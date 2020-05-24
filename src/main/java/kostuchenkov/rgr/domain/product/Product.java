@@ -1,9 +1,15 @@
 package kostuchenkov.rgr.domain.product;
 
+import kostuchenkov.rgr.domain.Review;
+
 import javax.persistence.*;
+import java.lang.annotation.Retention;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Entity
-@Table(name = "shoes")
+@Table(name = "products")
 public class Product {
 
     @Id
@@ -23,6 +29,14 @@ public class Product {
     private ProductBrand brand;
     @Enumerated(EnumType.STRING)
     private ProductSeason season;
+
+    @MapKeyEnumerated(EnumType.STRING)
+    @JoinColumn(name = "amount")
+    @ElementCollection
+    private Map<ProductSize, Integer> productAmount = new HashMap<>();
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
 
     public Product() {}
 
@@ -96,5 +110,13 @@ public class Product {
 
     public void setSeason(ProductSeason season) {
         this.season = season;
+    }
+
+    public Map<ProductSize, Integer> getProductAmount() {
+        return productAmount;
+    }
+
+    public void setProductAmount(Map<ProductSize, Integer> productAmount) {
+        this.productAmount = productAmount;
     }
 }

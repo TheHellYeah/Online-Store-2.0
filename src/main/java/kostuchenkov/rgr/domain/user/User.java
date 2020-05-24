@@ -1,7 +1,12 @@
 package kostuchenkov.rgr.domain.user;
 
+import kostuchenkov.rgr.domain.Review;
+import kostuchenkov.rgr.domain.product.Product;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -23,6 +28,19 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
+
+    //FIXME
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Product> cart;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<Product> wishlist;
+
+    @Enumerated(EnumType.STRING)
+    private UserWishlistAccess wishlistAccess;
 
     public User() {}
 
@@ -104,5 +122,21 @@ public class User {
 
     public void setBalance(int balance) {
         this.balance = balance;
+    }
+
+    public void setStatus(UserStatus status) {
+        this.status = status;
+    }
+
+    public void setWishlistAccess(UserWishlistAccess wishlistAccess) {
+        this.wishlistAccess = wishlistAccess;
+    }
+
+    public UserStatus getStatus() {
+        return status;
+    }
+
+    public UserWishlistAccess getWishlistAccess() {
+        return wishlistAccess;
     }
 }

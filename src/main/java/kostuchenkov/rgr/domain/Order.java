@@ -4,6 +4,8 @@ import kostuchenkov.rgr.domain.product.Product;
 import kostuchenkov.rgr.domain.user.User;
 
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -12,14 +14,20 @@ public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
+    @ManyToOne
     private User user;
+    @ManyToMany
     private List<Product> products;
+
+    @Column(name = "order_date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
 
     public Order() {}
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -31,7 +39,7 @@ public class Order {
         this.products = products;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -41,5 +49,21 @@ public class Order {
 
     public List<Product> getProductList() {
         return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public Date getDate() {
+        return date;
     }
 }

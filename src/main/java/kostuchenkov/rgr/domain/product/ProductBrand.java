@@ -5,5 +5,5 @@ enum ProductBrand {
     ADIDAS,
     RIEKER,
     PUMA,
-    RALP_RINGER
+    RALPH_RINGER
 }
