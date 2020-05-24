@@ -1,5 +1,8 @@
 package kostuchenkov.rgr.domain;
 
+import kostuchenkov.rgr.domain.product.Product;
+import kostuchenkov.rgr.domain.user.User;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,7 +12,7 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
 
     private User user;
     private List<Product> products;

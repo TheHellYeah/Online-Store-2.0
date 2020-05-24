@@ -1,5 +1,8 @@
 package kostuchenkov.rgr.domain;
 
+import kostuchenkov.rgr.domain.product.Product;
+import kostuchenkov.rgr.domain.user.User;
+
 import javax.persistence.*;
 
 @Entity
