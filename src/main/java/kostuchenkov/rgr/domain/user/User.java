@@ -29,20 +29,26 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    //FIXME
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Product> cart;
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(name = "cart",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> cart;
+
+    @ManyToMany
+    @JoinTable(name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> wishlist;
 
     @Enumerated(EnumType.STRING)
     private UserWishlistAccess wishlistAccess;
 
-    public User() {}
+    public User() {
+    }
 
     public Long getId() {
         return id;
