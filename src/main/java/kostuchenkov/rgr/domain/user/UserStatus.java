@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.domain.user;
 
-enum UserStatus {
+public enum UserStatus {
     CUSTOMER,
     SELLER,
     ADMIN

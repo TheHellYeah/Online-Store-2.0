@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.domain.product;
 
-enum ProductCategory {
+public enum ProductCategory {
     MALE,
     FEMALE,
     CHILD

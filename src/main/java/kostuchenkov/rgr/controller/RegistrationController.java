@@ -1,40 +1,41 @@
 package kostuchenkov.rgr.controller;
 
 import kostuchenkov.rgr.domain.user.User;
+import kostuchenkov.rgr.domain.user.UserStatus;
 import kostuchenkov.rgr.repository.UserRepository;
+import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.service.validation.UserRegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.Date;
 
 @Controller
 public class RegistrationController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/registration")
-    public String registrationPage() {
+    public String registrationPage(Model model, UserRegistrationForm userForm) {
+        model.addAttribute("userForm", userForm);
         return "registration";
     }
 
-//    @PostMapping("/registration")
-//    public String register(String username, String password, String firstName, String secondName, String patronymic, String email, String birthday, Model model) {
-//        //User user = userRepository.findByUsername(username);
-//        if(user != null) {
-//
-//            model.addAttribute("alert", "Пользователь с данным логином уже существует");
-//            return "registration";  //FIXME пользователь с таким логином или емайлом уже существует
-//        }
-//        else {
-//            user = new User();
-//            user.setStatus(UserStatus.CUSTOMER);
-//            userRepository.save(user);
-//            model.addAttribute("alert", "Неверный логин или пароль");
-//            return "login";
-//        }
-//    }
+    @PostMapping("/registration")
+    public String register(Model model, @Valid @ModelAttribute("userForm") UserRegistrationForm userForm, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("userForm", userForm);
+            return "registration";
+        } else {
+            userService.addUserFromRegistrationForm(userForm);
+            return "redirect:/";
+        }
+    }
 }
