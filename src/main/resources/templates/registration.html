@@ -20,15 +20,38 @@
 </head>
 <body>
 <div class="container">
-    <form th:action="@{/registration}" method="post">
-        <div><label> Логин: <input type="text" name="username" placeholder="Введите логин"/></label></div>
-        <div><label> Пароль: <input type="password" name="password" placeholder="Введите пароль"/></label></div>
-        <div><label> Email: <input type="email" name="email" placeholder="Введите email"/></label></div>
-        <div><label> Имя: <input type="text" name="firstName" placeholder="Введите ваше имя"/></label></div>
-        <div><label> Фамилия: <input type="text" name="secondName" placeholder="Введите вашу фамилю"/></label></div>
-        <div><label> Отчество: <input type="text" name="patronymic" placeholder="Введите ваше отчество"/></label></div>
-        <div><label> Дата рождения: <input type="date" name="birthday"/></label></div>
-        <div><input type="submit" value="Войти"/></div>
+    <form th:action="@{/registration}" method="post" th:object="${userForm}">
+        <div>
+            <label> Логин: <input type="text" placeholder="Введите логин" th:field="*{login}"/></label>
+            <span th:errors="*{login}"></span>
+        </div>
+        <div>
+            <label> Пароль: <input type="password" placeholder="Введите пароль" th:field="*{password}"/></label>
+            <span th:errors="*{password}">Авв</span>
+        </div>
+        <div>
+            <label> Email: <input type="email" placeholder="Введите email" th:field="*{email}"/></label>
+            <span th:errors="*{email}"></span>
+        </div>
+        <div>
+            <label> Имя: <input type="text" placeholder="Введите ваше имя" th:field="*{firstName}"/></label>
+            <span th:errors="*{firstName}"></span>
+        </div>
+        <div>
+            <label> Фамилия: <input type="text" placeholder="Введите вашу фамилю" th:field="*{secondName}"/></label>
+            <span th:errors="*{secondName}"></span>
+        </div>
+        <div>
+            <label> Отчество: <input type="text" placeholder="Введите ваше отчество" th:field="*{patronymic}"/></label>
+            <span th:errors="*{patronymic}"></span>
+        </div>
+        <div>
+            <label> Дата рождения: <input type="date" th:field="*{birthday}"/></label>
+            <span th:errors="*{birthday}"></span>
+        </div>
+        <div>
+            <input type="submit" value="Войти"/>
+        </div>
         <a href="/">На главную</a>
     </form>
 </div>

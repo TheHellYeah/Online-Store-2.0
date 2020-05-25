@@ -4,7 +4,7 @@ import kostuchenkov.rgr.domain.product.Product;
 import kostuchenkov.rgr.domain.user.User;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
@@ -15,7 +15,7 @@ public class Review {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "author_id")
+    @JoinColumn(name = "user_id")
     private User author;
 
     @ManyToOne
@@ -23,6 +23,8 @@ public class Review {
     private Product product;
 
     private String description;
+
+    @Temporal(value = TemporalType.DATE)
     private Date date;
 
     public Review() {}

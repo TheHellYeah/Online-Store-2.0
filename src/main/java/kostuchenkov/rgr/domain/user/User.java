@@ -1,10 +1,9 @@
 package kostuchenkov.rgr.domain.user;
 
-import kostuchenkov.rgr.domain.Review;
 import kostuchenkov.rgr.domain.product.Product;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -23,8 +22,10 @@ public class User {
     private String secondName;
     private String patronymic;
     private String contactInfo;
-    private Date birthday;
     private int balance;
+
+    @Temporal(value = TemporalType.DATE)
+    private Date birthday;
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
