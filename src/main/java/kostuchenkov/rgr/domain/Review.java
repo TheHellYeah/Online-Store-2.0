@@ -15,9 +15,11 @@ public class Review {
     private Long id;
 
     @ManyToOne
-    private User user;
+    @JoinColumn(name = "author_id")
+    private User author;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Product product;
 
     private String description;
@@ -29,8 +31,8 @@ public class Review {
         this.id = id;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAuthor(User author) {
+        this.author = author;
     }
 
     public void setProduct(Product product) {
@@ -45,8 +47,8 @@ public class Review {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public User getAuthor() {
+        return author;
     }
 
     public Product getProduct() {

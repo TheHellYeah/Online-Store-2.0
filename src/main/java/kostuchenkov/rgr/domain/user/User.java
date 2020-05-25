@@ -16,7 +16,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String username;
+    private String login;
     private String password;
     private String email;
     private String firstName;
@@ -28,9 +28,6 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserStatus status;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
 
     @ManyToMany
     @JoinTable(name = "cart",
@@ -54,8 +51,8 @@ public class User {
         return id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
     public String getPassword() {
@@ -94,8 +91,8 @@ public class User {
         this.id = id;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public void setPassword(String password) {

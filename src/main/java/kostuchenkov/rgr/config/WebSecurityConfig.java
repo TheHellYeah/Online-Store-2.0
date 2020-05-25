@@ -17,15 +17,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
+                    .antMatchers("/", "/registration").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
                     .loginPage("/login")
                     .permitAll()
                 .and()
-                    .logout()
-                    .permitAll();
+                    .logout().permitAll();
     }
 
     @Bean
@@ -35,9 +34,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 User.withDefaultPasswordEncoder()
                         .username("user")
                         .password("password")
-                        .roles("USER")
+                        .roles("CUSTOMER")
                         .build();
-
         return new InMemoryUserDetailsManager(user);
     }
 }
