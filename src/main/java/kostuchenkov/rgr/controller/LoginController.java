@@ -1,9 +1,8 @@
 package kostuchenkov.rgr.controller;
 
 import kostuchenkov.rgr.domain.user.User;
-import kostuchenkov.rgr.repository.UserRepository;
+import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LoginController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -23,7 +22,7 @@ public class LoginController {
 
     @PostMapping("/login")
     public String authorize(@RequestParam String login, @RequestParam String password, Model model) {
-        User user = userRepository.findByLoginAndPassword(login, password);
+        User user = userService.findByLoginAndPassword(login, password);
         if (user != null) {
             return "";  //FIXME авторизация прошла успешно, нужно вернуть залогиненную страничку
         } else {
