@@ -1,20 +1,22 @@
 package kostuchenkov.rgr.service.validation;
 
 import javax.validation.constraints.*;
-import java.util.Date;
 
 public class UserRegistrationForm  {
 
     @NotNull
     @NotBlank
+    @Size(min = 8, max = 20)
     private String login;
 
-    @NotNull
+    @NotEmpty
     @NotBlank
+    @Size(min = 8, max = 20)
     private String password;
 
     @NotNull
     @NotBlank
+    @Size(min = 8, max = 20)
     private String passwordConfirmation;
 
     @NotNull
@@ -34,8 +36,6 @@ public class UserRegistrationForm  {
     @NotNull
     private String birthday;
 
-    public UserRegistrationForm() {
-    }
 
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;

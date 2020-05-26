@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-import java.util.Date;
+
 
 @Controller
 public class RegistrationController {
@@ -29,7 +29,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String register(Model model, @Valid @ModelAttribute("userForm") UserRegistrationForm userForm, BindingResult bindingResult) {
+    public String register(@Valid @ModelAttribute("userForm") UserRegistrationForm userForm, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
             model.addAttribute("userForm", userForm);
             return "registration";
