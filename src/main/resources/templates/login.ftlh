@@ -5,9 +5,17 @@
 <@bootstrap.navbar/>
 <div class="container">
     <form action="/login" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
-        <div><input type="submit" value="Sign In"/></div>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" name="username" class="form-control" id="username"
+                   placeholder="Введите имя пользователя" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Войти</button>
         <a href="/registration">Регистрация</a>
     </form>
 </div>

@@ -1,8 +1,8 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.domain.product.Product;
-import kostuchenkov.rgr.domain.product.ProductCategory;
-import kostuchenkov.rgr.repository.ProductRepository;
+import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.domain.product.ProductCategory;
+import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

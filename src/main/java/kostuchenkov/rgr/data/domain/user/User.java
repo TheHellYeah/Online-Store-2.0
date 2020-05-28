@@ -1,21 +1,24 @@
-package kostuchenkov.rgr.domain.user;
+package kostuchenkov.rgr.data.domain.user;
 
-import kostuchenkov.rgr.domain.product.Product;
+import kostuchenkov.rgr.data.domain.product.Product;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String login;
+    private String username;
     private String password;
     private String email;
     private String firstName;
@@ -27,8 +30,10 @@ public class User {
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
 
+    @ElementCollection(targetClass = UserRole.class)
+    @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private UserStatus status;
+    private Set<UserRole> roles;
 
     @ManyToMany
     @JoinTable(name = "cart",
@@ -40,7 +45,7 @@ public class User {
     @JoinTable(name = "wishlist",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private Set<Product> wishlist;
+    private List<Product> wishlist;
 
     @Enumerated(EnumType.STRING)
     private UserWishlistAccess wishlistAccess;
@@ -52,12 +57,39 @@ public class User {
         return id;
     }
 
-    public String getLogin() {
-        return login;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getRoles();
     }
 
+    @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public String getEmail() {
@@ -92,8 +124,8 @@ public class User {
         this.id = id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -128,16 +160,16 @@ public class User {
         this.balance = balance;
     }
 
-    public void setStatus(UserStatus status) {
-        this.status = status;
+    public void setRoles(Set<UserRole> roles) {
+        this.roles = roles;
     }
 
     public void setWishlistAccess(UserWishlistAccess wishlistAccess) {
         this.wishlistAccess = wishlistAccess;
     }
 
-    public UserStatus getStatus() {
-        return status;
+    public Set<UserRole> getRoles() {
+        return roles;
     }
 
     public UserWishlistAccess getWishlistAccess() {

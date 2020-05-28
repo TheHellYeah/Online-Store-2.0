@@ -1,8 +1,6 @@
 package kostuchenkov.rgr.controller;
 
-import kostuchenkov.rgr.domain.user.User;
-import kostuchenkov.rgr.domain.user.UserStatus;
-import kostuchenkov.rgr.repository.UserRepository;
+import kostuchenkov.rgr.data.domain.user.User;
 import kostuchenkov.rgr.service.UserService;
 import kostuchenkov.rgr.service.validation.UserRegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +21,16 @@ public class RegistrationController {
     private UserService userService;
 
     @GetMapping("/registration")
-    public String registrationPage(Model model, UserRegistrationForm userForm) {
-        model.addAttribute("userForm", userForm);
+    public String registrationPage() {
+
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String register(@Valid @ModelAttribute("userForm") UserRegistrationForm userForm, BindingResult bindingResult, Model model) {
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("userForm", userForm);
-            return "registration";
-        } else {
-            userService.addUserFromRegistrationForm(userForm);
-            return "redirect:/";
-        }
+    public String register(User user, Model model) {
+
+        userService.addUser(user);
+        return "redirect:/";
     }
 }
+

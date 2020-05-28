@@ -1,13 +1,11 @@
 package kostuchenkov.rgr.controller;
 
-import kostuchenkov.rgr.domain.product.Product;
-import kostuchenkov.rgr.domain.product.ProductCategory;
-import kostuchenkov.rgr.repository.ProductRepository;
+import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 

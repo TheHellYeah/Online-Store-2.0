@@ -4,34 +4,43 @@
 <@component.skeleton title="Регистрация">
 <@bootstrap.navbar/>
 <div class="container">
-    <form action="/registration" method="post">
-        <div>
-            <label> Логин: <input type="text" placeholder="Введите логин"/></label>
+    <form class="mt-5" action="/registration" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <div class="form-group">
+            <label for="username">Имя пользователя</label>
+            <input type="text" name="username" class="form-control" id="username"
+                   placeholder="Введите имя пользователя" required>
         </div>
-        <div>
-            <label> Пароль: <input type="password" placeholder="Введите пароль"/></label>
+        <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль" required>
         </div>
-        <div>
-            <label> Повторите пароль: <input type="password" placeholder="Повторите пароль"/></label>
+        <div class="form-group">
+            <label for="passwordConfirmation">Повторите пароль</label>
+            <input type="password" name="passwordConfirmation" class="form-control" id="passwordConfirmation"
+                   placeholder="Повторите пароль" required>
         </div>
-        <div>
-            <label> Email: <input type="email" placeholder="Введите email"/></label>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="email"
+                   placeholder="Введите адрес электронной почты" required>
         </div>
-        <div>
-            <label> Имя: <input type="text" placeholder="Введите ваше имя"/></label>
+        <div class="form-group">
+            <label for="firstName">Имя</label>
+            <input type="text" name="firstName" class="form-control" id="firstName"
+                   placeholder="Введите ваше имя" required>
         </div>
-        <div>
-            <label> Фамилия: <input type="text" placeholder="Введите вашу фамилю"/></label>
+        <div class="form-group">
+            <label for="secondName">Фамилия</label>
+            <input type="text" name="secondName" class="form-control" id="secondName"
+                   placeholder="Введите вашу фамилию" required>
         </div>
-        <div>
-            <label> Отчество: <input type="text" placeholder="Введите ваше отчество"/></label>
+        <div class="form-group">
+            <label for="patronymic">Отчество</label>
+            <input type="text" name="patronymic" class="form-control" id="patronymic"
+                   placeholder="Введите ваше отчество">
         </div>
-        <div>
-            <label> Дата рождения: <input type="date"/></label>
-        </div>
-        <div>
-            <input type="submit" value="Войти"/>
-        </div>
+        <button type="submit" class="btn btn-primary">Регистрация</button>
         <a href="/">На главную</a>
     </form>
 </div>

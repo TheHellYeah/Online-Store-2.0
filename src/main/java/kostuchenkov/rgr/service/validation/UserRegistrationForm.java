@@ -1,13 +1,14 @@
 package kostuchenkov.rgr.service.validation;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 public class UserRegistrationForm  {
 
     @NotNull
     @NotBlank
     @Size(min = 8, max = 20)
-    private String login;
+    private String username;
 
     @NotEmpty
     @NotBlank
@@ -36,6 +37,7 @@ public class UserRegistrationForm  {
     @NotNull
     private String birthday;
 
+    public UserRegistrationForm() {}
 
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
@@ -44,8 +46,8 @@ public class UserRegistrationForm  {
         }
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -76,8 +78,8 @@ public class UserRegistrationForm  {
         return birthday;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

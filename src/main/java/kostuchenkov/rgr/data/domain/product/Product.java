@@ -1,6 +1,6 @@
-package kostuchenkov.rgr.domain.product;
+package kostuchenkov.rgr.data.domain.product;
 
-import kostuchenkov.rgr.domain.Review;
+import kostuchenkov.rgr.data.domain.Review;
 
 import javax.persistence.*;
 import java.util.HashMap;

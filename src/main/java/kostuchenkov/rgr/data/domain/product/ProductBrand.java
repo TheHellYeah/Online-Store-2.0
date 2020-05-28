@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.domain.product;
+package kostuchenkov.rgr.data.domain.product;
 
 enum ProductBrand {
     NIKE,
