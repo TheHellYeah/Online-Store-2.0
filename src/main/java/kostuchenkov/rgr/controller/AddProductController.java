@@ -30,6 +30,7 @@ public class AddProductController {
         Product product = new Product(name, price, description, category, subcategory, brand, season,0);
         productRepository.save(product);
 
+
         return "addproduct";
 
 
