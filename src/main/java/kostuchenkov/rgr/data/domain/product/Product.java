@@ -3,7 +3,6 @@ package kostuchenkov.rgr.data.domain.product;
 import kostuchenkov.rgr.data.domain.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -39,7 +38,7 @@ public class Product {
     @MapKeyEnumerated(EnumType.STRING)
     @JoinColumn(name = "amount")
     @ElementCollection
-    private Map<ProductSize, Integer> productAmount = new HashMap<>();
+    private Map<ProductSize, Integer> sizes = new HashMap<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;

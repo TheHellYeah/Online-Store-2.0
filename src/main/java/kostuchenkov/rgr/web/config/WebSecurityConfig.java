@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.config;
+package kostuchenkov.rgr.web.config;
 
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

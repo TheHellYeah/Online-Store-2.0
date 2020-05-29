@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.controller;
+package kostuchenkov.rgr.web.controller;
 
 
 import kostuchenkov.rgr.data.repository.OrderRepository;

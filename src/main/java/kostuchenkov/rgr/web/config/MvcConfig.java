@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.config;
+package kostuchenkov.rgr.web.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

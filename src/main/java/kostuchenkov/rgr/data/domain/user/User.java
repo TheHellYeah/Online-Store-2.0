@@ -90,8 +90,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
 }

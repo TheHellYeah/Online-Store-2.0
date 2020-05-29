@@ -1,6 +1,5 @@
-package kostuchenkov.rgr.controller;
+package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.product.ProductCategory;
 import kostuchenkov.rgr.service.MailService;
 import kostuchenkov.rgr.service.ProductService;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 
 public class IndexController {
@@ -28,7 +25,7 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("{gender}")
+    @GetMapping("/{gender}")
     public String categoryPage(@PathVariable String gender, Model model) {
         ProductCategory category = ProductCategory.valueOf(gender.toUpperCase());
         val products = productService.getAllProductsInCategory(category);

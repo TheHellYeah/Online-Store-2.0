@@ -15,8 +15,6 @@
                             <li><a href="">Кеды</a></li>
                             <li><a href="">Туфли</a></li>
                             <li><a href="">Шлёпанцы</a></li>
-
-
                         </ul>
                     </div>
                 </div>
