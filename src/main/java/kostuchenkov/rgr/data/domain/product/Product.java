@@ -42,17 +42,4 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
-
-    public Product(String name, int price, String description, String category,
-                   String subcategory, String brand, String season, int rating) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.category = ProductCategory.valueOf(category);
-        this.subcategory = ProductSubcategory.valueOf(subcategory);
-        this.brand = ProductBrand.valueOf(brand);
-        this.season = ProductSeason.valueOf(season);
-        this.rating = rating;
-        //this.productAmount = productAmount;
-    }
 }

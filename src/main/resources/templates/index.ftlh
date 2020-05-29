@@ -1,9 +1,9 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
-<#import "components/product-card.ftlh" as card>
+<#import "components/product-card.ftlh" as p>
 
 
-<@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи!">
+<@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи">
 <@bootstrap.navbar/>
 
 <#include "components/categories-slider-bar.ftlh" >
@@ -105,7 +105,7 @@
                     <div class="card-columns">
                         <#if products??>
                             <#list products as product>
-                                <@card.product-card product/>
+                                <@p.card product/>
                             </#list>
                         </#if>
                     </div>

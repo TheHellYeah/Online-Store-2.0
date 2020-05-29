@@ -16,11 +16,8 @@
                 <a class="nav-link text-white" href="/children">Детям</a>
             </li>
             <li class="nav-item">
-                <button onclick="document.location='addproduct'">ДОБАВИТЬ ТОВАР</button>
-
+                <a class="nav-link text-white" href="/product/add">Добавить продукт</a>
             </li>
-
-
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <button class="btn btn-outline-success my-2 my-sm-0"><a href="/login">Войти</a></button>

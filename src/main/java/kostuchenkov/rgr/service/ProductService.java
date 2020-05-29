@@ -31,4 +31,8 @@ public class ProductService {
             return Optional.empty();
         }
     }
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
+    }
 }

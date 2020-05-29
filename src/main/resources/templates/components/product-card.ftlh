@@ -1,5 +1,4 @@
 <#macro card product>
-<-- В макро передаем объект продукта(в цикле в index), тут можем по стандарту через $ выводить нужные свойства на карточку -->
 <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="..." alt="Card image cap">
     <div class="card-body">
