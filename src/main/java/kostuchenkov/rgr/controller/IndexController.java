@@ -4,9 +4,13 @@ import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.product.ProductCategory;
 import kostuchenkov.rgr.service.MailService;
 import kostuchenkov.rgr.service.ProductService;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 
 public class IndexController {
@@ -18,30 +22,18 @@ public class IndexController {
 
     @GetMapping("")
     public String indexPage(Model model) {
-        Iterable<Product> products = productService.findAll();
+        val products = productService.getAllProducts();
         model.addAttribute("products", products);
         //mailClient.send("mitlg@yandex.ru","Ваш код активации","Привет, твой код активации 124234");
         return "index";
     }
-//FIXME повторение кода, может можно и лучше
-    @GetMapping("/man")
-    public String indexMenPage(Model model) {
-        Iterable<Product> products = productService.findByCategory(ProductCategory.MALE);
+
+    @GetMapping("{gender}")
+    public String categoryPage(@PathVariable String gender, Model model) {
+        ProductCategory category = ProductCategory.valueOf(gender.toUpperCase());
+        val products = productService.getAllProductsInCategory(category);
         model.addAttribute("products", products);
         return "index";
     }
 
-    @GetMapping("/woman")
-    public String indexWomenPage(Model model) {
-        Iterable<Product> products = productService.findByCategory(ProductCategory.FEMALE);
-        model.addAttribute("products", products);
-        return "index";
-    }
-
-    @GetMapping("/children")
-    public String indexChildrenPage(Model model) {
-        Iterable<Product> products = productService.findByCategory(ProductCategory.CHILD);
-        model.addAttribute("products", products);
-        return "index";
-    }
 }

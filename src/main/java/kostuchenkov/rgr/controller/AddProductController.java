@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.controller;
 
 import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.domain.user.User;
 import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,8 +17,7 @@ public class AddProductController {
 
     @GetMapping("/addproduct")
     public String page(Model model) {
-
-        return "addproduct";
+        return "add-product";
     }
 //FIXME СДЕЛАТЬ ПОСТОМ
     @GetMapping("/add")
@@ -27,13 +27,6 @@ public class AddProductController {
 
         Product product = new Product(name, price, description, category, subcategory, brand, season,0);
         productRepository.save(product);
-
-
-        return "addproduct";
-
-
+        return "add-product";
     }
-
-
-
 }

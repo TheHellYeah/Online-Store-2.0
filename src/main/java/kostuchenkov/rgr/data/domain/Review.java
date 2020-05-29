@@ -2,17 +2,23 @@ package kostuchenkov.rgr.data.domain;
 
 import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "reviews")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Review {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -26,46 +32,4 @@ public class Review {
 
     @Temporal(value = TemporalType.DATE)
     private Date date;
-
-    public Review() {}
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public Date getDate() {
-        return date;
-    }
 }

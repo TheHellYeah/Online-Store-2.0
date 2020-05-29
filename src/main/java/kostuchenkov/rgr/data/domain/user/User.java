@@ -1,6 +1,9 @@
 package kostuchenkov.rgr.data.domain.user;
 
 import kostuchenkov.rgr.data.domain.product.Product;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,11 +15,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
 
     private String username;
     private String password;
@@ -30,7 +36,7 @@ public class User implements UserDetails {
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
 
-    @ElementCollection(targetClass = UserRole.class)
+    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
@@ -49,13 +55,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserWishlistAccess wishlistAccess;
-
-    public User() {
-    }
-
-    public Long getId() {
-        return id;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -92,87 +91,7 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getSecondName() {
-        return secondName;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public int getBalance() {
-        return balance;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
-
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public void setBalance(int balance) {
-        this.balance = balance;
-    }
-
-    public void setRoles(Set<UserRole> roles) {
-        this.roles = roles;
-    }
-
-    public void setWishlistAccess(UserWishlistAccess wishlistAccess) {
-        this.wishlistAccess = wishlistAccess;
-    }
-
     public Set<UserRole> getRoles() {
         return roles;
-    }
-
-    public UserWishlistAccess getWishlistAccess() {
-        return wishlistAccess;
     }
 }

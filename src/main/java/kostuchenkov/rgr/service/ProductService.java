@@ -6,17 +6,29 @@ import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
 
-    public Iterable<Product> findAll() {
+    public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Iterable<Product> findByCategory(ProductCategory category) {
+    public List<Product> getAllProductsInCategory(ProductCategory category) {
         return productRepository.findByCategory(category);
+    }
+
+    public Optional<Product> getProductById(String productId) {
+        try {
+            int id = Integer.parseInt(productId);
+            return productRepository.findById(id);
+        } catch(NumberFormatException e) {
+            return Optional.empty();
+        }
     }
 }
