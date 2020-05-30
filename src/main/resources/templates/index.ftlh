@@ -114,4 +114,6 @@
         </div>
 
     </div>
+</div>
+<script src="/static/js/script.js"></script>
 </@html.skeleton>

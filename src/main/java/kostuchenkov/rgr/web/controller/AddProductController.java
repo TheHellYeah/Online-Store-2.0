@@ -31,7 +31,6 @@ public class AddProductController {
     //FIXME валидация продукта(желательно в сервисе)
     @PostMapping("/product/add")
     public String addProduct(Product product){
-        productService.addProduct(product);
         return "redirect:/";
     }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Order {
     @ManyToOne
     private User user;
     @ManyToMany
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     @Column(name = "order_date")
     @Temporal(TemporalType.DATE)

@@ -1,14 +1,14 @@
 package kostuchenkov.rgr.data.domain.product;
 
 import kostuchenkov.rgr.data.domain.Review;
+import kostuchenkov.rgr.data.domain.user.UserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.MapKeyType;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Entity
 @Table(name = "products")
@@ -35,11 +35,13 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductSeason season;
 
-    @MapKeyEnumerated(EnumType.STRING)
-    @JoinColumn(name = "amount")
     @ElementCollection
+    @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
+    @MapKeyColumn(name = "size")
+    @MapKeyEnumerated(EnumType.STRING)
+    @Column(name = "amount")
     private Map<ProductSize, Integer> sizes = new HashMap<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews;
+    private List<Review> reviews = new ArrayList<>();
 }

@@ -1,5 +1,7 @@
 package kostuchenkov.rgr;
 
+import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

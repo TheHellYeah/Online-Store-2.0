@@ -20,7 +20,6 @@ public class ProductController {
     public String productPage(@PathVariable("id") Product product, Model model) {
 
         model.addAttribute("product", product);
-        model.addAttribute("sizes", product.getSizes());
         model.addAttribute("reviews", product.getReviews());
         return "product";
     }

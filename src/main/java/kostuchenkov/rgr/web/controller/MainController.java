@@ -1,6 +1,9 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.domain.product.ProductBrand;
 import kostuchenkov.rgr.data.domain.product.ProductCategory;
+import kostuchenkov.rgr.data.domain.product.ProductSize;
 import kostuchenkov.rgr.service.MailService;
 import kostuchenkov.rgr.service.ProductService;
 import lombok.val;

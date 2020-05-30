@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -41,17 +38,17 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
-    @ManyToMany
-    @JoinTable(name = "cart",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> cart;
+    @ElementCollection
+    @CollectionTable(name = "user_cart", joinColumns = @JoinColumn(name = "user_id"))
+    @MapKeyColumn(name = "product_id") // не работает, колонка с названием cart_key хз почему
+    @Column(name = "amount")
+    private Map<Product, Integer> cart = new HashMap<>();
 
     @ManyToMany
     @JoinTable(name = "wishlist",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> wishlist;
+    private List<Product> wishlist = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private UserWishlistAccess wishlistAccess;

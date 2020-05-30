@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.data.domain.product;
 
-enum ProductBrand {
+public enum ProductBrand {
     NIKE,
     ADIDAS,
     RIEKER,
