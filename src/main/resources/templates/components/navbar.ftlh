@@ -1,4 +1,5 @@
 <#macro navbar>
+<#include "security.ftlh">
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <a class="navbar-brand" href="/"><span class="text-white">Shoe</span><span class="text-dark bg-warning rounded">Hub</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,9 +19,33 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="/product/add">Добавить продукт</a>
             </li>
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
+        <#if !known>
             <button class="btn btn-outline-success my-2 my-sm-0"><a href="/login">Войти</a></button>
+            <button class="btn btn-outline-success my-2 my-sm-0"><a href="/registration">Pегистрация</a></button>
+            <#else>
+                <div class="btn-group mr-2">
+                    <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        ${name}
+                    </button>
+
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="/user/${userId}">Личный </a>
+                        <a class="dropdown-item" href="/user/${userId}/cart">Корзина</a>
+                        <a class="dropdown-item" href="/user/${userId}">Избранное</a>
+                        <a class="dropdown-item" href="/user/${userId}">Мои заказы</a>
+                        <a class="dropdown-item" href="/logout">Выйти</a>
+                    </div>
+                </div>
+<!--                 <form action="/logout" method="post">-->
+<!--                    <input type="submit" value="Выйти"/>-->
+<!--                 </form>-->
+
+        </#if>
+
+
         </form>
     </div>
 </nav>

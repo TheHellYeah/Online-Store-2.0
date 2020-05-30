@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.data.domain.product;
 
 
-enum ProductSize {
+public enum ProductSize {
     SIZE_30,
     SIZE_31,
     SIZE_32,

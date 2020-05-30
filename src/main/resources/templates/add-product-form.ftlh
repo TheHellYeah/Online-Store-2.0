@@ -14,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label>Описание товара: </label>
-                <input name="description" type="text">
+                <textarea name="description"></textarea>
             </div>
             <div class="form-group">
                 <label>Стоимость товара: </label>
@@ -61,10 +61,95 @@
                     <option value="SPRING">Весна</option>
                 </select>
             </div>
-            <!--        <div class="form-group">-->
-            <!--            <label>Количество товара на вашем складе:</label>-->
-            <!--            <input name="amount" type="number" min="0">-->
-            <!--        </div>-->
+                    <div class="form-group">
+                        <label>Количество товара на вашем складе:</label>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Размер</th>
+                                    <th>Количество</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>30</td>
+                                <td><input name="SIZE_30" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>31</td>
+                                <td><input name="SIZE_31" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>32</td>
+                                <td><input name="SIZE_32" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>33</td>
+                                <td><input name="SIZE_33" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>34</td>
+                                <td><input name="SIZE_34" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>35</td>
+                                <td><input name="SIZE_35" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>36</td>
+                                <td><input name="SIZE_36" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>37</td>
+                                <td><input name="SIZE_37" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>38</td>
+                                <td><input name="SIZE_38" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>39</td>
+                                <td><input name="SIZE_39" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>40</td>
+                                <td><input name="SIZE_40" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>41</td>
+                                <td><input name="SIZE_41" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>42</td>
+                                <td><input name="SIZE_42" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>43</td>
+                                <td><input name="SIZE_43" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>44</td>
+                                <td><input name="SIZE_44" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>45</td>
+                                <td><input name="SIZE_45" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>46</td>
+                                <td><input name="SIZE_46" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+                            <tr>
+                                <td>47</td>
+                                <td><input name="SIZE_47" type="number" min="0" max="9999" value="0"></td>
+                            </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
             <button type="submit" class="btn btn-primary mb-2">Добавить товар</button>
         </form>
     </div>

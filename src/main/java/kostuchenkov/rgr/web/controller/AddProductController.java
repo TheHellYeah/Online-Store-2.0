@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.data.domain.product.Product;
+import kostuchenkov.rgr.data.domain.product.ProductSize;
 import kostuchenkov.rgr.data.domain.user.User;
 import kostuchenkov.rgr.data.repository.ProductRepository;
 import kostuchenkov.rgr.service.ProductService;
@@ -11,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Map;
 
 
 @Controller

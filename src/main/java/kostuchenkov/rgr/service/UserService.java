@@ -1,6 +1,5 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;
 import kostuchenkov.rgr.data.domain.user.UserRole;
 import kostuchenkov.rgr.data.repository.UserRepository;
@@ -12,7 +11,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
-import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -24,6 +22,7 @@ public class UserService implements UserDetailsService {
         user.setRoles(Collections.singleton(UserRole.CUSTOMER));
         userRepository.save(user);
     }
+
 
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);

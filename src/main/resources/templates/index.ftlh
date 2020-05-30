@@ -112,8 +112,6 @@
                 </div>
             </div>
         </div>
-        <form action="/logout" method="post">
-            <input type="submit" value="Выйти из аккаунта"/>
-        </form>
+
     </div>
 </@html.skeleton>
