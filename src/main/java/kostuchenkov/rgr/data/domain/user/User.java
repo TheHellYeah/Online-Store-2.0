@@ -30,6 +30,10 @@ public class User implements UserDetails {
     private String contactInfo;
     private int balance;
 
+    @Column(columnDefinition = "boolean default false")
+    private boolean verified;
+    private String activationCode;
+
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
 

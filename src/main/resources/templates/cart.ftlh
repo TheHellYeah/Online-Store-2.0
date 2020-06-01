@@ -19,13 +19,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <#if products??>
-                            <#list cart as product>
+                        <#if cart??>
+                            <#list cart as product, count>
                                 <tr>
-                                    <td><a href="/product/${product.name}">${product.name}</a></td>
-                                    <td><input type="number" min="1" value=""></td>
+                                    <td><a href="/product/${product.id}">${product.name}</a></td>
+                                    <td><input type="number" min="1" value="${count}"></td>
                                     <td>${product.price}</td>
-                                    <td><input type="submit" class="btn btn-primary" href="" value="Удалить из корзины"></td>
+                                    <td><button class="btn btn-primary" onclick="delInCart(${product.id}, this)">Удалить из корзины</button></td>
                                 </tr>
                             </#list>
                         </#if>

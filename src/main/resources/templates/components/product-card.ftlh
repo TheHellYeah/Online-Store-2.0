@@ -7,7 +7,7 @@
 
 
         <a class="btn btn-primary" href="/product/${product.id}">К товару</a>
-        <a class="btn btn-primary">♥</a>
+        <button class="btn btn-primary" onclick="addWishlist(${product.id})">♥</button>
     </div>
 </div>
 </#macro>

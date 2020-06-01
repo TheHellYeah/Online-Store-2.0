@@ -20,6 +20,7 @@
             <div class="item-content">
                 <h1 class="item-name text-primary ">${product.name}</h1>
                 <a class="item-reviews mb-4">Отзывы(0)</a>
+
                 <h3 class="item-price mb-4">${product.price}</h3>
                 <div class="item-text">
                     <p>${product.description}</p>
@@ -27,7 +28,7 @@
 
                 <div class="row item-size mb-3 ml-4  btn-group-toggle" data-toggle="buttons">
                     <label class="mr-3">Размер: </label>
-                    <#if product.category=="MALE">
+<!--                    <#if product.category=="MALE">-->
                         <label class="btn  mr-1">
                             <input type="radio" name="size" autocomplete="off" checked> 39
                         </label>
@@ -57,15 +58,15 @@
                         </label><label class="btn mr-1">
                             <input type="radio" name="size" autocomplete="off" checked> 48
                         </label>
-                    </#if>
+<!--                    </#if>-->
                 </div>
 
 
                 <div class="item-add-cart">
                     <span>Количество</span>
-                    <input type="number" class="" value="1" min="1" max="9999">
-                    <button onclick="">Добавить в корзину</button>
-                    <button >♥</button>
+                    <input id="count" type="number" class="" value="1" min="1" max="9999">
+                    <button onclick="inCart(${product.id})">Добавить в корзину</button>
+                    <button onclick="addWishlist(${product.id})">♥</button>
                 </div>
 
 

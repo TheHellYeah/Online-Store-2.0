@@ -3,7 +3,12 @@
 
 <@component.skeleton title="Вход в систему">
 <@bootstrap.navbar/>
-<div class="container">
+<div class="container col-4 mt-5">
+    <#if message??>
+        <div class="mb-3 p-2 border justify-content-center border-success">
+            ${message}
+        </div>
+    </#if>
     <form action="/login" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <div class="form-group">

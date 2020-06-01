@@ -19,12 +19,15 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="/product/add">Добавить продукт</a>
             </li>
+            <li  class="nav-item">
+                <a class="nav-link text-white" href="/admin">Админка</a>
+            </li>
 
         </ul>
         <form class="form-inline my-2 my-lg-0">
         <#if !known>
-            <button class="btn btn-outline-success my-2 my-sm-0"><a href="/login">Войти</a></button>
-            <button class="btn btn-outline-success my-2 my-sm-0"><a href="/registration">Pегистрация</a></button>
+            <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" >Войти</a></button>
+            <button class="btn btn-warning  my-2 my-sm-0"><a class="text-dark" href="/registration">Pегистрация</a></button>
             <#else>
                 <div class="btn-group mr-2">
                     <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,7 +37,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="/user/${userId}">Личный </a>
                         <a class="dropdown-item" href="/user/${userId}/cart">Корзина</a>
-                        <a class="dropdown-item" href="/user/${userId}">Избранное</a>
+                        <a class="dropdown-item" href="/user/${userId}/wishlist">Избранное</a>
                         <a class="dropdown-item" href="/user/${userId}">Мои заказы</a>
                         <a class="dropdown-item" href="/logout">Выйти</a>
                     </div>
