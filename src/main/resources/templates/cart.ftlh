@@ -14,7 +14,7 @@
                             <th>Обувь</th>
                             <th>Количество</th>
                             <th>Цена</th>
-
+                            <th>Размер</th>
                             <th>Удалить</th>
                         </tr>
                         </thead>
@@ -25,6 +25,7 @@
                                     <td><a href="/product/${product.id}">${product.name}</a></td>
                                     <td><input type="number" min="1" value="${count}"></td>
                                     <td>${product.price}</td>
+                                    <td></td>
                                     <td><button class="btn btn-primary" onclick="delInCart(${product.id}, this)">Удалить из корзины</button></td>
                                 </tr>
                             </#list>
@@ -33,7 +34,7 @@
                     </table>
                     <div class="row float-right">
                         <span>Тотал:</span>
-                        <button class="btn btn-primary ml-5 " > Оформить заказ</button>
+                        <button class="btn btn-warning ml-5 "  ><a class="text-dark" href="/user/order/create"> Оформить заказ </a> </button>
                     </div>
                 </form>
             </div>

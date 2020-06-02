@@ -2,6 +2,7 @@ package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;
+import kostuchenkov.rgr.data.repository.OrderRepository;
 import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
@@ -9,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
@@ -20,33 +23,41 @@ public class CartController {
     private CartService cartService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    OrderRepository orderRepository;
 
-    @GetMapping("/user/{id:\\d+}/cart")
-    public String cartPage(@PathVariable("id") User user, Model model){
+    @GetMapping("/user/cart")
+    public String cartPage(@AuthenticationPrincipal User user, Model model){
+        user = userService.findByUsername(user.getUsername());
+
+        System.out.println(orderRepository.findByUser(user).toString()
+                );
         model.addAttribute("cart", user.getCart());
         return "cart";
     }
 
-    //FIXME POST измени скрипт сам, подели на два файла желательно cart.js и wishList.js
+    //FIXME POST
 
-    @GetMapping("/user/{id:\\d+}/cart/add")
+    @GetMapping("/user/cart/add")
     @ResponseBody
-    public String addToCart(@PathVariable User user, @RequestParam String productId, @RequestParam String count){
+    public String addToCart(@AuthenticationPrincipal User user, @RequestParam String productId, @RequestParam String count){
         Optional<Product> product = productService.getProductById(productId);
         product.ifPresent(value -> cartService.addToCart(user, product.get(), Integer.parseInt(count)));
         return "ok";
     }
 
-    @GetMapping("/user/{id:\\d+}/cart/clear")
+    @GetMapping("/user/cart/clear")
     @ResponseBody
-    public String clearCart(@PathVariable User user){
+    public String clearCart(@AuthenticationPrincipal User user){
         cartService.clearCart(user);
         return "ok";
     }
 
-    @GetMapping("/user/{id:\\d+}/cart/delete")
+    @GetMapping("/user/cart/delete")
     @ResponseBody
-    public String deleteFromCart(@PathVariable User user, @RequestParam String productId){
+    public String deleteFromCart(@AuthenticationPrincipal User user, @RequestParam String productId){
        Optional<Product> product = productService.getProductById(productId);
        product.ifPresent(value -> cartService.deleteFromCart(user, product.get()));
        return "ok";

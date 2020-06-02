@@ -36,9 +36,9 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="/user/${userId}">Личный </a>
-                        <a class="dropdown-item" href="/user/${userId}/cart">Корзина</a>
-                        <a class="dropdown-item" href="/user/${userId}/wishlist">Избранное</a>
-                        <a class="dropdown-item" href="/user/${userId}">Мои заказы</a>
+                        <a class="dropdown-item" href="/user/cart">Корзина</a>
+
+                        <a class="dropdown-item" href="/user/orders">Мои заказы</a>
                         <a class="dropdown-item" href="/logout">Выйти</a>
                     </div>
                 </div>

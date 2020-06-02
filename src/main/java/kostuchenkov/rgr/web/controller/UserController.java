@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
@@ -27,28 +30,31 @@ public class UserController {
     public String userPage(@PathVariable("id") User user, Model model) {
 
         model.addAttribute("user", user);
+        model.addAttribute("wishlist", user.getWishList());
         return "user";
     }
 
-    @GetMapping("/user/{id:\\d+}/wishlist/add")
+
+
+    @GetMapping("/user/wishlist/add")
     @ResponseBody
-    public String addToWishList(@PathVariable("id") User user, @RequestParam("productId") String productId) {
+    public String addToWishList(@AuthenticationPrincipal User user, @RequestParam("productId") String productId) {
 
         Optional<Product> product = productService.getProductById(productId);
         product.ifPresent(value -> wishListService.addToWishList(user, product.get()));
         return "ok"; //??оставим?
     }
 
-    @GetMapping("/user/{id:\\d+}/wishlist/clear")
+    @GetMapping("/user/wishlist/clear")
     @ResponseBody
-    public String clearWishList(@PathVariable("id") User user){
+    public String clearWishList(@AuthenticationPrincipal User user){
         wishListService.clearWishList(user);
         return "ok"; //?? отправляем сообщение пробабли
     }
 
-    @GetMapping("/user/{id:\\d+}/wishlist/delete")
+    @GetMapping("/user/wishlist/delete")
     @ResponseBody
-    public String deleteFromWishList(@PathVariable("id") User user, @RequestParam("productId") String productId){
+    public String deleteFromWishList(@AuthenticationPrincipal User user, @RequestParam("productId") String productId){
 
         Optional<Product> product = productService.getProductById(productId);
         product.ifPresent(value -> wishListService.deleteFromWishList(user, product.get()));

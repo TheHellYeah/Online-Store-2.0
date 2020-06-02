@@ -13,17 +13,20 @@ public class WishListService {
     private UserRepository userRepository;
 
     public void addToWishList(User user, Product product){
-        user.getWishList().add(product);
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getWishList().add(product);
+        userRepository.save(us);
     }
 
     public void clearWishList(User user){
-        user.getWishList().clear();
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getWishList().clear();
+        userRepository.save(us);
     }
 
     public void deleteFromWishList(User user, Product product){
-        user.getWishList().remove(product);
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getWishList().remove(product);
+        userRepository.save(us);
     }
 }

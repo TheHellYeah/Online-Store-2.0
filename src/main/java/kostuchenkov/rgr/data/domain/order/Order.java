@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "orders")
@@ -24,8 +22,18 @@ public class Order {
 
     @ManyToOne
     private User user;
-    @ManyToMany
-    private List<Product> products = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "user_id"))
+    @MapKeyColumn(name = "products_key") // не работает, колонка с названием cart_key хз почему
+    @Column(name = "amount")
+    private Map<Product, Integer> products = new HashMap<>();
+
+    @Column(name = "total")
+    private int total;
+
+    @Column(name = "contact")
+    private String contact;
 
     @Column(name = "order_date")
     @Temporal(TemporalType.DATE)

@@ -21,7 +21,8 @@
 </head>
 <body>
 <#nested>
-<script src="/static/js/script.js"></script>
+<script src="/static/js/cart.js"></script>
+<script src="/static/js/wishList.js"></script>
 </body>
 </html>
 </#macro>

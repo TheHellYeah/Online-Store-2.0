@@ -13,20 +13,23 @@ public class CartService {
     private UserRepository userRepository;
 
     public boolean addToCart(User user, Product product, int count){
-        user.getCart().put(product, count);
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getCart().put(product, count);
+        userRepository.save(us);
         return true;
     }
 
     public boolean clearCart(User user){
-        user.getCart().clear();
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getCart().clear();
+        userRepository.save(us);
         return true;
     }
 
     public boolean deleteFromCart(User user,Product product){
-        user.getCart().remove(product);
-        userRepository.save(user);
+        User us = userRepository.findByUsername(user.getUsername());
+        us.getCart().remove(product);
+        userRepository.save(us);
         return true;
     }
 }

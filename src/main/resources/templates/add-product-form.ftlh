@@ -6,11 +6,11 @@
 <@bootstrap.navbar/>
 <div class="container">
     <div class="form-group mt-5">
-        <form action="/product/add" method="post">
+        <form action="/product/add" method="post" enctype="multipart/form-data" multiple>
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <div class="form-group">
                 <label>Наименование товара:</label>
-                <input name="name" type="text">
+                <input name="name"  type="text">
             </div>
             <div class="form-group">
                 <label>Описание товара: </label>
@@ -19,6 +19,10 @@
             <div class="form-group">
                 <label>Стоимость товара: </label>
                 <input name="price" type="number" min="0" max="100000">
+            </div>
+            <div class="form-group">
+                <label>Фото товара: </label>
+                <input type="file" multiple="multiple" name="files" accept="image">
             </div>
             <div class="form-group">
                 <label>Бренд:</label>
