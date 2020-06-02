@@ -28,6 +28,7 @@ public class User implements UserDetails {
     private String secondName;
     private String patronymic;
     private String contactInfo;
+    private String avatar;
     private int balance;
 
     @Column(columnDefinition = "boolean default false")
@@ -36,6 +37,17 @@ public class User implements UserDetails {
 
     @Temporal(value = TemporalType.DATE)
     private Date birthday;
+
+    @Enumerated(EnumType.STRING)
+    private UserWishListAccess wishListAccess;
+    @Enumerated(EnumType.STRING)
+    private UserLocale userLocale;
+
+    @ManyToMany
+    @JoinTable(name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> wishList = new ArrayList<>();
 
     @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
@@ -47,15 +59,6 @@ public class User implements UserDetails {
     @MapKeyColumn(name = "product_id") // не работает, колонка с названием cart_key хз почему
     @Column(name = "amount")
     private Map<Product, Integer> cart = new HashMap<>();
-
-    @ManyToMany
-    @JoinTable(name = "wishlist",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> wishlist = new ArrayList<>();
-
-    @Enumerated(EnumType.STRING)
-    private UserWishlistAccess wishlistAccess;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

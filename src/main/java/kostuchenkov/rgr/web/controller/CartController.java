@@ -2,6 +2,7 @@ package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;
+import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,83 +11,44 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
 
 @Controller
 public class CartController {
 
     @Autowired
-    private UserService userService;
-
+    private CartService cartService;
     @Autowired
     private ProductService productService;
 
     @GetMapping("/user/{id:\\d+}/cart")
-    public String cartPage(@AuthenticationPrincipal User user, Model model){
-        model.addAttribute("cart", userService.findByUsername(user.getUsername()).getCart());
-
+    public String cartPage(@PathVariable("id") User user, Model model){
+        model.addAttribute("cart", user.getCart());
         return "cart";
-
     }
 
-    @GetMapping("/user/{id:\\d+}/wishlist")
-    public String wishlistPage(@AuthenticationPrincipal User user, Model model){
-        model.addAttribute("wishlist", userService.findByUsername(user.getUsername()).getWishlist());
-        return "wishlist";
-    }
+    //FIXME POST измени скрипт сам, подели на два файла желательно cart.js и wishList.js
 
-
-
-    //FIXME Добавить потом возможность ошибки и т.д. Мб сделать постом, посмотрел у других магазинов там гет.
-
-    @RequestMapping(value = "/api/addtocart",  params = { "id", "count" }, method = RequestMethod.GET)
+    @GetMapping("/user/{id:\\d+}/cart/add")
     @ResponseBody
-    public String addToCart(@AuthenticationPrincipal User user, @RequestParam int id, @RequestParam int count){
-        Product pr = productService.getProductById(String.valueOf(id)).get();
-        userService.addToCart(user,pr,count);
+    public String addToCart(@PathVariable User user, @RequestParam String productId, @RequestParam String count){
+        Optional<Product> product = productService.getProductById(productId);
+        product.ifPresent(value -> cartService.addToCart(user, product.get(), Integer.parseInt(count)));
         return "ok";
     }
 
-    @RequestMapping(value = "/api/addwishlist", params = "id", method = RequestMethod.GET)
+    @GetMapping("/user/{id:\\d+}/cart/clear")
     @ResponseBody
-    public String addToWishlist(@AuthenticationPrincipal User user, @RequestParam("id") int id){
-        Product pr = productService.getProductById(String.valueOf(id)).get();
-        userService.addToWishlist(user,pr);
-
+    public String clearCart(@PathVariable User user){
+        cartService.clearCart(user);
         return "ok";
     }
 
-    @RequestMapping(value = "/api/clearwishlist", method = RequestMethod.GET)
+    @GetMapping("/user/{id:\\d+}/cart/delete")
     @ResponseBody
-    public String clearWishlist(@AuthenticationPrincipal User user){
-        userService.clearWishlist(user);
-        return "ok";
+    public String deleteFromCart(@PathVariable User user, @RequestParam String productId){
+       Optional<Product> product = productService.getProductById(productId);
+       product.ifPresent(value -> cartService.deleteFromCart(user, product.get()));
+       return "ok";
     }
-
-
-
-    @RequestMapping(value = "/api/delinwishlist", params = "id", method = RequestMethod.GET)
-    @ResponseBody
-    public String delInWishlist(@AuthenticationPrincipal User user, @RequestParam("id") int id){
-        Product pr = productService.getProductById(String.valueOf(id)).get();
-        userService.delInWishlist(user,pr);
-        return "ok";
-    }
-
-    @RequestMapping(value = "/api/clearcart", method = RequestMethod.GET)
-    @ResponseBody
-    public String clearCart(@AuthenticationPrincipal User user){
-        userService.clearCart(user);
-        return "ok";
-    }
-
-    @RequestMapping(value = "/api/delincart", params = "id", method = RequestMethod.GET)
-    @ResponseBody
-    public String delInCart(@AuthenticationPrincipal User user, @RequestParam("id") int id){
-       Product pr = productService.getProductById(String.valueOf(id)).get();
-       userService.delInCart(user,pr);
-
-        return "ok";
-    }
-
-
 }

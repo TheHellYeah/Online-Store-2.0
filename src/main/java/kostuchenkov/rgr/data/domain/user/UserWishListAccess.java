@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.data.domain.user;
 
-enum UserWishlistAccess {
+enum UserWishListAccess {
     PUBLIC,
     PRIVATE
 }

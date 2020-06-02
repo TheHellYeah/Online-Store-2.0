@@ -14,7 +14,27 @@
             <label>Отчество <input type="text" value="${user.patronymic}"></label>
             <button>Изменить</button>
         </div>
-
     </div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Цена</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <#if wishlist??>
+        <#list wishlist as product>
+        <tr>
+            <td><a href="/product/${product.name}">${product.name}</a></td>
+            <td>${product.price}</td>
+            <td><button class="btn btn-primary" onclick="delInWishlist(${product.id},this)">Убрать из списка</button></td>
+        </tr>
+        </#list>
+    </#if>
+    </tbody>
+    </table>
 </div>
 </@html.skeleton>

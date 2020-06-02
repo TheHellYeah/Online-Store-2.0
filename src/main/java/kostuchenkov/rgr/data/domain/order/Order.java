@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.domain;
+package kostuchenkov.rgr.data.domain.order;
 
 import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;
@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,4 +30,7 @@ public class Order {
     @Column(name = "order_date")
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 }

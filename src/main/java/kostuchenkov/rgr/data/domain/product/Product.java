@@ -35,13 +35,17 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductSeason season;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Review> reviews = new ArrayList<>();
+
+    @ElementCollection
+    @OrderColumn(name = "product_id")
+    private Set<String> images = new HashSet<>();
+
     @ElementCollection
     @CollectionTable(name = "product_sizes", joinColumns = @JoinColumn(name = "product_id"))
     @MapKeyColumn(name = "size")
     @MapKeyEnumerated(EnumType.STRING)
     @Column(name = "amount")
     private Map<ProductSize, Integer> sizes = new HashMap<>();
-
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Review> reviews = new ArrayList<>();
 }

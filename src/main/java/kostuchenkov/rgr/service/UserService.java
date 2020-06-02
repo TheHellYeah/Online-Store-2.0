@@ -10,59 +10,36 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private MailService mailService;
 
-    public void addUser(User user) {
-        user.setRoles(Collections.singleton(UserRole.CUSTOMER));
+    public void register(User user) {
+        user.setActivationCode(UUID.randomUUID().toString());
         userRepository.save(user);
+
+        if (!StringUtils.isEmpty(user.getEmail())){
+            String message = String.format(
+                    "Здравствуйте, %s %s ! \n" +
+                            "Перейдите по ссылке для активации вашего аккаунта :\n" +
+                            "http://localhost:8080/activate/%s",user.getFirstName(), user.getSecondName(), user.getActivationCode()
+            );
+
+            mailService.send(user.getEmail(),"Код активации",message);
+        }
     }
 
     public void saveUser(User user){
         userRepository.save(user);
-    }
-
-    public boolean clearCart(User user){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getCart().clear();
-        userRepository.save(us);
-        return true;
-    }
-    public boolean addToCart(User user, Product product, int count){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getCart().put(product,count);
-        userRepository.save(us);
-        return true;
-    }
-    public boolean addToWishlist(User user, Product product){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getWishlist().add(product);
-        userRepository.save(us);
-        return true;
-    }
-    public boolean clearWishlist(User user){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getWishlist().clear();
-        userRepository.save(us);
-        return true;
-    }
-    public boolean delInWishlist(User user, Product product){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getWishlist().remove(product);
-        userRepository.save(us);
-        return true;
-    }
-    public boolean delInCart(User user,Product product){
-        User us = userRepository.findByUsername(user.getUsername());
-        us.getCart().remove(product);
-        userRepository.save(us);
-        return true;
     }
 
     public User findByUsername(String username) {
@@ -89,7 +66,7 @@ public class UserService implements UserDetailsService {
         return userRepository.findByUsername(username);
     }
 
-    public boolean verifUser(String code) {
+    public boolean verifyUser(String code) {
         User user = userRepository.findByActivationCode(code);
         if (user == null){
             return false;
