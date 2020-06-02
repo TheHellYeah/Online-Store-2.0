@@ -31,9 +31,6 @@ public class CartController {
     @GetMapping("/user/cart")
     public String cartPage(@AuthenticationPrincipal User user, Model model){
         user = userService.findByUsername(user.getUsername());
-
-        System.out.println(orderRepository.findByUser(user).toString()
-                );
         model.addAttribute("cart", user.getCart());
         return "cart";
     }

@@ -1,11 +1,13 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "components/product-order-card.ftlh" as p>
+
 
 <@component.skeleton title="Мои заказы">
 <@bootstrap.navbar/>
 
 <div>
-    <table>
+    <table class="table table-hover">
         <thead>
             <tr>
                 <th>Заказ</th>
@@ -19,13 +21,13 @@
         <tbody>
         <#list orders as order >
         <tr>
-            <td>${order.id} ТУТ ССЫЛКА НА ЗАКАЗ, ШАБЛОН ОРДЕР</td>
+            <td>${order.id}</td>
             <td>
-                ?????????????????ВЫТАЩИТЬ ПРОДУКТЫ ИЗ КАЖДОГО ЗАКАЗА НО МОГУЦЦЫВФ
+                <@p.product order.products,order.id/>
             </td>
-            <td><#if order.contact??>${order.contact}</#if></td>
+            <td><#if order.date??>${order.date}</#if></td>
             <td>${order.orderStatus}</td>
-            <td></td>
+            <td>${order.total}</td>
             <td><button class="btn-warning">Подкробнее</button></td>
 
 
