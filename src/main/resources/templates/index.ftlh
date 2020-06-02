@@ -8,7 +8,7 @@
 
 <#include "components/categories-slider-bar.ftlh" >
 
-<div class="content">
+<div class="content mt-5">
     <div class="container">
         <div class="row">
             <!--            Колонка для филтра справа-->

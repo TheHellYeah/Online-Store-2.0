@@ -10,8 +10,8 @@
         <p class="card-text">${product.price}</p>
 
 
-        <a class="btn btn-primary" href="/product/${product.id}">К товару</a>
-        <button class="btn btn-primary" onclick="addWishlist(${product.id})">♥</button>
+        <a class="btn btn-warning" href="/product/${product.id}">К товару</a>
+        <button class="btn btn-warning" onclick="addWishlist(${product.id})">♥</button>
     </div>
 </div>
 </#macro>
