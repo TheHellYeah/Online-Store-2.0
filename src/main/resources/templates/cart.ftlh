@@ -34,7 +34,7 @@
                     </table>
                     <div class="row float-right">
                         <span>Тотал:</span>
-                        <button class="btn btn-warning ml-5 "  ><a class="text-dark" href="/user/order/create"> Оформить заказ </a> </button>
+                        <a href="/user/order/create" class="btn btn-warning ml-5 text-dark" role="button">Перейти к оформлению заказа</a>
                     </div>
                 </form>
             </div>

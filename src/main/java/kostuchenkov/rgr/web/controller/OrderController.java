@@ -18,18 +18,15 @@ import java.util.List;
 
 @Controller
 public class OrderController {
+
     @Autowired
     private ProductService productService;
     @Autowired
     private CartService cartService;
-
     @Autowired
     private OrderService orderService;
-
     @Autowired
     private UserService userService;
-
-
 
     @GetMapping("user/orders")
     public  String orders(@AuthenticationPrincipal User user, Model model){

@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.domain;
+package kostuchenkov.rgr.data.domain.review;
 
 import kostuchenkov.rgr.data.domain.product.Product;
 import kostuchenkov.rgr.data.domain.user.User;

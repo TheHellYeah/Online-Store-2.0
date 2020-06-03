@@ -22,8 +22,6 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-
-
     public boolean createOrder(User user, String contact){
         user = userRepository.findByUsername(user.getUsername());
         Integer sum = 0 ;
@@ -48,5 +46,4 @@ public class OrderService {
         user = userRepository.findByUsername(user.getUsername());
         return orderRepository.findByUser(user);
     }
-
 }

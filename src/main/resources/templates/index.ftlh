@@ -6,7 +6,7 @@
 <@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи">
 <@bootstrap.navbar/>
 
-<#include "components/categories-slider-bar.ftlh" >
+<#include "components/categories-slider-bar.ftlh">
 
 <div class="content mt-5">
     <div class="container">

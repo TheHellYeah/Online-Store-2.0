@@ -6,6 +6,7 @@ import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
 @Controller
+@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
 public class AddProductController {
 
     @Autowired
@@ -33,7 +34,6 @@ public class AddProductController {
     @Value("${upload.path}")
     private String uploadPath;
 
-   //TODO @Secured("hasRole(ROLE_CUSTOMER) or hasRole(ROLE_ADMIN)")
     @GetMapping("/product/add")
     public String page(Model model) {
         return "add-product-form";
@@ -44,29 +44,24 @@ public class AddProductController {
     public String addProduct(
             Product product,
             @RequestParam("SIZE") List<Integer> size,
-            @RequestParam("files") List<MultipartFile> files
-            ) throws IOException {
-
-
-
-        if (files!=null){                         // настройки пути сохраннения в пропертис
+            @RequestParam("files") List<MultipartFile> files) throws IOException {
+        if (files != null) {                         // настройки пути сохраннения в пропертис
             File uploadDir = new File(uploadPath);// проверям если ли папка img в хранилище. если нет, то создаем
-            if (!uploadDir.exists()){
+            if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
-            for(MultipartFile file : files ){   // Достаем из запроса файлы, фотки  добавляем им рандомные цифры и саве
-                String resultFileName = UUID.randomUUID().toString() +"."+ file.getOriginalFilename() ;
-                file.transferTo(new File(uploadPath + "/" +resultFileName));
+            for (MultipartFile file : files) {   // Достаем из запроса файлы, фотки  добавляем им рандомные цифры и саве
+                String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+                file.transferTo(new File(uploadPath + "/" + resultFileName));
                 product.getImages().add(resultFileName);
             }                                   // потом сделаю для каждого товара папку, тип один товар и у него все фотки в одной папке
 
         }
 
-
         //FIXME КАСТЫЫЫЫЛЬ СРОЧНО ПЕРЕДЕЛАТЬ
         Map<ProductSize, Integer> s = new HashMap<>();
-        for(int i = 0; i< ProductSize.values().length;i++){
-            s.put(ProductSize.values()[i],size.get(i));
+        for (int i = 0; i < ProductSize.values().length; i++) {
+            s.put(ProductSize.values()[i], size.get(i));
         }
         product.getSizes().putAll(s);
         productService.addProduct(product);

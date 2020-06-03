@@ -1,6 +1,6 @@
 <#macro navbar>
 <#include "security.ftlh">
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+<nav class="navbar navbar-expand-lg sticky-top">
     <a class="navbar-brand" href="/"><span class="text-white">Shoe</span><span class="text-dark bg-warning rounded">Hub</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,6 @@
         <form class="form-inline my-2 my-lg-0">
         <#if !known>
             <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" >Войти</a></button>
-            <button class="btn btn-warning  my-2 my-sm-0"><a class="text-dark" href="/registration">Pегистрация</a></button>
             <#else>
                 <div class="btn-group mr-2">
                     <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -47,8 +46,6 @@
 <!--                 </form>-->
 
         </#if>
-
-
         </form>
     </div>
 </nav>

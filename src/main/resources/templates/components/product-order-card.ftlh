@@ -1,7 +1,6 @@
 <#macro product products, idForCollapse>
 
-
-<div class="accordion" id="accordionExample">
+<div class="accordion " id="accordionExample">
 <div class="card">
     <div class="card-header" id="headingThree">
         <h2 class="mb-0">
@@ -10,7 +9,6 @@
             </button>
         </h2>
     </div>
-
     <div id="collapse${idForCollapse}" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
             <#list products as product, count>
@@ -20,8 +18,6 @@
         </#list>
         </div>
     </div>
-
 </div>
 </div>
-
 </#macro>
