@@ -17,7 +17,7 @@
             <div class="container mt-3">
                 <div class="row bg-dark">
                     <div class="input-group m-2 ">
-                        <input type="text" class="form-control" placeholder="Поиск">
+                        <input type="text" class="form-control" placeholder="Поиск" id="search">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">
                                 Поиск
@@ -34,13 +34,13 @@
             <div class="container mt-3 mb-5">
                 <div class="card-columns">
                     <#if products??>
-                        <#list products as product>
-                            <@p.card product/>
-                        </#list>
-                    </#if>
-                </div>
-            </div>
+                    <#list products as product>
+                    <@p.card product/>
+                </#list>
+            </#if>
         </div>
     </div>
+</div>
+</div>
 </div>
 </@html.skeleton>

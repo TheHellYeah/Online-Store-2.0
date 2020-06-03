@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.data.domain.product;
 
-enum ProductSubcategory {
+public enum ProductSubcategory {
     SNEAKERS,
     GUMSHOES,
     LOW_SHOES,
