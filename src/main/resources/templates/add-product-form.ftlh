@@ -8,24 +8,33 @@
     <form class="mt-3 mb-5" action="/product/add" method="post" enctype="multipart/form-data">
         <h3>Данные о товаре</h3>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
+
         <div class="form-group">
             <label for="name">Название</label>
             <input type="text" name="name" class="form-control" id="name"
                    placeholder="Введите название товара">
         </div>
+
         <div class="form-group">
             <label for="description">Описание</label>
             <textarea name="description" class="form-control" id="description"
                       placeholder="Введите описание товара"></textarea>
         </div>
+
         <div class="form-group">
             <label for="price">Цена</label>
             <input type="number" name="price" class="form-control" id="price"
                       placeholder="Введите цену товара">
         </div>
+
         <div class="form-group">
-            <label for="files">Изображения</label>
-            <input type="file" name="files" multiple="multiple" class="form-control-file" id="files" accept="image">
+            <label for="files">Фотографии</label>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" multiple="multiple" class="custom-file-input form-control-file" id="files" accept="image">
+                    <label class="custom-file-label" for="files">Выберите файлы</label>
+                </div>
+            </div>
         </div>
 
         <div class="form-group">
@@ -39,6 +48,7 @@
                 <option value="RALPH_RINGER">Ralph Ringer</option>
             </select>
         </div>
+
         <div class="form-group">
             <label for="category">Категория обуви:</label>
             <select class="form-control" name="category" id="category">
@@ -48,6 +58,7 @@
                 <option value="CHILD">Детская</option>
             </select>
         </div>
+
         <div class="form-group">
             <label for="subcategory">Вид обуви:</label>
             <select class="form-control" name="subcategory" id="subcategory">
@@ -59,6 +70,7 @@
                 <option value="SLIPPERS">Тапочки</option>
             </select>
         </div>
+
         <div class="form-group">
             <label for="season">Сезон:</label>
             <select class="form-control" name="season" id="season">
@@ -69,6 +81,7 @@
                 <option value="SPRING">Весна</option>
             </select>
         </div>
+
         <div class="form-group">
             <label>Количество товара на вашем складе:</label>
             <table>

@@ -2,7 +2,7 @@ package kostuchenkov.rgr.data.domain.product;
 
 enum ProductSubcategory {
     SNEAKERS,
-    GYMSHOES,
+    GUMSHOES,
     LOW_SHOES,
     SANDALS,
     SLIPPERS

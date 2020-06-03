@@ -20,7 +20,7 @@
             <label for="password">Пароль</label>
             <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль" required>
         </div>
-        <button type="submit" class="btn btn-primary">Войти</button>
+        <button type="submit" class="btn btn-warning">Войти</button>
         <a href="/registration">Регистрация</a>
     </form>
 </div>

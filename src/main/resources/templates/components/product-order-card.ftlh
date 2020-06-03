@@ -1,6 +1,6 @@
 <#macro product products, idForCollapse>
 
-<div class="accordion " id="accordionExample">
+<div class="accordion" id="accordionExample">
 <div class="card">
     <div class="card-header" id="headingThree">
         <h2 class="mb-0">

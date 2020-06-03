@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="/man">Мужчинам<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="/catalog/man">Мужчинам<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/woman">Женщинам</a>
+                <a class="nav-link text-white" href="/catalog/woman">Женщинам</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/children">Детям</a>
+                <a class="nav-link text-white" href="/catalog/child">Детям</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="/product/add">Добавить продукт</a>
