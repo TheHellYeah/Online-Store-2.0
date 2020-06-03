@@ -1,5 +1,3 @@
-URL = `http://localhost:8080`
-
 
 async function clearWishlist(){
 	response = await fetch(URL+`/user/wishlist/clear`);

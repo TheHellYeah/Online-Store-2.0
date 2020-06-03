@@ -1,5 +1,3 @@
-URL = `http://localhost:8080`
-
 
 async function clearCart(){
 	response = await fetch(URL+`/user/cart/clear`);

@@ -53,8 +53,8 @@
             <label for="category">Категория обуви:</label>
             <select class="form-control" name="category" id="category">
                 <option disabled selected>Выберите категорию</option>
-                <option value="MALE">Мужская</option>
-                <option value="FEMALE">Женская</option>
+                <option value="MAN">Мужская</option>
+                <option value="WOMAN">Женская</option>
                 <option value="CHILD">Детская</option>
             </select>
         </div>

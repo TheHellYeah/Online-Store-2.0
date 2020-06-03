@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.data.domain.product;
 
-enum ProductSeason {
+public enum ProductSeason {
     SUMMER,
     AUTUMN,
     WINTER,
