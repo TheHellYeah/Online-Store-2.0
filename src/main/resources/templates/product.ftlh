@@ -1,5 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "components/review.ftlh" as r>
+
 
 <@component.skeleton title="${product.name}">
 <@bootstrap.navbar/>
@@ -59,7 +61,7 @@
 
                 <h3 class="item-price mb-4">${product.price}</h3>
                 <div class="item-text">
-                    <p>${product.description}</p>
+                    <p></p>
                 </div>
 
                 <div class="row item-size mb-3 ml-4  btn-group-toggle" data-toggle="buttons">
@@ -116,14 +118,68 @@
 
     </div>
     <div class="col-9  m-auto">
-        <div class="row mt-4 justify-content-md-center">
-            <div class="border border-warning bg-warning mr-2 p-2">ОПИСАНИЕ</div>
-            <div class="border border-warning p-2">ОТЗЫВЫ</div>
+        <div class="">
+
+            <ul class="nav nav-tabs">
+                <li class="active border border-warning bg-warning mr-2 p-2"><a class="text-dark" data-toggle="tab" href="#home">Описание</a></li>
+                <li class="border border-warning bg-warning p-2"><a class="text-dark" data-toggle="tab" href="#menu1">Отзывы</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <h3>Описание</h3>
+                    <p>${product.description}</p>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <h3>Отзывы</h3>
+                    <#if reviews??>
+                        <#list reviews as review>
+                            <@r.rev review/>
+                        </#list>
+                        <#else>
+                            <div class="border">Отзывов пока никто не оставил, будь первым!</div>
+                    </#if>
+
+
+            <button type="button" class="btn btn-warning btn-lg m-auto" data-toggle="modal" data-target="#myModal">Добавить отзыв</button>
+                </div>
+
+            </div>
+
+
         </div>
 
     </div>
 </div>
 
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Новый отзыв</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="/review/create" method="post">
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    <input type="hidden" name="productId" value="${product.id}">
+                    <div class="form-group" >оценка<input class="form-control" name="mark" type="number" min="1" max="5" placeholder="От 1 до 5"></div>
+                    <div class="form-group" >Отзыв:<br>
+                        <textarea class="form-control" name="description" rows="5" placeholder="Введите сообщение"></textarea>
+                    </div>
+                    <button class="btn-warning">Добавить отзыв</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+         </div>
+    </div>
+</div>
 
 
 </@component.skeleton>

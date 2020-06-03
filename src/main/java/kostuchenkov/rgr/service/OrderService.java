@@ -9,10 +9,10 @@ import kostuchenkov.rgr.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class OrderService {
@@ -22,7 +22,7 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepository;
 
-    public boolean createOrder(User user, String contact){
+    public boolean createOrder(User user, String contact,String phone, String address){
         user = userRepository.findByUsername(user.getUsername());
         Integer sum = 0 ;
 
@@ -31,6 +31,8 @@ public class OrderService {
         }
 
         Order order = new Order();
+        order.setAddress(address);
+        order.setPhone(phone);
         order.setDate(new Date());
         order.setContact(contact);
         order.setUser(user);
@@ -45,5 +47,20 @@ public class OrderService {
     public List<Order> getAllOrderOfUser(User user){
         user = userRepository.findByUsername(user.getUsername());
         return orderRepository.findByUser(user);
+    }
+
+    public List<Order> getAllOrders(){
+        return (List<Order>) orderRepository.findAll();
+    }
+
+    public List<Order> getAllOrdersWithStatus(OrderStatus orderStatus){
+        return orderRepository.findByOrderStatus(orderStatus);
+    }
+    public void setStatus(Order order, OrderStatus orderStatus){
+        order.setOrderStatus(orderStatus);
+        orderRepository.save(order);
+    }
+    public Optional<Order> getOrderById(int orderId){
+        return orderRepository.findById(orderId);
     }
 }

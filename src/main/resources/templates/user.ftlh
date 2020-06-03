@@ -28,7 +28,7 @@
         <#if wishlist??>
         <#list wishlist as product>
         <tr>
-            <td><a href="/product/${product.name}">${product.name}</a></td>
+            <td><a href="/product/${product.id}">${product.name}</a></td>
             <td>${product.price}</td>
             <td><button class="btn btn-primary" onclick="delInWishlist(${product.id},this)">Убрать из списка</button></td>
         </tr>

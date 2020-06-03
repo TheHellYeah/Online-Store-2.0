@@ -35,18 +35,18 @@ public class OrderController {
         return "orders";
     }
 
-    //переносим товары из корзины в ордер и добавляем данные доставки и т.р.
-    //Корзину чистим
+
     @PostMapping("/user/order/create")
-    public String create(@AuthenticationPrincipal User user, @RequestParam("contact") List<String> contact){
-
-        orderService.createOrder(user, contact.toString());
+    public String create(@AuthenticationPrincipal User user,
+                         @RequestParam("contact") List<String> contact,
+                         @RequestParam("phone") String phone,
+                         @RequestParam("address") String address
+        ){
+        //наркозамена запятых туСтринг на пробелы
+        orderService.createOrder(user, contact.toString().replace(","," "), phone, address);
         cartService.clearCart(user);
-
         return "redirect:/user/orders";
     }
-
-    // грузим страницу с той же корзиной и оформляем заказ. Кол-во можно редактировать будет только в корзине
 
     @GetMapping("/user/order/create")
     public String createOrder(@AuthenticationPrincipal User user, Model model){

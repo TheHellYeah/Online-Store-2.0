@@ -22,6 +22,11 @@
             <li  class="nav-item">
                 <a class="nav-link text-white" href="/admin">Админка</a>
             </li>
+            <li  class="nav-item">
+                <a class="nav-link text-white" href="/seller/orders">Бета sellers page</a>
+            </li>
+
+
 
         </ul>
         <form class="form-inline my-2 my-lg-0">

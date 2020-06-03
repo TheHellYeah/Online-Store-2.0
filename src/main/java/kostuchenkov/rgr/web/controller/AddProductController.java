@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
+//@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
 public class AddProductController {
 
     @Autowired

@@ -27,8 +27,8 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
-
     private String description;
+    private int mark;
 
     @Temporal(value = TemporalType.DATE)
     private Date date;

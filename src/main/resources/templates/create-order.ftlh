@@ -10,22 +10,22 @@
         <h3>Введите данные получателя</h3>
         <div class="form-group">
             <label for="firstName">Имя</label>
-            <input type="text" name="firstName" class="form-control" id="firstName" value="${user.firstName}"
+            <input type="text" name="contact" class="form-control" id="firstName" value="${user.firstName}"
                    placeholder="Введите имя получателя">
         </div>
         <div class="form-group">
             <label for="secondName">Фамилия</label>
-            <input type="text" name="secondName" class="form-control" id="secondName" value="${user.secondName}"
+            <input type="text" name="contact" class="form-control" id="secondName" value="${user.secondName}"
                    placeholder="Введите фамилию получателя">
         </div>
         <div class="form-group">
             <label for="patronymic">Отчество</label>
-            <input type="text" name="patronymic" class="form-control" id="patronymic" value="${user.patronymic}"
+            <input type="text" name="contact" class="form-control" id="patronymic" value="${user.patronymic}"
                    placeholder="Введите отчество получателя">
         </div>
         <div class="form-group">
             <label for="contact">Телефон</label>
-            <input type="text" name="contact" class="form-control" id="contact"
+            <input type="text" name="phone" class="form-control" id="contact"
                    placeholder="Введите номер телефона получателя">
         </div>
         <div class="form-group">

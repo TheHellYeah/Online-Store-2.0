@@ -1,0 +1,51 @@
+<#import "components/skeleton.ftlh" as component>
+<#import "components/navbar.ftlh" as bootstrap>
+<#import "components/product-order-card.ftlh" as p>
+
+<@component.skeleton title="Страница продавца">
+<@bootstrap.navbar/>
+<div class="container">
+    <form action="/seller/orders" method="get">
+        Фильтр
+        <select name="status" id="inputID" class="form-control">
+            <option value="ALL" selected >Все</option>
+            <option value="PENDING">Выполняются</option>
+            <option value="DONE">Готово</option>
+        </select>
+        <button class="btn-warning text-dark">Показать</button>
+    </form>
+    <table class="table">
+        <thead>
+        <tr>
+
+            <th>Номер заказа</th>
+            <th>Товар</th>
+            <th>дата</th>
+            <th>Пользователь</th>
+            <th>Статус</th>
+            <th>Стоимость</th>
+            <th>Подбробнее</th>
+        </tr>
+        </thead>
+        <tbody>
+        <#list orders as order>
+        <tr>
+            <td>${order.id}</td>
+            <td>
+                <@p.product order.products, order.id/>
+            </td>
+            <td>${order.date}</td>
+<!--            тут будет ссылка на профиль юзера, продумать как и стоит ли это делать-->
+            <td><a href="#">${order.user.username}</a></td>
+            <td>${order.orderStatus}</td>
+            <td>${order.total}</td>
+            <td><button class="btn-warning"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button></td>
+        </tr>
+        </#list>
+        </tbody>
+    </table>
+
+</div>
+
+
+</@component.skeleton>

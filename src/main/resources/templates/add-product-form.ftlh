@@ -53,8 +53,8 @@
             <label for="category">Категория обуви:</label>
             <select class="form-control" name="category" id="category">
                 <option disabled selected>Выберите категорию</option>
-                <option value="MALE">Мужская</option>
-                <option value="FEMALE">Женская</option>
+                <option value="MAN">Мужская</option>
+                <option value="WOMAN">Женская</option>
                 <option value="CHILD">Детская</option>
             </select>
         </div>
@@ -64,7 +64,7 @@
             <select class="form-control" name="subcategory" id="subcategory">
                 <option disabled selected>Выберите вид</option>
                 <option value="SNEAKERS">Кроссовки</option>
-                <option value="GYMSHOES">Спортивная обувь</option>
+                <option value="GUMSHOES">Спортивная обувь</option>
                 <option value="LOW_SHOES">Полуботинки</option>
                 <option value="SANDALS">Сандалии</option>
                 <option value="SLIPPERS">Тапочки</option>

@@ -35,6 +35,12 @@ public class Order {
     @Column(name = "contact")
     private String contact;
 
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phone")
+    private String phone;
+
     @Column(name = "order_date")
     @Temporal(TemporalType.DATE)
     private Date date;
