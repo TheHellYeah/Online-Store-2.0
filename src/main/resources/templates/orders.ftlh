@@ -22,7 +22,7 @@
             <tr>
                 <td>${order.id}</td>
                 <td>
-                    <@p.product order.products,order.id/>
+                    <@p.product order.products, order.id/>
                 </td>
                 <td><#if order.date??>${order.date}</#if></td>
                 <td>${order.orderStatus}</td>

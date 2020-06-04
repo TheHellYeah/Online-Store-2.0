@@ -31,7 +31,7 @@
             <label for="files">Фотографии</label>
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" multiple="multiple" class="custom-file-input form-control-file" id="files" accept="image">
+                    <input type="file" name="files" multiple="multiple" class="custom-file-input form-control-file" id="files" accept="image">
                     <label class="custom-file-label" for="files">Выберите файлы</label>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
             <label for="category">Категория обуви:</label>
-            <select class="form-control" name="category" id="category">
+            <select class="form-control" name="category" id="category" onchange="getValue(this.value);">
                 <option disabled selected>Выберите категорию</option>
                 <option value="MAN">Мужская</option>
                 <option value="WOMAN">Женская</option>
@@ -91,83 +91,13 @@
                     <th>Количество</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>30</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>31</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>32</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>33</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>34</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>35</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>36</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>37</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>38</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>39</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>40</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>41</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>42</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>43</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>44</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>45</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>46</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
-                <tr>
-                    <td>47</td>
-                    <td><input name="SIZE" type="number" min="0" max="9999" value="0"></td>
-                </tr>
+                <tbody id="size">
+
                 </tbody>
             </table>
         </div>
         <button type="submit" class="btn btn-warning">Добавить товар</button>
     </form>
 </div>
+<script src="/static/js/size.js"></script>
 </@component.skeleton>

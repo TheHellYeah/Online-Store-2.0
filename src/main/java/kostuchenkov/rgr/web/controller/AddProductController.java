@@ -6,7 +6,6 @@ import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +42,10 @@ public class AddProductController {
     @PostMapping("/product/add")
     public String addProduct(
             Product product,
-            @RequestParam("SIZE") List<Integer> size,
+            @RequestParam("size") List<ProductSize> size,
+            @RequestParam("count") List<Integer> count,
             @RequestParam("files") List<MultipartFile> files) throws IOException {
+
         if (files != null) {                         // настройки пути сохраннения в пропертис
             File uploadDir = new File(uploadPath);// проверям если ли папка img в хранилище. если нет, то создаем
             if (!uploadDir.exists()) {
@@ -55,13 +56,12 @@ public class AddProductController {
                 file.transferTo(new File(uploadPath + "/" + resultFileName));
                 product.getImages().add(resultFileName);
             }                                   // потом сделаю для каждого товара папку, тип один товар и у него все фотки в одной папке
-
         }
 
-        //FIXME КАСТЫЫЫЫЛЬ СРОЧНО ПЕРЕДЕЛАТЬ
         Map<ProductSize, Integer> s = new HashMap<>();
-        for (int i = 0; i < ProductSize.values().length; i++) {
-            s.put(ProductSize.values()[i], size.get(i));
+        System.out.println(size.toString());
+        for (int i = 0; i < size.size(); i++) {
+            s.put(size.get(i), count.get(i));
         }
         product.getSizes().putAll(s);
         productService.addProduct(product);
