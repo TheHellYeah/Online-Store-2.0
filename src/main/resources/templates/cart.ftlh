@@ -7,8 +7,8 @@
     <div class="row">
         <main class="site-content col-xs-12 col-md-12 col-sm-12" itemscope="itemscope" itemprop="mainContentOfPage">
             <div class="page-content entry-content">
-                <form class="woocommerce-cart-form" action="" method="post"> //FIXME адрес для оформления заказа
-                    <table class="table">
+                <form class="woocommerce-cart-form" action="" method="post">
+                    <table class="table table-dark table-hover mt-3">
                         <thead>
                         <tr>
                             <th>Обувь</th>
@@ -32,10 +32,8 @@
                         </#if>
                         </tbody>
                     </table>
-                    <div class="row float-right">
                         <span>Тотал:</span>
                         <a href="/user/order/create" class="btn btn-warning ml-5 text-dark" role="button">Перейти к оформлению заказа</a>
-                    </div>
                 </form>
             </div>
         </main>

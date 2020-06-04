@@ -28,14 +28,10 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String register(Model model, @Valid UserForm user, BindingResult bindingResult) {
-        if(bindingResult.hasFieldErrors()) {
-            System.out.println(bindingResult.getModel());
-            userService.findByUsername("2");
-            return "login";
-        }
-        model.addAttribute("", "");
-        //userService.register(user);
+    public String register(Model model, @Valid User user, BindingResult bindingResult) {
+
+        //FIXME
+        userService.add(user);
         return "registration";
     }
 

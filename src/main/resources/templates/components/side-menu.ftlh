@@ -8,7 +8,7 @@
         <a href="/filter?category=GUMSHOES">Кеды</a><br>
         <a href="/filter?category=SLIPPERS">Шлёпанцы</a><br>
         <a href="/filter?category=LOW_SHOES">Туфли</a><br>
-        <a href="/filter?category=SNEAKES">Кроссовки</a><br>
+        <a href="/filter?category=SNEAKERS">Кроссовки</a><br>
     </div>
 
     <div class="price">
@@ -49,6 +49,6 @@
         <@form.checkbox name="season" value="WINTER" text="Зима"/>
         <@form.checkbox name="season" value="SPRING" text="Весна"/>
     </div>
-    <button type="submit">s</button>
+    <button type="submit" class="btn btn-warning mt-2">Фильтровать</button>
 </form>
 </#macro>

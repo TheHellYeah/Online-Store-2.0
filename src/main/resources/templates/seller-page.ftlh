@@ -5,8 +5,7 @@
 <@component.skeleton title="Страница продавца">
 <@bootstrap.navbar/>
 <div class="container">
-    <form action="/seller/orders" method="get">
-        Фильтр
+    <form action="/seller/orders" method="get" class="mt-3">
         <select name="status" id="inputID" class="form-control">
             <option value="ALL" selected >Все</option>
             <option value="PENDING">Выполняются</option>
@@ -14,10 +13,9 @@
         </select>
         <button class="btn-warning text-dark">Показать</button>
     </form>
-    <table class="table">
+    <table class="table table-dark table-hover mt-3">
         <thead>
         <tr>
-
             <th>Номер заказа</th>
             <th>Товар</th>
             <th>дата</th>

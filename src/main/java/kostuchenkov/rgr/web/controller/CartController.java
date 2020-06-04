@@ -26,11 +26,11 @@ public class CartController {
     @Autowired
     private UserService userService;
     @Autowired
-    OrderRepository orderRepository;
+    private OrderRepository orderRepository;
 
     @GetMapping("/user/cart")
     public String cartPage(@AuthenticationPrincipal User user, Model model){
-        user = userService.findByUsername(user.getUsername());
+        user = userService.getUserById(user.getId());
         model.addAttribute("cart", user.getCart());
         return "cart";
     }

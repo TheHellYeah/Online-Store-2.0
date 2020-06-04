@@ -26,11 +26,21 @@ public class UserController {
     private ProductService productService;
 
     @GetMapping("/{id:\\d+}")
-    public String userPage(@PathVariable("id") User user, Model model) {
-
+    public String userPage(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
+        if(user.getId() == session.getId()) {
+            //TODO если id сесии и пользователя равны, то личная страничка, если нет, то чужая
+        }
         model.addAttribute("user", user);
-        model.addAttribute("wishlist", user.getWishList());
         return "user";
+    }
+
+    @GetMapping("/{id:\\d+}/wishlist")
+    public String wishlist(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
+        if(user.getId() == session.getId()){
+            //TODO если id сесии и пользователя равны, то личный вишлист, если нет, то чужой(проверка на доступ к вишлисту)
+        }
+        model.addAttribute("wishlist", user.getWishList());
+        return "wishlist";
     }
 
     @GetMapping("/wishlist/add")

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>${title}</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="_csrf" content="${_csrf.token}" />
@@ -15,7 +16,6 @@
 <body>
 <#nested>
 <script src="/static/js/cart.js"></script>
-<script src="/static/js/search.js"></script>
 <script src="/static/js/wishList.js"></script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

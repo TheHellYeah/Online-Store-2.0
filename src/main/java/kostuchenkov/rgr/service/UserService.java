@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.service;
 
 import kostuchenkov.rgr.data.domain.user.User;
+import kostuchenkov.rgr.data.domain.user.UserRole;
 import kostuchenkov.rgr.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -32,10 +35,6 @@ public class UserService implements UserDetailsService {
 
             mailService.send(user.getEmail(),"Код активации",message);
         }
-    }
-
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
     }
 
     //TODO валидацию доделать или забить хуй
@@ -64,5 +63,23 @@ public class UserService implements UserDetailsService {
         user.setVerified(true);
         userRepository.save(user);
         return true;
+    }
+
+    //FIXME убрать
+    public void add(User user) {
+        userRepository.save(user);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public User getUserById(int id) {
+        Optional<User> user = userRepository.findById(id);
+        return user.orElse(null);
+    }
+
+    public List<User> getAllUsersByRole(UserRole role) {
+        return userRepository.findByRoles(role);
     }
 }

@@ -16,10 +16,10 @@
             <@slider.slider/>
             <div class="container mt-3">
                 <div class="row bg-dark">
-                    <div class="input-group m-2 ">
+                    <div class="input-group m-2 search-group">
                         <input type="text" class="form-control" placeholder="Поиск" id="search">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">
+                            <button class="btn btn-outline-secondary text-dark bg-warning" type="button" id="button-addon2">
                                 Поиск
                             </button>
                         </div>
@@ -43,4 +43,5 @@
 </div>
 </div>
 </div>
+<script src="/static/js/search.js"></script>
 </@html.skeleton>

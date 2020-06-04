@@ -2,19 +2,42 @@ body {
     background : #3f454a;
 }
 
+.dropdown-item, a {
+    color: #ffc107;
+}
+
+.dropdown-item:hover {
+    background-color: #ffc107;
+}
+
+.dropdown-item:hover svg {
+    fill: #343a40;
+}
+
 .navbar {
    background-color: #343a40 !important;
    opacity: 0.97;
 }
 
-h3, label {
+h3, label, a:hover {
   color: white;
-}
-
-a {
-    color: #ffc107;
 }
 
 .accordion .card {
     background: #343a40 !important;
+}
+
+.card img {
+    height: 230px;
+}
+
+.form-control:focus {
+    border-color: #ffca28;
+    box-shadow: 0 0 0 0.2rem rgba(255, 188, 0, 0.25);
+}
+
+
+.card-columns .card:hover {
+    border-color: #ffc107;
+    cursor: pointer;
 }

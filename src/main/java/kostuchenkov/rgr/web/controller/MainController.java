@@ -46,8 +46,6 @@ public class MainController {
         return "index";
     }
 
-    //TODO РАБОТАЕТ, я пробовал через адресную строку вводить, осталось доделать  по нажатию кнопки
-
     @GetMapping("/search")
     public String searchResult(@RequestParam String name, Model model) {
         model.addAttribute("products", productService.getProductsContainingString(name));

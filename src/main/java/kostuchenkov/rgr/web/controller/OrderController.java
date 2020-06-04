@@ -51,7 +51,7 @@ public class OrderController {
     @GetMapping("/user/order/create")
     public String createOrder(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("user", user);
-        model.addAttribute("cart", userService.findByUsername(user.getUsername()).getCart());
+        model.addAttribute("cart", userService.getUserById(user.getId()).getCart());
         return "create-order";
     }
 }
