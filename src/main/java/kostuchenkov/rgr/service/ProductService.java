@@ -58,4 +58,9 @@ public class ProductService {
     public List<Product> getProductsContainingString(String name) {
         return productRepository.findByNameContaining(name);
     }
+
+    public void save(Product product){
+        productRepository.save(product);
+    }
+
 }

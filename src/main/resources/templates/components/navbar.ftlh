@@ -25,6 +25,9 @@
             <li  class="nav-item">
                 <a class="nav-link text-white" href="/seller/orders">Бета sellers page</a>
             </li>
+            <li  class="nav-item">
+                <a class="nav-link text-white" href="/storage">Storage</a>
+            </li>
         </ul>
 
         <#if !known>
