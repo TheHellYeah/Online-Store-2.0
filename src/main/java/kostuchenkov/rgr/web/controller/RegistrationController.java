@@ -1,11 +1,8 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.model.user.User;
-import kostuchenkov.rgr.data.repository.UserRepository;
 import kostuchenkov.rgr.service.UserService;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

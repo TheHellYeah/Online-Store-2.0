@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.model.user;
+package kostuchenkov.rgr.model.domain.user;
 
 public enum UserWishListAccess {
     PUBLIC,

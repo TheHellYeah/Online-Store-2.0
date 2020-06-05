@@ -1,8 +1,8 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.data.model.user.User;
-import kostuchenkov.rgr.data.model.user.UserRole;
-import kostuchenkov.rgr.data.repository.UserRepository;
+import kostuchenkov.rgr.model.domain.user.User;
+import kostuchenkov.rgr.model.domain.user.UserRole;
+import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

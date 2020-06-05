@@ -1,6 +1,6 @@
-package kostuchenkov.rgr.data.model.user;
+package kostuchenkov.rgr.model.domain.user;
 
-import kostuchenkov.rgr.data.model.product.Product;
+import kostuchenkov.rgr.model.domain.product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

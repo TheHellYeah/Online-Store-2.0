@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.model.product.Product;
-import kostuchenkov.rgr.data.model.user.User;
+import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;

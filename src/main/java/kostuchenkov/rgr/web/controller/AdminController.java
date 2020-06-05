@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.model.user.UserRole;
+import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,8 +1,8 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.model.order.Order;
-import kostuchenkov.rgr.data.model.order.OrderStatus;
-import kostuchenkov.rgr.data.model.user.User;
+import kostuchenkov.rgr.model.domain.order.Order;
+import kostuchenkov.rgr.model.domain.order.OrderStatus;
+import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

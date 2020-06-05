@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.model.product;
+package kostuchenkov.rgr.model.domain.product;
 
 public enum ProductSize {
     SIZE_30,
