@@ -18,17 +18,16 @@ import java.util.List;
 public class MainController {
 
     @Autowired
-    private MailService mailServiceClient;
-    @Autowired
     private ProductService productService;
 
     @GetMapping("/")
     public String indexPage(Model model) {
 
-        val products = productService.getAllProducts();
-        model.addAttribute("products", products);
-
-        //mailClient.send("mitlg@yandex.ru","Ваш код активации","Привет, твой код активации 124234");
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("subcategories", ProductSubcategory.values());
+        model.addAttribute("brands", ProductBrand.values());
+        model.addAttribute("seasons", ProductSeason.values());
+        model.addAttribute("materials", ProductMaterial.values());
         return "index";
     }
 
@@ -36,12 +35,19 @@ public class MainController {
     public String filter(@RequestParam(required = false) ProductCategory category,
                          @RequestParam(required = false) List<ProductSubcategory> subcategory,
                          @RequestParam(required = false) List<ProductBrand> brand,
+                         @RequestParam(required = false) List<ProductMaterial> material,
                          @RequestParam(required = false) Integer minPrice,
                          @RequestParam(required = false) Integer maxPrice,
                          @RequestParam(required = false) List<ProductSeason> season,
                          Model model) {
         //TODO доделать фильтры на цену, размеры хз
         List<Product> products = productService.getProductsByFilter(category, subcategory, brand, season);
+        
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("subcategories", ProductSubcategory.values());
+        model.addAttribute("brands", ProductBrand.values());
+        model.addAttribute("seasons", ProductSeason.values());
+        model.addAttribute("materials", ProductMaterial.values());
         model.addAttribute("products", products);
         return "index";
     }

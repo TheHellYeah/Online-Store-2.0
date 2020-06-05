@@ -32,6 +32,8 @@ public class Product {
     private ProductBrand brand;
     @Enumerated(EnumType.STRING)
     private ProductSeason season;
+    @Enumerated(EnumType.STRING)
+    private ProductMaterial material;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews = new ArrayList<>();

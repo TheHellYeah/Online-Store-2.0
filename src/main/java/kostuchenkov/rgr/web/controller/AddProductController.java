@@ -1,7 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.domain.product.Product;
-import kostuchenkov.rgr.data.domain.product.ProductSize;
+import kostuchenkov.rgr.data.domain.product.*;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +34,12 @@ public class AddProductController {
 
     @GetMapping("/product/add")
     public String page(Model model) {
+
+        model.addAttribute("subcategories", ProductSubcategory.values());
+        model.addAttribute("categories", ProductCategory.values());
+        model.addAttribute("brands", ProductBrand.values());
+        model.addAttribute("seasons", ProductSeason.values());
+        model.addAttribute("materials", ProductMaterial.values());
         return "add-product-form";
     }
 

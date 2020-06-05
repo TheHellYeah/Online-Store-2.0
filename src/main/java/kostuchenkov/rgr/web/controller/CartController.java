@@ -11,12 +11,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/user/cart")
 public class CartController {
 
     @Autowired
@@ -25,38 +27,38 @@ public class CartController {
     private ProductService productService;
     @Autowired
     private UserService userService;
-    @Autowired
-    private OrderRepository orderRepository;
 
-    @GetMapping("/user/cart")
-    public String cartPage(@AuthenticationPrincipal User user, Model model){
-        user = userService.getUserById(user.getId());
+    @GetMapping
+    public String cartPage(@AuthenticationPrincipal User session, Model model){
+        User user = userService.getUserById(session.getId());
         model.addAttribute("cart", user.getCart());
         return "cart";
     }
 
     //FIXME POST
 
-    @GetMapping("/user/cart/add")
+    @GetMapping("/add")
     @ResponseBody
-    public String addToCart(@AuthenticationPrincipal User user, @RequestParam String productId, @RequestParam String count){
+    public String addToCart(@AuthenticationPrincipal User session, @RequestParam String productId, @RequestParam String count){
         Optional<Product> product = productService.getProductById(productId);
-        product.ifPresent(value -> cartService.addToCart(user, product.get(), Integer.parseInt(count)));
+        product.ifPresent(value ->
+                cartService.addToCart(userService.getUserById(session.getId()), product.get(), Integer.parseInt(count)));
         return "ok";
     }
 
-    @GetMapping("/user/cart/clear")
+    @GetMapping("/clear")
     @ResponseBody
-    public String clearCart(@AuthenticationPrincipal User user){
-        cartService.clearCart(user);
+    public String clearCart(@AuthenticationPrincipal User session){
+        cartService.clearCart(userService.getUserById(session.getId()));
         return "ok";
     }
 
-    @GetMapping("/user/cart/delete")
+    @GetMapping("delete")
     @ResponseBody
-    public String deleteFromCart(@AuthenticationPrincipal User user, @RequestParam String productId){
+    public String deleteFromCart(@AuthenticationPrincipal User session, @RequestParam String productId){
        Optional<Product> product = productService.getProductById(productId);
-       product.ifPresent(value -> cartService.deleteFromCart(user, product.get()));
+       product.ifPresent(value ->
+               cartService.deleteFromCart(userService.getUserById(session.getId()), product.get()));
        return "ok";
     }
 }

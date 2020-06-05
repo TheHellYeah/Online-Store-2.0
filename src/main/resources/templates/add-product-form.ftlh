@@ -38,24 +38,22 @@
         </div>
 
         <div class="form-group">
-            <label for="brand">Бренд:</label>
-            <select class="form-control" name="brand" id="brand">
-                <option disabled selected>Выберите бренд</option>
-                <option value="NIKE">Nike</option>
-                <option value="ADIDAS">Adidas</option>
-                <option value="RIEKER">Rieker</option>
-                <option value="PUMA">Puma</option>
-                <option value="RALPH_RINGER">Ralph Ringer</option>
+            <label for="category">Категория обуви:</label>
+            <select class="form-control" name="category" id="category" onchange="getValue(this.value);">
+                <option disabled selected>Выберите категорию</option>
+                <#list categories as category>
+                    <option value=${category.name()}>${category.toString()}</option>
+                </#list>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="category">Категория обуви:</label>
-            <select class="form-control" name="category" id="category" onchange="getValue(this.value);">
-                <option disabled selected>Выберите категорию</option>
-                <option value="MAN">Мужская</option>
-                <option value="WOMAN">Женская</option>
-                <option value="CHILD">Детская</option>
+            <label for="brand">Бренд:</label>
+            <select class="form-control" name="brand" id="brand">
+                <option disabled selected>Выберите бренд</option>
+                <#list brands as brand>
+                    <option value=${brand.name()}>${brand.toString()}</option>
+                </#list>
             </select>
         </div>
 
@@ -63,11 +61,9 @@
             <label for="subcategory">Вид обуви:</label>
             <select class="form-control" name="subcategory" id="subcategory">
                 <option disabled selected>Выберите вид</option>
-                <option value="SNEAKERS">Кроссовки</option>
-                <option value="GUMSHOES">Спортивная обувь</option>
-                <option value="LOW_SHOES">Полуботинки</option>
-                <option value="SANDALS">Сандалии</option>
-                <option value="SLIPPERS">Тапочки</option>
+                <#list subcategories as subcategory>
+                    <option value=${subcategory.name()}>${subcategory.toString()}</option>
+                </#list>
             </select>
         </div>
 
@@ -75,10 +71,19 @@
             <label for="season">Сезон:</label>
             <select class="form-control" name="season" id="season">
                 <option disabled selected>Выберите сезон</option>
-                <option value="SUMMER">Лето</option>
-                <option value="AUTUMN">Осень</option>
-                <option value="WINTER">Зима</option>
-                <option value="SPRING">Весна</option>
+                <#list seasons as season>
+                    <option value=${season.name()}>${season.toString()}</option>
+                </#list>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="material">Материал:</label>
+            <select class="form-control" name="material" id="material">
+                <option disabled selected>Выберите материал</option>
+                <#list materials as material>
+                    <option value=${material.name()}>${material.toString()}</option>
+                </#list>
             </select>
         </div>
 

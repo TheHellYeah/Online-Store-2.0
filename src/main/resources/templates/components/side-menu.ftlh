@@ -1,14 +1,12 @@
 <#import "form-check.ftlh" as form>
 
 <#macro menu>
-<form method="get" action="/filter">
+<form method="get" action="/filter" class="mb-5">
     <div class="category">
         <h3>Категории</h3>
-        <a href="/filter?category=SANDALS">Сандалии</a><br>
-        <a href="/filter?category=GUMSHOES">Кеды</a><br>
-        <a href="/filter?category=SLIPPERS">Шлёпанцы</a><br>
-        <a href="/filter?category=LOW_SHOES">Туфли</a><br>
-        <a href="/filter?category=SNEAKERS">Кроссовки</a><br>
+        <#list subcategories as subcategory>
+            <a href="/filter?subcategory=${subcategory.name()}">${subcategory.toString()}</a><br>
+        </#list>
     </div>
 
     <div class="price">
@@ -33,21 +31,26 @@
             <input type="range" min="0" max="100000" class="form-control-range">
         </div>
     </div>
+
     <div class="brand">
         <h3>Бренд</h3>
-        <@form.checkbox name="brand" value="NIKE" text="Nike"/>
-        <@form.checkbox name="brand" value="ADIDAS" text="Adidas"/>
-        <@form.checkbox name="brand" value="RIEKER" text="Rieker"/>
-        <@form.checkbox name="brand" value="PUMA" text="Puma"/>
-        <@form.checkbox name="brand" value="RALPH_RINGER" text="Ralph Ringer"/>
+        <#list brands as brand>
+            <@form.checkbox name="brand" value=brand.name() text=brand.toString() />
+        </#list>
     </div>
 
     <div class="season">
         <h3>Сезон</h3>
-        <@form.checkbox name="season" value="SUMMER" text="Лето"/>
-        <@form.checkbox name="season" value="AUTUMN" text="Осень"/>
-        <@form.checkbox name="season" value="WINTER" text="Зима"/>
-        <@form.checkbox name="season" value="SPRING" text="Весна"/>
+        <#list seasons as season>
+            <@form.checkbox name="season" value=season.name() text=season.toString() />
+        </#list>
+    </div>
+
+    <div class="material">
+        <h3>Материал</h3>
+        <#list materials as material>
+            <@form.checkbox name="material" value=material.name() text=material.toString() />
+        </#list>
     </div>
     <button type="submit" class="btn btn-warning mt-2">Фильтровать</button>
 </form>
