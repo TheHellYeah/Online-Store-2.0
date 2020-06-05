@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.domain.product;
+package kostuchenkov.rgr.data.model.product;
 
 public enum  ProductMaterial {
     TEXTILE,

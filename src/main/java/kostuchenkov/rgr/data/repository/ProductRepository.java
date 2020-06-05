@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.data.repository;
 
-import kostuchenkov.rgr.data.domain.product.*;
+import kostuchenkov.rgr.data.model.product.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

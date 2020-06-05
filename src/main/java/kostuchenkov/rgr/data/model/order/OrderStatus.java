@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.domain.order;
+package kostuchenkov.rgr.data.model.order;
 
 public enum OrderStatus {
     DONE,

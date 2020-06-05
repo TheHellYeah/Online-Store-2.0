@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.data.domain.user;
+package kostuchenkov.rgr.data.model.user;
 
 import org.springframework.security.core.GrantedAuthority;
 

@@ -1,12 +1,11 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.data.domain.product.*;
+import kostuchenkov.rgr.data.model.product.*;
 import kostuchenkov.rgr.data.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 

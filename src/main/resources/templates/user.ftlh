@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@html.skeleton title="ShoeHub: страница пользователя">
+<@html.skeleton title="Личный кабинет">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if missing??>

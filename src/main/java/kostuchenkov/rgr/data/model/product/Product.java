@@ -1,6 +1,6 @@
-package kostuchenkov.rgr.data.domain.product;
+package kostuchenkov.rgr.data.model.product;
 
-import kostuchenkov.rgr.data.domain.review.Review;
+import kostuchenkov.rgr.data.model.review.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

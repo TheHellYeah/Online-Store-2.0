@@ -1,9 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.domain.product.*;
-import kostuchenkov.rgr.service.MailService;
+import kostuchenkov.rgr.data.model.product.*;
 import kostuchenkov.rgr.service.ProductService;
-import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +40,7 @@ public class MainController {
                          Model model) {
         //TODO доделать фильтры на цену, размеры хз
         List<Product> products = productService.getProductsByFilter(category, subcategory, brand, season);
-        
+
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("subcategories", ProductSubcategory.values());
         model.addAttribute("brands", ProductBrand.values());

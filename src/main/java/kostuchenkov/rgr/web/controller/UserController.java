@@ -1,19 +1,13 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.data.domain.product.Product;
-import kostuchenkov.rgr.data.domain.user.User;
-import kostuchenkov.rgr.data.domain.user.UserWishListAccess;
-import kostuchenkov.rgr.service.ProductService;
+import kostuchenkov.rgr.data.model.user.User;
+import kostuchenkov.rgr.data.model.user.UserWishListAccess;
 import kostuchenkov.rgr.service.UserService;
-import kostuchenkov.rgr.service.WishListService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")

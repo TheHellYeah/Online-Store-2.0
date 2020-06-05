@@ -1,6 +1,4 @@
-package kostuchenkov.rgr.data.domain.product;
-
-import javax.persistence.Embeddable;
+package kostuchenkov.rgr.data.model.product;
 
 public enum ProductSize {
     SIZE_30,

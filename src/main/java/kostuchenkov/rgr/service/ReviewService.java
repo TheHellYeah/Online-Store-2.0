@@ -1,9 +1,8 @@
 package kostuchenkov.rgr.service;
 
 
-import kostuchenkov.rgr.data.domain.review.Review;
-import kostuchenkov.rgr.data.domain.user.User;
-import kostuchenkov.rgr.data.repository.ProductRepository;
+import kostuchenkov.rgr.data.model.review.Review;
+import kostuchenkov.rgr.data.model.user.User;
 import kostuchenkov.rgr.data.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

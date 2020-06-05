@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.data.repository;
 
-import kostuchenkov.rgr.data.domain.user.User;
-import kostuchenkov.rgr.data.domain.user.UserRole;
+import kostuchenkov.rgr.data.model.user.User;
+import kostuchenkov.rgr.data.model.user.UserRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

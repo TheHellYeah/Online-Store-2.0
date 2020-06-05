@@ -1,9 +1,9 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.data.domain.order.Order;
-import kostuchenkov.rgr.data.domain.order.OrderStatus;
-import kostuchenkov.rgr.data.domain.product.Product;
-import kostuchenkov.rgr.data.domain.user.User;
+import kostuchenkov.rgr.data.model.order.Order;
+import kostuchenkov.rgr.data.model.order.OrderStatus;
+import kostuchenkov.rgr.data.model.product.Product;
+import kostuchenkov.rgr.data.model.user.User;
 import kostuchenkov.rgr.data.repository.OrderRepository;
 import kostuchenkov.rgr.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
