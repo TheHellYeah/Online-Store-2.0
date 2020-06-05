@@ -27,19 +27,27 @@
             </li>
         </ul>
 
-        <div class="mr-3">
-            <a href="/user/cart">Корзина</a>
-            <svg class="bi bi-cart4" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
-            </svg>
-        </div>
         <#if !known>
             <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" >Войти</a></button>
             <#else>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdown">${name}</a>
-                <svg class="bi bi-person-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-                </svg>
+                <div class="mr-3">
+                    <span class="text-warning">${user.balance} ₽</span>
+                    <svg class="bi bi-wallet2" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.5 4l10-3A1.5 1.5 0 0 1 14 2.5v2h-1v-2a.5.5 0 0 0-.5-.5L5.833 4H2.5z"/>
+                        <path fill-rule="evenodd" d="M1 5.5A1.5 1.5 0 0 1 2.5 4h11A1.5 1.5 0 0 1 15 5.5v8a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 13.5v-8zM2.5 5a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h11a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-11z"/>
+                    </svg>
+                </div>
+                <div class="mr-3">
+                    <a href="/user/cart">Корзина</a>
+                    <svg class="bi bi-cart4" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="dropdown">${name}</a>
+                    <svg class="bi bi-person-fill" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
                     <div class="dropdown-menu dropdown-menu-right mt-0 mr-2 bg-dark text-warning" aria-labelledby="dropdown">
                         <a class="dropdown-item" href="/user/${userId}">Личный кабинет</a>
                         <a class="dropdown-item" href="/user/${userId}/wishlist">Избранное
@@ -64,9 +72,7 @@
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                         </form>
                     </div>
-<!--                 <form action="/logout" method="post">-->
-<!--                    <input type="submit" value="Выйти"/>-->
-<!--                 </form>-->
+                </div>
         </#if>
     </div>
 </nav>

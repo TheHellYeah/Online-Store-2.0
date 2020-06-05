@@ -11,7 +11,6 @@
                 <path d="M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
             </svg>
         </h1>
-        <h3 class="float-none">${error}</h3>
-        <a href="/" style="font-size: 20px;">На главную</a>
+        <h3 class="float-none">${error}<br><a href="/">На главную</a></h3>
 </div>
 </@html.skeleton>

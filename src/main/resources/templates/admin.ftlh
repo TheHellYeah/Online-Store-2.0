@@ -22,29 +22,31 @@
             </div>
         </div>
     </div>
-    <#if users??>
-        <div>
-            <table class="table table-dark table-hover mt-3">
-                <thead>
-                    <tr>
-                        <th>Логин</th>
-                        <th>Почта</th>
-                        <th>Баланс</th>
-                        <th>Роль</th>
+    <#if users?has_content>
+        <table class="table table-dark table-hover mt-3">
+            <thead>
+                <tr>
+                    <th>Логин</th>
+                    <th>Почта</th>
+                    <th>Баланс</th>
+                    <th>Роли</th>
+                </tr>
+            </thead>
+            <tbody>
+                <#list users as user>
+                    <tr onclick="window.location.href='/user/${user.id}'" style="cursor: pointer;">
+                        <td><a href="#">${user.username}</a></td>
+                        <td>${user.email}</td>
+                        <td>${user.balance} ₽</td>
+                        <td>
+                            <#list user.roles as role>
+                                ${role.toString()}<br>
+                            </#list>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <#list users as user>
-                        <tr>
-                            <td><a href="/user/${user.id}">${user.username}</a></td>
-                            <td>${user.email}</td>
-                            <td>${user.balance}</td>
-                            <td>А</td>
-                        </tr>
-                    </#list>
-                </tbody>
-            </table>
-        </div>
+                </#list>
+            </tbody>
+        </table>
     </#if>
 </div>
 <script src="/static/js/admin.js"></script>

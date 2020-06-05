@@ -8,6 +8,13 @@ public enum UserRole implements GrantedAuthority {
     ADMIN;
 
     @Override
+    public String toString() {
+        if(this.equals(CUSTOMER)) return "Покупатель";
+        if(this.equals(SELLER)) return "Продавец";
+        else return "Администратор";
+    }
+
+    @Override
     public String getAuthority() {
         return name();
     }

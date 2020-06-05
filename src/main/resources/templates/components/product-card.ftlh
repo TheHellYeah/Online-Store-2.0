@@ -12,7 +12,7 @@
             <a href="/filter?subcategory=${product.subcategory.name()}">${product.subcategory.toString()}</a> /
             <a href="/filter?season=${product.season.name()}">${product.season.toString()}</a>
         </p>
-        <p class="card-text">Цена: ${product.price}р.</p>
+        <p class="card-text">Цена: ${product.price} ₽</p>
         <button class="btn btn-warning" onclick="addWishlist(${product.id})">♥</button>
     </div>
 </div>

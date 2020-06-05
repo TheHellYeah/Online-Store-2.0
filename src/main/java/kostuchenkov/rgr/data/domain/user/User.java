@@ -94,4 +94,12 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    public int getBill() {
+        int bill = 0;
+        for(Product product : cart.keySet()) {
+            bill += product.getPrice();
+        }
+        return bill;
+    }
 }

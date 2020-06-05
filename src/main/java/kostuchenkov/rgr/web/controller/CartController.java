@@ -31,7 +31,11 @@ public class CartController {
     @GetMapping
     public String cartPage(@AuthenticationPrincipal User session, Model model){
         User user = userService.getUserById(session.getId());
+        if(user.getBalance() < user.getBill()) {
+            model.addAttribute("warning", true);
+        }
         model.addAttribute("cart", user.getCart());
+        model.addAttribute("total", user.getBill());
         return "cart";
     }
 
@@ -59,6 +63,6 @@ public class CartController {
        Optional<Product> product = productService.getProductById(productId);
        product.ifPresent(value ->
                cartService.deleteFromCart(userService.getUserById(session.getId()), product.get()));
-       return "ok";
+       return "Товар удален";
     }
 }

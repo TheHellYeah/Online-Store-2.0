@@ -41,3 +41,10 @@ h3, label, a:hover {
     border-color: #ffc107;
     cursor: pointer;
 }
+
+input.cart-size-input {
+    text-align: center;
+    width: 70px;
+    color:white;
+    background: #343a40;
+}

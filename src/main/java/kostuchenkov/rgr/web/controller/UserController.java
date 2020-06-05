@@ -25,6 +25,11 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     public String userPage(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
 
+        if(user == null) {
+            model.addAttribute("missing", true);
+            return "user";
+        }
+
         if(user.getId() == session.getId()) {
             model.addAttribute("currentUser", true);
         }
@@ -34,6 +39,11 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}/wishlist")
     public String wishlist(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
+
+        if(user == null) {
+            model.addAttribute("missing", true);
+            return "user";
+        }
 
         if(user.getId() == session.getId()){
             model.addAttribute("currentUser", true);
