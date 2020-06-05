@@ -2,7 +2,7 @@ body {
     background : #3f454a;
 }
 
-.dropdown-item, a {
+.dropdown-item, a, h1 {
     color: #ffc107;
 }
 
