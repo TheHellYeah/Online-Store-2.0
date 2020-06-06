@@ -1,18 +1,15 @@
-const URL = `http://localhost:8080`
 let searchForm;
 
-window.onload = function() {
+document.addEventListener("DOMContentLoaded", function() {
 
     searchForm = document.querySelector('#search');
-
     searchForm.addEventListener('input', function() {
-         setTimeout(searchHandler, 500)
+         setTimeout(filterHandler, 500)
     });
+    document.querySelector('.search-group button').addEventListener('click', searchHandler)
+});
 
-    document.querySelector('.search-group button').addEventListener('click', clickHandler)
-}
-
-function searchHandler() {
+function filterHandler() {
 
     let select = document.querySelector('#productList');
 
@@ -39,6 +36,6 @@ function searchHandler() {
     }
 }
 
-function clickHandler() {
+function searchHandler() {
      window.location.href = URL + `/search?name=${searchForm.value}`
 }

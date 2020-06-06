@@ -41,7 +41,6 @@ public class MainController {
         //TODO доделать фильтры на цену, размеры хз
         List<Product> products = productService.getProductsByFilter(category, subcategory, brand, season);
 
-        model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("subcategories", ProductSubcategory.values());
         model.addAttribute("brands", ProductBrand.values());
         model.addAttribute("seasons", ProductSeason.values());
@@ -53,6 +52,10 @@ public class MainController {
     @GetMapping("/search")
     public String searchResult(@RequestParam String name, Model model) {
         model.addAttribute("products", productService.getProductsContainingString(name));
+        model.addAttribute("subcategories", ProductSubcategory.values());
+        model.addAttribute("brands", ProductBrand.values());
+        model.addAttribute("seasons", ProductSeason.values());
+        model.addAttribute("materials", ProductMaterial.values());
         return "index";
     }
 

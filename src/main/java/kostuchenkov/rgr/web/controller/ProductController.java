@@ -6,6 +6,7 @@ import kostuchenkov.rgr.service.UserService;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,6 +40,7 @@ public class ProductController {
         return "product";
     }
 
+    @PreAuthorize("hasRole('ADMIN') or hasRole('SELLER')")
     @GetMapping("/product/add")
     public String page(Model model) {
 
@@ -59,6 +61,12 @@ public class ProductController {
             Map<String, String> errors = new HashMap<>();
             bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", e.getDefaultMessage()));
             model.mergeAttributes(errors); //TODO доделать отображение ошибок в view
+
+            model.addAttribute("subcategories", ProductSubcategory.values());
+            model.addAttribute("categories", ProductCategory.values());
+            model.addAttribute("brands", ProductBrand.values());
+            model.addAttribute("seasons", ProductSeason.values());
+            model.addAttribute("materials", ProductMaterial.values());
             return "add-product-form";
         }
         productService.addProductFromForm(productForm);

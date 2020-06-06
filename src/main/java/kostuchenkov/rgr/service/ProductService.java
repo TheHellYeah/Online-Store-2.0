@@ -22,6 +22,8 @@ public class ProductService {
 
     @Value("${upload.path}")
     private String uploadPath;
+    @Value("${product.image.default}")
+    private String defaultImagePath;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
@@ -79,7 +81,8 @@ public class ProductService {
 
     private void saveProductImages(List<MultipartFile> files, Product product) {
 
-        if (files != null) {
+        if (files != null && !files.get(0).isEmpty()) { //Лист файлов в контроллер приходит
+                                                        // почему то с одним итемом с названием "", поэтому еще проверка
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -94,6 +97,8 @@ public class ProductService {
                  }
                 product.getImages().add(resultFileName);
             }
+        } else {
+            product.getImages().add(defaultImagePath);
         }
     }
 

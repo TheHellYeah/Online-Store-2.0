@@ -1,4 +1,3 @@
-const URL = `http://localhost:8080`
 
 async function clearCart(){
      let xhr = new XMLHttpRequest();

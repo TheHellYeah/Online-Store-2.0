@@ -1,4 +1,3 @@
-URL = `http://localhost:8080`
 
 async function clearWishlist(){
 	 let xhr = new XMLHttpRequest();

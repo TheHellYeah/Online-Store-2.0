@@ -1,10 +1,7 @@
 <#macro card product>
 <div class="card text-white bg-dark m-1" style="width: 18rem;" onclick="location.href=`/product/${product.id}`">
-    <#if product.images?has_content>
-        <img class="card-img-top" src="/img/${product.images[0]}" alt="Card image cap">
-    <#else>
-        <img class="card-img-top" src="https://toyscat.ru/img/nofoto.png" alt="Card image cap">
-    </#if>
+
+    <img class="card-img-top" src="/img/${product.images[0]}" alt="ИЗображение товара">
     <div class="card-body" >
         <h5 class="card-title">${product.name}</h5>
         <p>

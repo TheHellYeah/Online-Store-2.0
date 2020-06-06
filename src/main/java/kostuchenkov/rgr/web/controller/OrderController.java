@@ -65,7 +65,5 @@ public class OrderController {
             model.addAttribute("total", user.getCartTotal());
             return "checkout";
         }
-
-
     }
 }

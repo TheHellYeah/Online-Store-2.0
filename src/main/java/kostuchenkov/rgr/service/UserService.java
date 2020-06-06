@@ -6,6 +6,7 @@ import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,24 +28,22 @@ public class UserService implements UserDetailsService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Value("${user.image.default}")
+    private String defaultAvatarPath;
+
     public void registerFromUserForm(UserRegistrationForm userForm) {
 
         User user = new User();
         BeanUtils.copyProperties(userForm, user);
 
         user.setRoles(Collections.singleton(UserRole.CUSTOMER));
+        user.setAvatar(defaultAvatarPath);
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
         userRepository.save(user);
 
-        String message = String.format(
-                "Здравствуйте, %s %s ! \n" +
-                        "Добро пожаловать на ShoeHub - магазин современной обуви.\n" +
-                        "Для активации профиля перейдите по ссылке:\n" +
-                        "http://localhost:8080/activate/%s \n"+
-                        "Ссылка будет действительна в течение недели", user.getFirstName(), user.getSecondName(), user.getActivationCode());
-        mailService.send(user.getEmail(), "Регистрация на shoehub.design", message);
+        mailService.sendActivationMail(user);
     }
 
 

@@ -25,12 +25,13 @@ public class OrderService {
     private OrderRepository orderRepository;
     @Autowired
     private CartService cartService;
+
     public boolean createOrder(User user, String contact,String phone, String address, String payment){
         user = userRepository.findByUsername(user.getUsername());
-        Integer sum = 0 ;
+        int sum = 0 ;
 
-        for (CartItem cartItema : user.getCart() ){
-            sum += cartItema.getProduct().getPrice() * cartItema.getAmount();
+        for (CartItem cartItem : user.getCart() ){
+            sum += cartItem.getProduct().getPrice() * cartItem.getAmount();
         }
 
         Order order = new Order();
@@ -43,8 +44,9 @@ public class OrderService {
         order.getProducts().addAll(user.getCart());
         order.setOrderPayment(OrderPayment.valueOf(payment));
         order.setOrderStatus(OrderStatus.PENDING);
-        if(OrderPayment.valueOf(payment)==OrderPayment.BALANCE){
-            if (user.getBalance()<order.getTotal())
+
+        if(OrderPayment.valueOf(payment) == OrderPayment.BALANCE){
+            if (user.getBalance() < order.getTotal())
                 return false;
             else
                 user.setBalance(user.getBalance()-order.getTotal());

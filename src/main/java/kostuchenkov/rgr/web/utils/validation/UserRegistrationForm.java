@@ -40,6 +40,7 @@ public class UserRegistrationForm {
     @Size(max = 20, message = "Максимальная длина поля - 20 символов")
     private String secondName;
 
+    @Size(max = 20, message = "Максимальная длина поля - 20 символов")
     private String patronymic;
 
     @NotNull(message = "Введите корректную дату")

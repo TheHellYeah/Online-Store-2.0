@@ -26,6 +26,12 @@ public class CustomErrorController implements ErrorController {
             if(statusCode == HttpStatus.FORBIDDEN.value()) {
                 model.addAttribute("error", "У вас недостаточно прав для просмотора запрашиваемой страницы!");
             }
+            if(statusCode == HttpStatus.BAD_REQUEST.value()) {
+                model.addAttribute("error", "Ошибка сервера!");
+            }
+            if(statusCode == HttpStatus.METHOD_NOT_ALLOWED.value()) {
+                model.addAttribute("error", "Ошибка сервера!");
+            }
         }
         return "error";
     }
