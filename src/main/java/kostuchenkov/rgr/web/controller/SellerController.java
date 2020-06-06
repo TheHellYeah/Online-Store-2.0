@@ -22,15 +22,20 @@ public class SellerController {
 
     @GetMapping("/seller/orders")
     public String sellerOrders(@AuthenticationPrincipal User user,@RequestParam(value = "status", defaultValue = "ALL") String statusOrder, Model model){
-/*
-        if(statusOrder.equals(OrderStatus.PENDING.toString())) {
+
+        if(statusOrder.equals(OrderStatus.PENDING)) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.PENDING));
-        }else{ if(statusOrder.equals(OrderStatus.DONE.toString())) {
-            model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.DONE));
-             }else {
-            model.addAttribute("orders", orderService.getAllOrders());
+        }else {
+            if (statusOrder.equals(OrderStatus.DELIVERED)) {
+                model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.DELIVERED));
+            } else {
+                if (statusOrder.equals(OrderStatus.IN_TRANSIT)) {
+                    model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.IN_TRANSIT));
+                } else {
+                    model.addAttribute("orders", orderService.getAllOrders());
+                    }
             }
-        }*/
+        }
         return "seller-page";
     }
 

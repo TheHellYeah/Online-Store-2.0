@@ -1,17 +1,33 @@
 URL = `http://localhost:8080`
 
 async function clearWishlist(){
-	response = await fetch(URL+`/user/wishlist/clear`);
+	 let xhr = new XMLHttpRequest();
+            xhr.open('POST', '/user/wishlist/clear', true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.responseType = "text";
+            xhr.setRequestHeader(header, token);
+            xhr.send();
 
 }
 
 async function delInWishlist(idProduct,obj){
-	response = await fetch(URL+`/user/wishlist/delete?productId=` + idProduct);
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/user/wishlist/delete', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.responseType = "text";
+    xhr.setRequestHeader(header, token);
+    xhr.send(`productId=${idProduct}`);
+
 	obj.parentNode.parentNode.innerHTML = "";
 
 }
 
 async function addWishlist(idProduct){
-    response = await fetch(URL+`/user/wishlist/add?productId=` + idProduct);
+     let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/user/wishlist/add', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.responseType = "text";
+        xhr.setRequestHeader(header, token);
+        xhr.send(`productId=${idProduct}`);
 
 }

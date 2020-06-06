@@ -34,6 +34,7 @@ public class OrderController {
     @GetMapping("user/orders")
     public  String orders(@AuthenticationPrincipal User user, Model model){
         List <Order> orders = orderService.getAllOrderOfUser(user);
+        System.out.println(orders.toString());
         model.addAttribute("orders", orders);
         return "orders";
     }
@@ -47,16 +48,24 @@ public class OrderController {
     }
 
     @PostMapping("/user/order/checkout")
-    public String checkoutOrder(@AuthenticationPrincipal User user,
+    public String checkoutOrder(@AuthenticationPrincipal User session,
                                 @Valid OrderCheckoutForm checkoutForm,
                                 BindingResult bindingResult,
                                 Model model,
                                 @RequestParam("contact") List<String> contact,
                                 @RequestParam("phone") String phone,
+                                @RequestParam("payment") String payment,
                                 @RequestParam("address") String address) {
+        User user = userService.getUserById(session.getId());
+        if (orderService.createOrder(user, contact.toString().replace(","," "),phone, address,payment)){
+            return "redirect:/user/orders";
+        }else {
+            model.addAttribute("message","error");
+            model.addAttribute("user", user);
+            model.addAttribute("total", user.getCartTotal());
+            return "checkout";
+        }
 
-        orderService.createOrder(user, contact.toString().replace(","," "), phone, address);
-        cartService.clearCart(user);
-        return "redirect:/user/orders";
+
     }
 }

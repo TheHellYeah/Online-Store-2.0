@@ -1,6 +1,8 @@
 package kostuchenkov.rgr.service;
 
+import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.order.Order;
+import kostuchenkov.rgr.model.domain.order.OrderPayment;
 import kostuchenkov.rgr.model.domain.order.OrderStatus;
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
@@ -21,14 +23,15 @@ public class OrderService {
     private UserRepository userRepository;
     @Autowired
     private OrderRepository orderRepository;
-
-    public boolean createOrder(User user, String contact,String phone, String address){
+    @Autowired
+    private CartService cartService;
+    public boolean createOrder(User user, String contact,String phone, String address, String payment){
         user = userRepository.findByUsername(user.getUsername());
         Integer sum = 0 ;
 
-//        for (Map.Entry<Product, Integer> entry : user.getCart().entrySet() ){
-//            sum += entry.getKey().getPrice() * entry.getValue();
-//        }
+        for (CartItem cartItema : user.getCart() ){
+            sum += cartItema.getProduct().getPrice() * cartItema.getAmount();
+        }
 
         Order order = new Order();
         order.setAddress(address);
@@ -37,9 +40,16 @@ public class OrderService {
         order.setContact(contact);
         order.setUser(user);
         order.setTotal(sum);
-       // order.getProducts().putAll(user.getCart());
+        order.getProducts().addAll(user.getCart());
+        order.setOrderPayment(OrderPayment.valueOf(payment));
         order.setOrderStatus(OrderStatus.PENDING);
-
+        if(OrderPayment.valueOf(payment)==OrderPayment.BALANCE){
+            if (user.getBalance()<order.getTotal())
+                return false;
+            else
+                user.setBalance(user.getBalance()-order.getTotal());
+        }
+        cartService.clearCart(user);
         orderRepository.save(order);
         return true;
     }

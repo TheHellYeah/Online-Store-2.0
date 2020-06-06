@@ -1,12 +1,25 @@
 const URL = `http://localhost:8080`
 
 async function clearCart(){
-	response = await fetch(URL+`/user/cart/clear`);
+     let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/user/cart/clear', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.responseType = "text";
+        xhr.setRequestHeader(header, token);
+        xhr.send();
+    	//obj.parentNode.parentNode.innerHTML = "";
+
 
 }
 
-async function delInCart(idProduct, obj){
-	response = await fetch(URL+"/user/cart/delete?productId=" + idProduct);
+async function delInCart(idProduct, size, obj){
+
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/user/cart/delete', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.responseType = "text";
+    xhr.setRequestHeader(header, token);
+    xhr.send(`productId=${idProduct}&size=SIZE_${size}`);
 	obj.parentNode.parentNode.innerHTML = "";
 
 }

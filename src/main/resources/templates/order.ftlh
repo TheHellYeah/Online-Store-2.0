@@ -16,14 +16,14 @@
         Адрес получателя:
         <label>${order.address}</label><br>
         Товары:<br>
-        <#list order.products as product,count>
-            <label><img src=""><a class="text=warning" href="/product/${product.id}">${product.name}</a> - count</label>
+        <#list order.products as CartItem>
+            <label><img src=""><a href="/product/${CartItem.product.id}">${CartItem.product.name}</a> ${CartItem.size} - x ${CartItem.amount}</label>
         </#list>
         <br>
         Стоимость заказа:
         <label>${order.total}</label><br>
         Оплата:
-        <label>Наличными курьеру</label>
+        <label>${order.orderPayment.toString()}</label>
 
     </div>
 

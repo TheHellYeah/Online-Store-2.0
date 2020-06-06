@@ -1,4 +1,4 @@
-<#import "components/skeleton.ftlh" as component>
+    <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/product-order-card.ftlh" as p>
 
@@ -9,7 +9,8 @@
         <select name="status" id="inputID" class="form-control">
             <option value="ALL" selected >Все</option>
             <option value="PENDING">Выполняются</option>
-            <option value="DONE">Готово</option>
+            <option value="IN_TRANSIT">Доставка</option>
+            <option value="DELIVERED">Доставлено</option>
         </select>
         <button class="btn-warning text-dark">Показать</button>
     </form>
@@ -22,6 +23,7 @@
             <th>Пользователь</th>
             <th>Статус</th>
             <th>Стоимость</th>
+            <th>Оплата</th>
             <th>Подбробнее</th>
         </tr>
         </thead>
@@ -34,9 +36,10 @@
             </td>
             <td>${order.date}</td>
 <!--            тут будет ссылка на профиль юзера, продумать как и стоит ли это делать-->
-            <td><a href="#">${order.user.username}</a></td>
+            <td><a href="/user/${order.user.id}">${order.user.username}</a></td>
             <td>${order.orderStatus}</td>
             <td>${order.total}</td>
+            <td>${order.orderPayment.toString()}</td>
             <td><button class="btn-warning"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button></td>
         </tr>
         </#list>

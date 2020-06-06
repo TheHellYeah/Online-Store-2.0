@@ -19,9 +19,9 @@ public class CartService {
 
     public void addToCart(User user, Product product, ProductSize size){
 
-        CartItem cartItem = new CartItem(product, size, 1);
+        CartItem cartItem = new CartItem(user, product, size, 1);
         user.getCart().add(cartItem);
-
+        System.out.println(user.getCart().toString());
         cartRepository.save(cartItem);
         userRepository.save(user);
     }
@@ -31,8 +31,9 @@ public class CartService {
         userRepository.save(user);
     }
 
-    public void deleteFromCart(User user,Product product){
-        user.getCart().remove(product);
+    public void deleteFromCart(User user,Product product,ProductSize size){
+        CartItem cartItem = cartRepository.findByUserAndProductAndSize(user,product,size);
+        user.getCart().remove(cartItem);
         userRepository.save(user);
     }
 }

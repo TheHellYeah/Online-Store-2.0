@@ -18,9 +18,7 @@
                 <a class="item-reviews mb-4">Отзывы(0)</a>
 
                 <h3 class="item-price mb-4">${product.price} ₽</h3>
-                <div class="item-text">
-                    <p></p>
-                </div>
+
                     <@sizebar.sizes product.sizes />
                 </div>
                 <div class="item-add-cart">
@@ -48,7 +46,14 @@
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
                     <h3>Описание</h3>
-                    <p>${product.description}</p>
+                    <div class="infof">
+
+                        <p class="text-white">Категория: ${product.category}</p>
+                        <p class="text-white">Вид: ${product.subcategory}</p>
+                        <p class="text-white">Сезон: ${product.season}</p>
+                        <p class="text-white">Материал: ${product.material}</p>
+                    </div>
+                    <p class="text-white">${product.description}</p>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <h3>Отзывы</h3>

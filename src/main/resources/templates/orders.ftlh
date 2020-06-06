@@ -14,6 +14,7 @@
                 <th>Дата</th>
                 <th>Статус</th>
                 <th>Стоимость</th>
+                <th>Вид оплаты</th>
                 <th>че каво</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                 <td><#if order.date??>${order.date}</#if></td>
                 <td>${order.orderStatus}</td>
                 <td>${order.total}</td>
+                <td>${order.orderPayment.toString()}</td>
                 <td><button class="btn-warning">Подкробнее</button></td>
             </tr>
         </#list>

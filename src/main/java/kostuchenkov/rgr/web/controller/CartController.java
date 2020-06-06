@@ -52,12 +52,17 @@ public class CartController {
         return "ok";
     }
 
-    @GetMapping("delete")
+    @PostMapping("delete")
     @ResponseBody
-    public String deleteFromCart(@AuthenticationPrincipal User session, @RequestParam String productId){
+    public String deleteFromCart(@AuthenticationPrincipal User session,
+                                 @RequestParam String productId,
+                                 @RequestParam ProductSize size
+
+        ){
        Optional<Product> product = productService.getProductById(productId);
+
        product.ifPresent(value ->
-               cartService.deleteFromCart(userService.getUserById(session.getId()), product.get()));
+               cartService.deleteFromCart(userService.getUserById(session.getId()), product.get(),size));
        return "Товар удален";
     }
 }

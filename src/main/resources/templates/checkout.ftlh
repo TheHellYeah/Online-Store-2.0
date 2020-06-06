@@ -5,7 +5,13 @@
 <@bootstrap.navbar/>
 
 <div class="container">
-    <form class="mt-3 mb-5" action="/user/order/create" method="post">
+    <#if message??>
+    <#if message=="error">
+        <div class="alert alert-danger" role="alert">
+            Не достаточно средств для оплаты, выберите оплату наличными
+        </div>
+    </#if></#if>
+    <form class="mt-3 mb-5" action="/user/order/checkout" method="post">
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <h3>Введите данные получателя</h3>
         <div class="form-group">
@@ -32,6 +38,16 @@
             <label for="address">Адрес</label>
             <input type="text" name="address" class="form-control" id="address"
                    placeholder="Введите полный адрес">
+        </div>
+        <div class="form-group">
+            <label for="payment">Оплата</label>
+            <select class="form-control" name="payment" id="payment">
+                <option disabled selected>Выберите вид оплаты</option>
+
+                <option value="CASH">Наличными курьеру</option>
+                <option value="BALANCE">Балансом на сайте</option>
+
+            </select>
         </div>
         <h3 class="text-white">Итого: ${total} ₽</h3>
         <button type="submit" class="btn btn-warning">Оформить заказ</button>

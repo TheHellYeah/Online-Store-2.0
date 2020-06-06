@@ -11,9 +11,9 @@
     </div>
     <div id="collapse${idForCollapse}" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
         <div class="card-body">
-            <#list products as product, count>
+            <#list products as CartItem>
                 <label class="label w-100">
-                    <a href="/product/${product.id}">${product.name}</a> - x ${count}
+                    <a href="/product/${CartItem.product.id}">${CartItem.product.name}</a> ${CartItem.size} - x ${CartItem.amount}
                 </label>
         </#list>
         </div>
