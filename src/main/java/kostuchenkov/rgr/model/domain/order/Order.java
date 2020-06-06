@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.model.domain.order;
 
+import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
 import lombok.Getter;
@@ -10,7 +11,6 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name = "orders")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,11 +23,17 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @ElementCollection
+/*    @ElementCollection
     @CollectionTable(name = "order_products", joinColumns = @JoinColumn(name = "user_id"))
     @MapKeyColumn(name = "products_key") // не работает, колонка с названием cart_key хз почему
     @Column(name = "amount")
-    private Map<Product, Integer> products = new HashMap<>();
+    private Map<Product, Integer> products = new HashMap<>();*/
+
+    @ManyToMany
+    @JoinTable(name = "order_products",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<CartItem> products = new ArrayList<>();
 
     @Column(name = "total")
     private int total;

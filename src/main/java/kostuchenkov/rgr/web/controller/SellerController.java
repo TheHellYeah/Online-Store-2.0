@@ -22,7 +22,7 @@ public class SellerController {
 
     @GetMapping("/seller/orders")
     public String sellerOrders(@AuthenticationPrincipal User user,@RequestParam(value = "status", defaultValue = "ALL") String statusOrder, Model model){
-
+/*
         if(statusOrder.equals(OrderStatus.PENDING.toString())) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.PENDING));
         }else{ if(statusOrder.equals(OrderStatus.DONE.toString())) {
@@ -30,7 +30,7 @@ public class SellerController {
              }else {
             model.addAttribute("orders", orderService.getAllOrders());
             }
-        }
+        }*/
         return "seller-page";
     }
 
@@ -43,7 +43,7 @@ public class SellerController {
     @GetMapping("/seller/order/isdone")
     @ResponseBody
     public String orderIsDone(@RequestParam("orderId") Order order){
-        orderService.setStatus(order,OrderStatus.DONE);
+        //orderService.setStatus(order,OrderStatus.DONE);
         return "ok";
     }
 }

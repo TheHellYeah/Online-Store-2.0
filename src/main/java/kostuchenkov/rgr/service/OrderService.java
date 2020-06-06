@@ -26,9 +26,9 @@ public class OrderService {
         user = userRepository.findByUsername(user.getUsername());
         Integer sum = 0 ;
 
-        for (Map.Entry<Product, Integer> entry : user.getCart().entrySet() ){
-            sum += entry.getKey().getPrice() * entry.getValue();
-        }
+//        for (Map.Entry<Product, Integer> entry : user.getCart().entrySet() ){
+//            sum += entry.getKey().getPrice() * entry.getValue();
+//        }
 
         Order order = new Order();
         order.setAddress(address);
@@ -37,7 +37,7 @@ public class OrderService {
         order.setContact(contact);
         order.setUser(user);
         order.setTotal(sum);
-        order.getProducts().putAll(user.getCart());
+       // order.getProducts().putAll(user.getCart());
         order.setOrderStatus(OrderStatus.PENDING);
 
         orderRepository.save(order);

@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.model.domain.user;
 
+import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.product.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -54,11 +55,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
-    @ElementCollection
-    @CollectionTable(name = "user_cart", joinColumns = @JoinColumn(name = "user_id"))
-    @MapKeyColumn(name = "product_id") // не работает, колонка с названием cart_key хз почему
-    @Column(name = "amount")
-    private Map<Product, Integer> cart = new HashMap<>();
+    @OneToMany
+    private List<CartItem> cart = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -97,8 +95,8 @@ public class User implements UserDetails {
 
     public int getBill() {
         int bill = 0;
-        for(Product product : cart.keySet()) {
-            bill += product.getPrice();
+        for(CartItem cartItem : cart) {
+            bill += cartItem.getProduct().getPrice();
         }
         return bill;
     }

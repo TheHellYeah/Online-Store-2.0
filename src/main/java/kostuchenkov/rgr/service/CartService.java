@@ -13,7 +13,7 @@ public class CartService {
     private UserRepository userRepository;
 
     public void addToCart(User user, Product product, int count){
-        user.getCart().put(product, count);
+     //   user.getCart().put(product, count);
         userRepository.save(user);
     }
 
