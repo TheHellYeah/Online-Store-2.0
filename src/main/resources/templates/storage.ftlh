@@ -3,6 +3,7 @@
 
 <@component.skeleton title="Склад товаров">
 <@bootstrap.navbar/>
+<input id="_csrf" type="hidden" name="_csrf" value="${_csrf.token}">
 <div>
 <!--    <form action="" method="get" class="mt-3">-->
 <!--        <select class="form-control" name="brand" id="brand">-->
@@ -61,31 +62,36 @@
                     <td>${product.category}</td>
                     <td>${product.subcategory}</td>
                     <td>
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <#list product.sizes as size,count>
-                                <th  class="bg-secondary text-white">${size}</th>
-                                </#list>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <#list product.sizes as size,count>
-                                <#if count gt 0>
-                                    <#if count gt 15>
-                                        <td class="bg-success">${count}</td>
+                        <form action="/storage/addsize" method="post">
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <#list product.sizes as size,count>
+                                    <th  class="bg-secondary text-white">${size}</th>
+                                    </#list>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <#list product.sizes as size,count>
+                                    <#if count gt 0>
+                                        <#if count gt 15>
+
+                                            <td class="bg-success"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
+                                        <#else>
+                                            <td class="bg-warning"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
+                                        </#if>
                                     <#else>
-                                        <td class="bg-warning">${count}</td>
+                                        <td class="bg-danger"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
                                     </#if>
-                                <#else>
-                                    <td class="bg-danger">${count}</td>
-                                </#if>
-                                </#list>
-                            </tr>
-                            </tbody>
-                        </table>
-                    <input type="button" onclick="f(this)" value="пополнить">
+                                    </#list>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button>jgf</button>
+                            <input type="button" onclick="f(this)" value="Сохранить">
+                         </form>
                     </td>
                     <td><button class="btn btn-success btn-lg"><a class="text-dark" href="/product/edit/${product.id}">
                         <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

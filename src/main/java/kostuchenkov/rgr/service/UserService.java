@@ -40,9 +40,11 @@ public class UserService implements UserDetailsService {
 
         String message = String.format(
                 "Здравствуйте, %s %s ! \n" +
-                        "Перейдите по ссылке для активации вашего аккаунта :\n" +
-                        "http://localhost:8080/activate/%s", user.getFirstName(), user.getSecondName(), user.getActivationCode());
-        mailService.send(user.getEmail(), "Код активации", message);
+                        "Добро пожаловать на ShoeHub - магазин современной обуви.\n" +
+                        "Для активации профиля перейдите по ссылке:\n" +
+                        "http://localhost:8080/activate/%s \n"+
+                        "Ссылка будет действительна в течение недели", user.getFirstName(), user.getSecondName(), user.getActivationCode());
+        mailService.send(user.getEmail(), "Регистрация на shoehub.design", message);
     }
 
 

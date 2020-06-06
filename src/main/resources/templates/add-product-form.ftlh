@@ -34,9 +34,12 @@
                     <input type="file" name="images" multiple="multiple" class="custom-file-input form-control-file" id="images" accept="image">
                     <label class="custom-file-label" for="images">Выберите файлы</label>
                 </div>
+                <div class="preview p-2 bg-white">
+                    <p>Файлы для загрузки не выбраны</p>
+                </div>
             </div>
         </div>
-
+        <style>img {height: 64px;}</style>
         <div class="form-group">
             <label for="category">Категория обуви:</label>
             <select class="form-control" name="category" id="category" onchange="getValue(this.value);">
