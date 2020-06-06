@@ -1,11 +1,8 @@
 const URL = `http://localhost:8080`
 let searchForm;
-var header, token;
 
 window.onload = function() {
 
-    token = document.head.querySelector("meta[name='_csrf']").content;
-    header = document.head.querySelector("meta[name='_csrf_header']").content;
     searchForm = document.querySelector('#search');
 
     searchForm.addEventListener('input', function() {

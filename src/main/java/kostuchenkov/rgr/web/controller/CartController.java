@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.domain.product.ProductSize;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
@@ -9,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -30,23 +28,21 @@ public class CartController {
     @GetMapping
     public String cartPage(@AuthenticationPrincipal User session, Model model){
         User user = userService.getUserById(session.getId());
-        if(user.getBalance() < user.getBill()) {
-            model.addAttribute("warning", true);
-        }
         model.addAttribute("cart", user.getCart());
-        model.addAttribute("total", user.getBill());
+        model.addAttribute("total", user.getCartTotal());
         return "cart";
     }
 
     //FIXME POST
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     @ResponseBody
-    public String addToCart(@AuthenticationPrincipal User session, @RequestParam String productId, @RequestParam String count){
-        Optional<Product> product = productService.getProductById(productId);
-        product.ifPresent(value ->
-                cartService.addToCart(userService.getUserById(session.getId()), product.get(), Integer.parseInt(count)));
-        return "ok";
+    public String addToCart(@AuthenticationPrincipal User session, @RequestParam ProductSize size,
+                            @RequestParam(name = "id") Product product) {
+
+        User user = userService.getUserById(session.getId());
+        cartService.addToCart(user, product, size);
+        return "Товар добавлен в корзину";
     }
 
     @GetMapping("/clear")

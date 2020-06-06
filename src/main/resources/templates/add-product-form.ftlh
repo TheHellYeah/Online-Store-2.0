@@ -28,11 +28,11 @@
         </div>
 
         <div class="form-group">
-            <label for="files">Фотографии</label>
+            <label for="images">Фотографии</label>
             <div class="form-group">
                 <div class="custom-file">
-                    <input type="file" name="files" multiple="multiple" class="custom-file-input form-control-file" id="files" accept="image">
-                    <label class="custom-file-label" for="files">Выберите файлы</label>
+                    <input type="file" name="images" multiple="multiple" class="custom-file-input form-control-file" id="images" accept="image">
+                    <label class="custom-file-label" for="images">Выберите файлы</label>
                 </div>
             </div>
         </div>

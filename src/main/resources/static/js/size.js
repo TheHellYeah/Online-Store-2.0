@@ -18,8 +18,8 @@ function setTable(value) {
 	 let tbody = document.getElementById("size");
 	 tbody.innerHTML= "";
 	 for (var i = start; i <= end; i++) {
-	 	tbody.innerHTML += `<tr><td name"" value="2"><input class="label"name="size" type="text" value="SIZE_`+i+`" readonly></td>
-	 	                    <td><input name="count" type="number" min="0" max="9999" value="0"></td></tr>`;
+	 	tbody.innerHTML += `<tr><td name"" value="2"><input class="label"name="sizes" type="text" value="SIZE_`+i+`" readonly></td>
+	 	                    <td><input name="amount" type="number" min="0" max="9999" value="0"></td></tr>`;
 	 	}
 	
 }

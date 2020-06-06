@@ -21,12 +21,12 @@ public class ReviewService {
 
     public  void recountRatingOfProduct(Product product){
         List<Review>  reviews = reviewRepository.findByProduct(product);
-        Integer sum = 0;
+        float sum = 0;
         for(Review review : reviews){
             sum += review.getMark();
         }
         product.setRating(Math.round(sum/reviews.size()));
-        productService.save(product);
+        productService.update(product);
     }
 
     public boolean addReviewToProduct(User user, int productId, String description, int mark ){

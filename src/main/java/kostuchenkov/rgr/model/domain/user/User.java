@@ -55,7 +55,7 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<CartItem> cart = new ArrayList<>();
 
     @Override
@@ -93,11 +93,11 @@ public class User implements UserDetails {
         return true;
     }
 
-    public int getBill() {
-        int bill = 0;
+    public int getCartTotal() {
+        int cartTotal = 0;
         for(CartItem cartItem : cart) {
-            bill += cartItem.getProduct().getPrice();
+            cartTotal += cartItem.getProduct().getPrice();
         }
-        return bill;
+        return cartTotal;
     }
 }

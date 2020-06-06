@@ -4,7 +4,6 @@
 <#import "components/size-bar.ftlh" as sizebar>
 <#import "components/product-slider.ftlh" as slider>
 
-
 <@component.skeleton title="${product.name}">
 <@bootstrap.navbar/>
 
@@ -18,21 +17,20 @@
                 <h1 class="item-name text-primary ">${product.name}</h1>
                 <a class="item-reviews mb-4">Отзывы(0)</a>
 
-                <h3 class="item-price mb-4">${product.price}</h3>
+                <h3 class="item-price mb-4">${product.price} ₽</h3>
                 <div class="item-text">
                     <p></p>
                 </div>
                     <@sizebar.sizes product.sizes />
                 </div>
                 <div class="item-add-cart">
-                    <input id="count" type="number" class="form-control-lg" value="1" min="1" max="9999">
-                    <button class="btn-warning btn-lg" onclick="inCart(${product.id})">Добавить в корзину</button>
+                    <button class="btn-warning btn-lg" onclick="inCart(${product.id})">В корзину</button>
                     <button  class="btn-warning btn-lg" onclick="addWishlist(${product.id})">♥</button>
                 </div>
             </div>
         <#else>
             <div class="container">
-                <h1>ТОВАР НЕ НАЙДЕН</h1>
+                <h1>К сожалению, товара не найдено</h1>
             </div>
         </#if>
 

@@ -33,33 +33,8 @@
             <input type="text" name="address" class="form-control" id="address"
                    placeholder="Введите полный адрес">
         </div>
-        <div>Товары:
-            <table>
-                <thead>
-                    <tr>
-                        <th>Товар</th>
-                        <th>Размер</th>
-                        <th>Стоимость</th>
-                        <th>Количество</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <#list cart as product, amount>
-                    <tr>
-                        <th>${product.name}</th>
-                        <th>${product.name}</th>
-                        <th>${product.price}</th>
-                        <th>${amount}</th>
-                    </tr>
-                </#list>
-                </tbody>
-            </table>
-            <div>
-                Итоговая стоимость: <p id="price"></p>
-            </div>
-        </div>
+        <h3 class="text-white">Итого: ${total} ₽</h3>
         <button type="submit" class="btn btn-warning">Оформить заказ</button>
     </form>
 </div>
-
 </@component.skeleton>
