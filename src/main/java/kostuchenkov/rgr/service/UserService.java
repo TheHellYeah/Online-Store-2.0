@@ -80,4 +80,18 @@ public class UserService implements UserDetailsService {
     public List<User> getAllUsersByRole(UserRole role) {
         return userRepository.findByRoles(role);
     }
+
+    public boolean dismiss(Integer userID){
+        User user = userRepository.findById(userID).get();
+        user.getRoles().remove(UserRole.SELLER);
+        userRepository.save(user);
+        return true;
+    }
+
+    public boolean appoint(Integer userID){
+        User user = userRepository.findById(userID).get();
+        user.getRoles().add(UserRole.SELLER);
+        userRepository.save(user);
+        return true;
+    }
 }

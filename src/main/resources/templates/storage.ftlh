@@ -62,7 +62,7 @@
                     <td>${product.category}</td>
                     <td>${product.subcategory}</td>
                     <td>
-                        <form action="/storage/addsize" method="post">
+
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
                             <table class="table table-hover">
                                 <thead>
@@ -89,9 +89,9 @@
                                 </tr>
                                 </tbody>
                             </table>
-                            <button>jgf</button>
+
                             <input type="button" onclick="f(this)" value="Сохранить">
-                         </form>
+
                     </td>
                     <td><button class="btn btn-success btn-lg"><a class="text-dark" href="/product/edit/${product.id}">
                         <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

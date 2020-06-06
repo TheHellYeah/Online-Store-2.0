@@ -30,18 +30,27 @@
                     <th>Почта</th>
                     <th>Баланс</th>
                     <th>Роли</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <#list users as user>
-                    <tr onclick="window.location.href='/user/${user.id}'" style="cursor: pointer;">
-                        <td><a href="#">${user.username}</a></td>
+                    <tr style="cursor: pointer;">
+                        <td><a href="/user/${user.id}">${user.username}</a></td>
                         <td>${user.email}</td>
                         <td>${user.balance} ₽</td>
                         <td>
                             <#list user.roles as role>
                                 ${role.toString()}<br>
                             </#list>
+                        </td>
+                        <td><#if user.isSeller()>
+                            <button class="btn btn-danger" onclick="dismiss(${user.id})">Уволить</button>
+                            <#else>
+                            <button class="btn btn-success" onclick="appoint(${user.id})">Назначить продацом</button>
+                            </#if>
+
+
                         </td>
                     </tr>
                 </#list>

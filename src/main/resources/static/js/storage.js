@@ -8,8 +8,16 @@ async function f(obj){
 	for (var i = 0; i < row.length; i++) {
       let input = row[i].children[0] ;
       myMap.set(input.name, input.value);
-      console.log(myMap);
+
     }
+    console.log(JSON.stringify(strMapToObj(myMap)));
+
+    let xhr = new XMLHttpRequest();
+        xhr.open('POST', '/storage/addsize', true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.responseType = "text";
+        xhr.setRequestHeader(header, token);
+        xhr.send(myMap);
     //ОТПРАВИТЬ как то его
 }
 

@@ -100,4 +100,12 @@ public class User implements UserDetails {
         }
         return cartTotal;
     }
+
+    public boolean isSeller(){
+        if(roles.contains(UserRole.SELLER)){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
