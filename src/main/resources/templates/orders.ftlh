@@ -26,10 +26,11 @@
                     <@p.product order.products, order.id/>
                 </td>
                 <td><#if order.date??>${order.date}</#if></td>
-                <td>${order.orderStatus}</td>
+                <td>${order.orderStatus.toString()}</td>
                 <td>${order.total}</td>
                 <td>${order.orderPayment.toString()}</td>
-                <td><button class="btn-warning">Подкробнее</button></td>
+                <td><button class="btn-warning">Подробнее</button></td>
+
             </tr>
         </#list>
         </tbody>

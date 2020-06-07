@@ -4,6 +4,8 @@
 <#import "components/size-bar.ftlh" as sizebar>
 <#import "components/product-slider.ftlh" as slider>
 
+<#import "components/rating-mini.ftlh" as mini>
+
 <@component.skeleton title="${product.name}">
 <@bootstrap.navbar/>
 
@@ -15,9 +17,11 @@
         <#if product??>
             <div class="">
                 <h1 class="item-name text-primary ">${product.name}</h1>
-                <a class="item-reviews mb-4">Отзывы(0)</a>
+                <a class="text-white mb-4">Отзывы(${product.revSize()})</a><br>
+                <a class="text-white">Рейтинг: <@mini.ratingmini product.rating/></a>
 
-                <h3 class="item-price mb-4">${product.price} ₽</h3>
+
+                <h3 class="item-price mt-4 ml-4 mb-4">${product.price} ₽</h3>
 
                     <@sizebar.sizes product.sizes />
                 </div>
@@ -103,8 +107,7 @@
          </div>
     </div>
 </div>
-<div class="col-2" id ="alert"style="position:fixed;right: 0;bottom:10px;">
 
-</div>
+
 
 </@component.skeleton>

@@ -33,16 +33,19 @@ public class CartController {
         return "cart";
     }
 
-    //FIXME POST
-
     @PostMapping("/add")
     @ResponseBody
     public String addToCart(@AuthenticationPrincipal User session, @RequestParam ProductSize size,
                             @RequestParam(name = "id") Product product) {
 
         User user = userService.getUserById(session.getId());
-        cartService.addToCart(user, product, size);
-        return "Товар добавлен в корзину";
+        if (cartService.addToCart(user, product, size)){
+            return "Товар добавлен в корзину";
+        }else {
+            return "Такой размер уже есть в вашей корзине";
+        }
+
+
     }
 
     @GetMapping("/clear")
@@ -55,14 +58,10 @@ public class CartController {
     @PostMapping("delete")
     @ResponseBody
     public String deleteFromCart(@AuthenticationPrincipal User session,
-                                 @RequestParam String productId,
-                                 @RequestParam ProductSize size
+                                 @RequestParam Integer cartId
 
         ){
-       Optional<Product> product = productService.getProductById(productId);
-
-       product.ifPresent(value ->
-               cartService.deleteFromCart(userService.getUserById(session.getId()), product.get(),size));
-       return "Товар удален";
+        cartService.deleteFromCart(session, cartId);
+        return "Товар удален";
     }
 }

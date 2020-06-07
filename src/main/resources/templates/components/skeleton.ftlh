@@ -15,6 +15,9 @@
 </head>
 <body>
 <#nested>
+<div class="col-2" id ="alert"style="position:fixed;right: 0;bottom:10px;">
+
+</div>
 <script src="/static/js/cart.js"></script>
 <script src="/static/js/wishList.js"></script>
 <script src="/static/js/security.js"></script>

@@ -9,10 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
@@ -23,14 +20,14 @@ public class SellerController {
 
     @GetMapping("/seller/orders")
     public String sellerOrders(@AuthenticationPrincipal User user,@RequestParam(value = "status", defaultValue = "ALL") String statusOrder, Model model){
-
-        if(statusOrder.equals(OrderStatus.PENDING)) {
+        System.out.println(statusOrder);
+        if(statusOrder.equals("PENDING")) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.PENDING));
         }else {
-            if (statusOrder.equals(OrderStatus.DELIVERED)) {
+            if (statusOrder.equals("DELIVERED")) {
                 model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.DELIVERED));
             } else {
-                if (statusOrder.equals(OrderStatus.IN_TRANSIT)) {
+                if (statusOrder.equals("IN_TRANSIT")) {
                     model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.IN_TRANSIT));
                 } else {
                     model.addAttribute("orders", orderService.getAllOrders());
@@ -46,10 +43,10 @@ public class SellerController {
         return "order";
     }
 
-    @GetMapping("/seller/order/isdone")
+    @PostMapping("/seller/order/setstatus")
     @ResponseBody
-    public String orderIsDone(@RequestParam("orderId") Order order){
-        //orderService.setStatus(order,OrderStatus.DONE);
+    public String orderIsDone(@RequestParam("orderId") Order order, @RequestParam("status") OrderStatus orderStatus){
+        orderService.setStatus(order,orderStatus);
         return "ok";
     }
 }

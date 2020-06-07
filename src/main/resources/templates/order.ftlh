@@ -23,18 +23,16 @@
         Стоимость заказа:
         <label>${order.total}</label><br>
         Оплата:
-        <label>${order.orderPayment.toString()}</label>
+        <label>${order.orderPayment.toString()}</label><br>
+        Статус:
+        <label>${order.orderStatus.toString()}</label>
 
     </div>
 
 
 
     <div class="row">
-        <div><#if order.orderStatus == "PENDING" >
-            <button class="btn-warning" onclick="orderIsDone(${order.id})">Заказ доставлен!</button>
-            <#else>
-            <button class="btn-warning" disabled>Заказ завершен.</button>
-            </#if>
+        <div>
             <a class="text-warning" href="/seller/orders">Назад</a>
         </div>
     </div>

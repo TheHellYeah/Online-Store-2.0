@@ -25,7 +25,7 @@
                         <td><input class="cart-size-input" type="number" min="1" value="${cartItem.amount}"></td>
                         <td>${cartItem.product.price} ₽</td>
                         <td>${cartItem.size.toString()}</td>
-                        <td><button class="btn btn-primary" onclick="delInCart(${cartItem.getProductId()}, ${cartItem.size}, this)">Удалить из корзины</button></td>
+                        <td><button class="btn btn-primary" onclick="delInCart(${cartItem.id}, this)"> Удалить из корзины</button></td>
                     </tr>
                 </#list>
             </tbody>

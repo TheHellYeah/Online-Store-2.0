@@ -12,9 +12,14 @@ public class WishListService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addToWishList(User user, Product product){
-        user.getWishList().add(product);
-        userRepository.save(user);
+    public boolean addToWishList(User user, Product product){
+        if(user.getWishList().contains(product)){
+            return false;
+        }else {
+            user.getWishList().add(product);
+            userRepository.save(user);
+            return true;
+        }
     }
 
     public void clearWishList(User user){

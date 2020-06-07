@@ -25,6 +25,7 @@
             <th>Стоимость</th>
             <th>Оплата</th>
             <th>Подбробнее</th>
+            <th>пум</th>
         </tr>
         </thead>
         <tbody>
@@ -41,6 +42,18 @@
             <td>${order.total}</td>
             <td>${order.orderPayment.toString()}</td>
             <td><button class="btn-warning"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button></td>
+            <td>
+                <#if order.inTransit()>
+                    <button class="" onclick="setStatus(${order.id},`DELIVERED`)">Доставлен</button>
+                </#if>
+
+                <#if order.inPending()>
+                    <button class="" onclick="setStatus(${order.id},`IN_TRANSIT`)">Передано доставке</button>
+                </#if>
+                <#if order.isDelivered()>
+                     <label class="text-white p-1">Выполнен</label>
+                 </#if>
+            </td>
         </tr>
         </#list>
         </tbody>
@@ -48,5 +61,5 @@
 
 </div>
 
-
+    <script src="/static/js/seller.js"></script>
 </@component.skeleton>

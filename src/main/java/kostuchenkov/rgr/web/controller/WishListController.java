@@ -20,8 +20,11 @@ public class WishListController {
     @PostMapping("/add")
     public String addToWishList(@AuthenticationPrincipal User session, @RequestParam("productId") Product product) {
 
-        wishListService.addToWishList(userService.getUserById(session.getId()), product);
-        return "ok"; //??оставим?
+        if (wishListService.addToWishList(userService.getUserById(session.getId()), product)){
+            return "Добавлено в избранное";
+            } else{
+                return "Уже есть в избранном";
+        }
     }
 
     @PostMapping("/clear")

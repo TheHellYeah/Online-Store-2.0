@@ -9,6 +9,8 @@ import kostuchenkov.rgr.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CartService {
 
@@ -17,13 +19,18 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public void addToCart(User user, Product product, ProductSize size){
+    public boolean addToCart(User user, Product product, ProductSize size){
 
         CartItem cartItem = new CartItem(user, product, size, 1);
-        user.getCart().add(cartItem);
-        System.out.println(user.getCart().toString());
-        cartRepository.save(cartItem);
-        userRepository.save(user);
+
+        if (cartRepository.findAll().contains(cartItem)){
+            return false;
+        }else {
+            user.getCart().add(cartItem);
+            cartRepository.save(cartItem);
+            userRepository.save(user);
+            return true;
+        }
     }
 
     public void clearCart(User user){
@@ -31,9 +38,12 @@ public class CartService {
         userRepository.save(user);
     }
 
-    public void deleteFromCart(User user,Product product,ProductSize size){
-        CartItem cartItem = cartRepository.findByUserAndProductAndSize(user,product,size);
+    public void deleteFromCart(User user, Integer cartId){
+        user = userRepository.findById(user.getId()).get();
+        CartItem cartItem = cartRepository.findById(cartId).get();
+
         user.getCart().remove(cartItem);
         userRepository.save(user);
+        cartRepository.deleteById(cartId);
     }
 }

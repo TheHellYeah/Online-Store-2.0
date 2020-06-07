@@ -11,21 +11,20 @@ async function clearCart(){
 
 }
 
-async function delInCart(idProduct, size, obj){
+async function delInCart(cartId, obj){
 
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/user/cart/delete', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.responseType = "text";
     xhr.setRequestHeader(header, token);
-    xhr.send(`productId=${idProduct}&size=SIZE_${size}`);
+    xhr.send(`cartId=${cartId}`);
 	obj.parentNode.parentNode.innerHTML = "";
 
 }
 
 async function inCart(id)   {
     let size = document.querySelector('.btn-group-toggle input[name="size"]:checked').value
-
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/user/cart/add', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

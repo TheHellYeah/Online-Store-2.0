@@ -48,4 +48,6 @@ public class Product {
     @MapKeyEnumerated(EnumType.STRING)
     @Column(name = "amount")
     private Map<ProductSize, Integer> sizes = new HashMap<>();
+
+    public int revSize(){ return this.reviews.size();}
 }
