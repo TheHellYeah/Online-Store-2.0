@@ -10,14 +10,14 @@ async function f(obj){
       myMap.set(input.name, input.value);
 
     }
-    console.log(JSON.stringify(strMapToObj(myMap)));
+    console.log(myMap);
 
     let xhr = new XMLHttpRequest();
         xhr.open('POST', '/storage/addsize', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         xhr.responseType = "text";
         xhr.setRequestHeader(header, token);
-        xhr.send(myMap);
+        xhr.send(myMap.size);
     //ОТПРАВИТЬ как то его
 }
 

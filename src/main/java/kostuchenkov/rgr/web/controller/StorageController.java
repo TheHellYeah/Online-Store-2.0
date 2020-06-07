@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.product.ProductSize;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.ProductService;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
@@ -23,16 +26,26 @@ public class StorageController {
     private ProductService productService;
 
     @GetMapping("/storage")
-    public  String storage(@AuthenticationPrincipal User user, Model model){
+    public  String storage(Model model){
         model.addAttribute("products", productService.getAllProducts());
         return "storage";
     }
 
     @PostMapping("/storage/addsize")
-    @ResponseBody
-    public  String storageadd(@AuthenticationPrincipal User user,@RequestParam HashMap<String, String> ps){
-        System.out.println(ps.size());
-        return "ok";
+
+    public  String storageadd(HttpServletRequest request,
+                              @RequestParam("id")Product product,
+                              @RequestParam("_csrf")String _csrf,
+                              @RequestParam HashMap<String, String> ps){//TODO Удалить этот коммент на проде.
+                                                                        // С мапой этйо много дрочева было, проще сотавить стринг стринг, иначе большие проблемы ! если вторйо параметр интегер, то ерорр ((
+        ps.remove("id"); //Почему они блин в мапу попадают
+        ps.remove("_csrf");
+        for(Map.Entry<String,String> temp : ps.entrySet()){
+            product.getSizes().put(ProductSize.valueOf(temp.getKey()),Integer.valueOf(temp.getValue()));
+        }
+        product.getSizes().put(ProductSize.SIZE_40,100);
+        productService.update(product);
+        return "redirect:"+ request.getHeader("referer");
     }
 
 

@@ -40,58 +40,62 @@
     <table class="table table-bordered table-hover">
         <thead>
         <tr>
-            <th >ID</th>
-            <th >Наименование</th>
-            <th >Стоимость</th>
-            <th >Рейтинг</th>
-            <th >Категория</th>
-            <th >Вид</th>
-            <th >Наличие</th>
+            <th class="text-white">ID</th>
+            <th class="text-white">Наименование</th>
+            <th class="text-white">Стоимость</th>
+            <th class="text-white">Рейтинг</th>
+            <th class="text-white">Категория</th>
+            <th class="text-white">Вид</th>
+            <th class="text-white">Наличие</th>
             <th> </th>
         </tr>
         </thead>
         <tbody>
             <#list products as product>
                 <tr>
-                    <td>${product.id}</td>
+                    <td class="text-white" >${product.id}</td>
                     <td>
-                        <a class="text-warning" href="/product/${product.id}">${product.name}</a>
+                        <a class="text-warning" href="/product/${product.id}">${product.name}
+                            <svg class="bi bi-box-arrow-down-left" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13 1.5A1.5 1.5 0 0 1 14.5 3v8a1.5 1.5 0 0 1-1.5 1.5H9a.5.5 0 0 1 0-1h4a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H5a.5.5 0 0 0-.5.5v4a.5.5 0 0 1-1 0V3A1.5 1.5 0 0 1 5 1.5h8zm-11 7a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1H2.5V9a.5.5 0 0 0-.5-.5z"/>
+                                <path fill-rule="evenodd" d="M1.646 14.354a.5.5 0 0 0 .708 0l8-8a.5.5 0 0 0-.708-.708l-8 8a.5.5 0 0 0 0 .708z"/>
+                            </svg>
+                        </a>
                     </td>
-                    <td>${product.price}</td>
-                    <td>${product.rating}</td>
-                    <td>${product.category}</td>
-                    <td>${product.subcategory}</td>
+                    <td class="text-white">${product.price} ₽</td>
+                    <td class="text-white">${product.rating}</td>
+                    <td class="text-white">${product.category}</td>
+                    <td class="text-white">${product.subcategory}</td>
                     <td>
-
+                        <form action="/storage/addsize" method="post" >
                             <input type="hidden" name="_csrf" value="${_csrf.token}">
-                            <table class="table table-hover">
+                            <input type="hidden" name="id" value="${product.id}">
+                            <table class="table table-hover mb-0">
                                 <thead>
                                 <tr>
                                     <#list product.sizes as size,count>
-                                    <th  class="bg-secondary text-white">${size}</th>
+                                    <th  class="bg-dark text-white pt-1 pb-1">${size}</th>
                                     </#list>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr class="update-size">
                                     <#list product.sizes as size,count>
                                     <#if count gt 0>
                                         <#if count gt 15>
-
-                                            <td class="bg-success"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
+                                            <td class="p-0"><input class="bg-success text-dark" name="SIZE_${size}" type="number" min="0" max="9999" value="${count}"></td>
                                         <#else>
-                                            <td class="bg-warning"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
+                                            <td class="p-0"><input class="bg-warning text-dark" name="SIZE_${size}" type="number" min="0" max="9999" value="${count}"></td>
                                         </#if>
                                     <#else>
-                                        <td class="bg-danger"><input name="${size}" type="number" min="0" max="9999" value="${count}"></td>
+                                        <td class="p-0"><input class="bg-danger text-dark" name="SIZE_${size}" type="number" min="0" max="9999" value="${count}"></td>
                                     </#if>
                                     </#list>
                                 </tr>
                                 </tbody>
                             </table>
-
-                            <input type="button" onclick="f(this)" value="Сохранить">
-
+                                    <button class=" mt-3 p-1 btn btn-success  btn-block">Сохранить</button>
+                     </form>
                     </td>
                     <td><button class="btn btn-success btn-lg"><a class="text-dark" href="/product/edit/${product.id}">
                         <svg class="bi bi-pencil" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

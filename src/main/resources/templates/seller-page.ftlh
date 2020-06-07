@@ -24,8 +24,7 @@
             <th>Статус</th>
             <th>Стоимость</th>
             <th>Оплата</th>
-            <th>Подбробнее</th>
-            <th>пум</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -36,23 +35,22 @@
                 <@p.product order.products, order.id/>
             </td>
             <td>${order.date}</td>
-<!--            тут будет ссылка на профиль юзера, продумать как и стоит ли это делать-->
             <td><a href="/user/${order.user.id}">${order.user.username}</a></td>
             <td>${order.orderStatus}</td>
             <td>${order.total}</td>
             <td>${order.orderPayment.toString()}</td>
-            <td><button class="btn-warning"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button></td>
             <td>
-                <#if order.inTransit()>
-                    <button class="" onclick="setStatus(${order.id},`DELIVERED`)">Доставлен</button>
+                <#if order.isInTransit()>
+                    <button class="btn btn-success m-1" onclick="setStatus(${order.id},`DELIVERED`)">Доставлен</button><br>
                 </#if>
 
-                <#if order.inPending()>
-                    <button class="" onclick="setStatus(${order.id},`IN_TRANSIT`)">Передано доставке</button>
+                <#if order.isPending()>
+                    <button class="btn btn-success m-1" onclick="setStatus(${order.id},`IN_TRANSIT`)">Передано доставке</button><br>
                 </#if>
                 <#if order.isDelivered()>
-                     <label class="text-white p-1">Выполнен</label>
-                 </#if>
+                    <label class="text-white p-1 m-1 ">Выполнен</label><br>
+                </#if>
+                <button class="btn-warning m-1"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button>
             </td>
         </tr>
         </#list>

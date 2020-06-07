@@ -1,8 +1,13 @@
 
-document.addEventListener("DOMContentLoaded", function() {
-
-    clearButton = document.querySelector('#clear-button').addEventListener('click', clearCart);
-});
+function updateTotal(){
+    let rows = document.querySelectorAll(`tbody > tr`)
+    let total = 0;
+    for(let row of rows){
+        var price = parseInt(row.cells[2].innerHTML.replace(/&nbsp;/g, ''));
+        total +=  row.cells[1].children[0].value * parseInt(price,10) ;
+    }
+    document.getElementById(`total1`).innerHTML = total.toLocaleString('ru-RU') ;
+}
 
 async function clearCart() {
      let xhr = new XMLHttpRequest();
@@ -22,8 +27,10 @@ async function clearCart() {
              div.innerHTML = `<strong>${xhr.response}</strong>`;
          }
          document.querySelector(".table").remove();
+         updateTotal();
          setTimeout(() => div.remove(), 1500);
      }
+
 }
 
 async function delInCart(cartId, obj){
@@ -34,8 +41,8 @@ async function delInCart(cartId, obj){
     xhr.responseType = "text";
     xhr.setRequestHeader(header, token);
     xhr.send(`cartId=${cartId}`);
-	obj.parentNode.parentNode.innerHTML = "";
-
+	obj.parentNode.parentNode.remove();
+    updateTotal();
 }
 
 async function inCart(id)   {
