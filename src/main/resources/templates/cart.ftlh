@@ -31,7 +31,8 @@
             </tbody>
         </table>
         <h3 class="text-white">Итого: ${total} ₽</h3>
-        <a href="/user/order/checkout" class="btn btn-warning text-dark" role="button">Перейти к оформлению заказа</a>
+        <button type="button" class="btn btn-danger" onclick="clearCart()" id="clear-button">Очистить корзину</button>
+         <a href="/user/order/checkout" class="btn btn-warning text-dark" role="button">Перейти к оформлению заказа</a>
     </#if>
 </div>
 </@component.skeleton>

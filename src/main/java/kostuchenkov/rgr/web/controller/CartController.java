@@ -12,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @Controller
 @RequestMapping("/user/cart")
 public class CartController {
@@ -39,20 +37,15 @@ public class CartController {
                             @RequestParam(name = "id") Product product) {
 
         User user = userService.getUserById(session.getId());
-        if (cartService.addToCart(user, product, size)){
-            return "Товар добавлен в корзину";
-        }else {
-            return "Такой размер уже есть в вашей корзине";
-        }
-
-
+        cartService.addToCart(user, product, size);
+        return "Товар добавлен в корзину";
     }
 
-    @GetMapping("/clear")
+    @PostMapping("/clear")
     @ResponseBody
     public String clearCart(@AuthenticationPrincipal User session){
         cartService.clearCart(userService.getUserById(session.getId()));
-        return "ok";
+        return "Корзина очищена";
     }
 
     @PostMapping("delete")

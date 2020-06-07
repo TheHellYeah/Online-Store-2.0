@@ -19,17 +19,18 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public boolean addToCart(User user, Product product, ProductSize size){
+    public void addToCart(User user, Product product, ProductSize size){
 
         CartItem cartItem = new CartItem(user, product, size, 1);
+        CartItem existingItem = user.getProductFromCart(cartItem);
 
-        if (cartRepository.findAll().contains(cartItem)){
-            return false;
-        }else {
+        if (existingItem != null) {
+            existingItem.incrementAmount();
+            cartRepository.save(existingItem);
+        } else {
             user.getCart().add(cartItem);
             cartRepository.save(cartItem);
             userRepository.save(user);
-            return true;
         }
     }
 

@@ -43,9 +43,15 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderPayment orderPayment;
 
-    public boolean isDelivered(){return orderStatus.equals(OrderStatus.DELIVERED);}
-    public boolean inTransit(){
+    public boolean isDelivered() {
+        return orderStatus.equals(OrderStatus.DELIVERED);
+    }
+
+    public boolean isInTransit() {
         return orderStatus.equals(OrderStatus.IN_TRANSIT);
     }
-    public boolean inPending(){return orderStatus.equals(OrderStatus.PENDING);}
+
+    public boolean isPending() {
+        return orderStatus.equals(OrderStatus.PENDING);
+    }
 }

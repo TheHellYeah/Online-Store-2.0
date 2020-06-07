@@ -8,7 +8,7 @@ public enum OrderStatus {
     @Override
     public String toString() {
         if(this.equals(DELIVERED)) return "Доставлен";
-        if(this.equals(IN_TRANSIT)) return "Передано доставке";
-        else return "Выполняется";
+        if(this.equals(IN_TRANSIT)) return "В пути";
+        else return "Ожидает подтверждения";
     }
 }

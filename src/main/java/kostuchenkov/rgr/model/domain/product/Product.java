@@ -49,5 +49,18 @@ public class Product {
     @Column(name = "amount")
     private Map<ProductSize, Integer> sizes = new HashMap<>();
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
     public int revSize(){ return this.reviews.size();}
 }

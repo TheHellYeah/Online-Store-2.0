@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Getter
@@ -38,7 +39,26 @@ public class CartItem {
         this.amount = amount;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CartItem cartItem = (CartItem) o;
+        return Objects.equals(user, cartItem.user) &&
+                size == cartItem.size &&
+                Objects.equals(product, cartItem.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user, size, product);
+    }
+
     public int getProductId() {
         return this.product.getId();
+    }
+
+    public void incrementAmount() {
+        this.amount++;
     }
 }

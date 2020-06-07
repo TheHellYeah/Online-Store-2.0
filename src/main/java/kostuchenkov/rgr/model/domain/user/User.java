@@ -2,6 +2,7 @@ package kostuchenkov.rgr.model.domain.user;
 
 import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.repository.CartRepository;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -93,6 +94,19 @@ public class User implements UserDetails {
         return isVerified();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
     public int getCartTotal() {
         int cartTotal = 0;
         for(CartItem cartItem : cart) {
@@ -102,10 +116,15 @@ public class User implements UserDetails {
     }
 
     public boolean isSeller(){
-        if(roles.contains(UserRole.SELLER)){
-            return true;
-        }else {
-            return false;
-        }
+        return roles.contains(UserRole.SELLER);
+    }
+
+    //Возвращает cartItem c корзины если таковой имеется, иначе null
+    public CartItem getProductFromCart(CartItem item) {
+
+        return this.getCart().stream()
+                    .filter(cartItem -> cartItem.equals(item))
+                    .findFirst()
+                    .orElse(null);
     }
 }
