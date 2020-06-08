@@ -16,41 +16,34 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 @Controller
-@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
+@PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 public class SellerController {
 
     @Autowired
     private OrderService orderService;
 
     @GetMapping("/seller/orders")
-    public String sellerOrders(@AuthenticationPrincipal User user,@RequestParam(value = "status", defaultValue = "ALL") String statusOrder, Model model){
-        System.out.println(statusOrder);
-        if(statusOrder.equals("PENDING")) {
-            model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.PENDING));
-        }else {
-            if (statusOrder.equals("DELIVERED")) {
-                model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.DELIVERED));
-            } else {
-                if (statusOrder.equals("IN_TRANSIT")) {
-                    model.addAttribute("orders", orderService.getAllOrdersWithStatus(OrderStatus.IN_TRANSIT));
-                } else {
-                    model.addAttribute("orders", orderService.getAllOrders());
-                    }
-            }
+    public String sellerPage(@AuthenticationPrincipal User user, @RequestParam(required = false) OrderStatus status, Model model) {
+
+        if (status != null) {
+            model.addAttribute("orders", orderService.getAllOrdersWithStatus(status));
+        } else {
+            model.addAttribute("orders", orderService.getAllOrders());
         }
         return "seller-page";
     }
 
-    @GetMapping("/seller/order/{id:\\d+}")
-    public  String sellerOrder(@AuthenticationPrincipal User user, @PathVariable("id") Order order, Model model){
-        model.addAttribute("order",order);
+    @GetMapping("/seller/orders/{id:\\d+}")
+    public String orderPage(@AuthenticationPrincipal User user, @PathVariable("id") Order order, Model model) {
+        model.addAttribute("order", order);
+        model.addAttribute("seller", true);
         return "order";
     }
 
-    @PostMapping("/seller/order/setstatus")
+    @PostMapping("/seller/orders/{id:\\d+}")
     @ResponseBody
-    public String orderIsDone(@RequestParam("orderId") Order order, @RequestParam("status") OrderStatus orderStatus) throws TemplateException, IOException, MessagingException {
-        orderService.setStatus(order,orderStatus);
-        return "ok";
+    public String orderIsDone(@PathVariable("id") Order order, @RequestParam("status") OrderStatus orderStatus) throws TemplateException, IOException, MessagingException {
+        orderService.setStatus(order, orderStatus);
+        return orderStatus.toString();
     }
 }

@@ -6,34 +6,28 @@
 <@bootstrap.navbar/>
 
 <div class="container">
-    <table class="table table-dark table-hover mt-3">
+    <table class="table table-dark table-hover mt-3" style="font-size: 18px;">
         <thead>
             <tr>
-                <th>Заказ</th>
-                <th>Товары</th>
+                <th>Заказ №</th>
                 <th>Дата</th>
                 <th>Статус</th>
-                <th>Стоимость</th>
+                <th>Сумма</th>
                 <th>Вид оплаты</th>
-                <th>че каво</th>
             </tr>
         </thead>
         <tbody>
         <#list orders as order >
-            <tr>
+            <tr onclick="location.href=`/user/orders/${order.id}`" style="cursor: pointer;">
                 <td>${order.id}</td>
-                <td>
-                    <@p.product order.products, order.id/>
-                </td>
                 <td><#if order.date??>${order.date}</#if></td>
                 <td>${order.orderStatus.toString()}</td>
-                <td>${order.total}</td>
+                <td>${order.total} ₽</td>
                 <td>${order.orderPayment.toString()}</td>
-                <td><button class="btn-warning">Подробнее</button></td>
-
             </tr>
         </#list>
         </tbody>
     </table>
+    <p class="text-white">(кликните по заказу для получения детальной информации)</p>
 </div>
 </@component.skeleton>

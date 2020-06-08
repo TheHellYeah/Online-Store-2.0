@@ -17,16 +17,16 @@
                 <a class="nav-link text-white" href="/catalog/child">Детям</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/product/add">Добавить продукт</a>
+                <a class="nav-link text-white" href="/product/add">Добавление продукта</a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/admin">Админка</a>
+                <a class="nav-link text-white" href="/admin">Панель администратора</a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/seller/orders">Бета sellers page</a>
+                <a class="nav-link text-white" href="/seller/orders">Заказы пользователей</a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/storage">Storage</a>
+                <a class="nav-link text-white" href="/storage">Склад товаров</a>
             </li>
         </ul>
 

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,11 +36,24 @@ public class OrderController {
     private UserService userService;
 
     @GetMapping("user/orders")
-    public  String orders(@AuthenticationPrincipal User user, Model model){
-        List <Order> orders = orderService.getAllOrderOfUser(user);
-        System.out.println(orders.toString());
-        model.addAttribute("orders", orders);
-        return "orders";
+    public String ordersListPage(@AuthenticationPrincipal User user, Model model){
+
+        model.addAttribute("orders", orderService.getAllOrderOfUser(user));
+        return "user-orders";
+    }
+
+    @GetMapping("/user/orders/{id:\\d+}")
+    public String orderPage(@AuthenticationPrincipal User session, @PathVariable("id") Order order, Model model) {
+        if(order != null) {
+            if(order.getUser().getId() == session.getId()) {
+                model.addAttribute("order", order);
+            } else {
+                model.addAttribute("missing", "К сожалению, такого заказа не найдено");
+            }
+        } else {
+            model.addAttribute("missing", "К сожалению, такого заказа не найдено");
+        }
+        return "order";
     }
 
     @GetMapping("/user/order/checkout")

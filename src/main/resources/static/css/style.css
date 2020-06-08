@@ -80,3 +80,12 @@ input.cart-size-input {
 .page-item.active:hover .page-link {
     color: #343a40;
  }
+
+.order-details {
+    background: #343a40;
+    font-size: 22px;
+ }
+
+ .product-mini-thumbnail {
+    width: 30px;
+ }

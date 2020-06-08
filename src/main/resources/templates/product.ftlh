@@ -19,10 +19,7 @@
                 <h1 class="item-name text-primary ">${product.name}</h1>
                 <a class="text-white mb-4">Отзывы(${product.revSize()})</a><br>
                 <a class="text-white">Рейтинг: <@mini.ratingmini product.rating/></a>
-
-
                 <h3 class="item-price mt-4 ml-4 mb-4">${product.price} ₽</h3>
-
                     <@sizebar.sizes product.sizes />
                 </div>
                 <div class="item-add-cart">
@@ -50,8 +47,7 @@
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active">
                     <h3>Описание</h3>
-                    <div class="infof">
-
+                    <div class="info">
                         <p class="text-white">Категория: ${product.category}</p>
                         <p class="text-white">Вид: ${product.subcategory}</p>
                         <p class="text-white">Сезон: ${product.season}</p>

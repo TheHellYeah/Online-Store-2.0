@@ -5,7 +5,7 @@
 <@bootstrap.navbar/>
 <div class="container col-4 mt-5">
     <#if message??>
-        <div class="mb-3 p-2 border justify-content-center border-success">
+        <div class="mb-3 p-2 border justify-content-center border-white">
             ${message}
         </div>
     </#if>

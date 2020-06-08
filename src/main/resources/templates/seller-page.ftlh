@@ -7,56 +7,38 @@
 <div class="container">
     <form action="/seller/orders" method="get" class="mt-3">
         <select name="status" id="inputID" class="form-control">
-            <option value="ALL" selected >Все</option>
-            <option value="PENDING">Выполняются</option>
-            <option value="IN_TRANSIT">Доставка</option>
+            <option selected >Все</option>
+            <option value="PENDING">Ожидает подтверждения</option>
+            <option value="IN_TRANSIT">В пути</option>
             <option value="DELIVERED">Доставлено</option>
         </select>
         <button class="btn-warning text-dark">Показать</button>
     </form>
     <table class="table table-dark table-hover mt-3">
         <thead>
-        <tr>
-            <th>Номер заказа</th>
-            <th>Товар</th>
-            <th>дата</th>
-            <th>Пользователь</th>
-            <th>Статус</th>
-            <th>Стоимость</th>
-            <th>Оплата</th>
-            <th></th>
-        </tr>
+            <tr >
+                <th>Заказ №</th>
+                <th>Пользователь</th>
+                <th>Дата</th>
+                <th>Статус</th>
+                <th>Сумма</th>
+                <th>Вид оплата</th>
+            </tr>
         </thead>
         <tbody>
         <#list orders as order>
-        <tr>
-            <td>${order.id}</td>
-            <td>
-                <@p.product order.products, order.id/>
-            </td>
-            <td>${order.date}</td>
-            <td><a href="/user/${order.user.id}">${order.user.username}</a></td>
-            <td>${order.orderStatus}</td>
-            <td>${order.total}</td>
-            <td>${order.orderPayment.toString()}</td>
-            <td>
-                <#if order.isInTransit()>
-                    <button class="btn btn-success m-1" onclick="setStatus(${order.id},`DELIVERED`)">Доставлен</button><br>
-                </#if>
-
-                <#if order.isPending()>
-                    <button class="btn btn-success m-1" onclick="setStatus(${order.id},`IN_TRANSIT`)">Передано доставке</button><br>
-                </#if>
-                <#if order.isDelivered()>
-                    <label class="text-white p-1 m-1 ">Выполнен</label><br>
-                </#if>
-                <button class="btn-warning m-1"><a class="text-dark" href="/seller/order/${order.id}">Подробнее</a></button>
-            </td>
-        </tr>
+            <tr onclick="location.href=`/seller/orders/${order.id}`" style="cursor: pointer;">
+                <td>${order.id}</td>
+                <td><a href="/user/${order.user.id}">${order.user.username}</a></td>
+                <td>${order.date}</td>
+                <td>${order.orderStatus}</td>
+                <td>${order.total} ₽</td>
+                <td>${order.orderPayment}</td>
+            </tr>
         </#list>
         </tbody>
     </table>
-
+    <p class="text-white">(кликните по заказу для получение детальной информации и изменении статуса заказа)</p>
 </div>
 
     <script src="/static/js/seller.js"></script>

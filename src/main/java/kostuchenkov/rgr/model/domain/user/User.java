@@ -59,10 +59,6 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY)//FIXME
     private List<CartItem> cart = new ArrayList<>();
 
-    public User(String username) {
-        this.username = username;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
