@@ -18,7 +18,7 @@ public class WishListController {
     private UserService userService;
 
     @PostMapping("/add")
-    public String addToWishList(@AuthenticationPrincipal User session, @RequestParam("productId") Product product) {
+    public String addToWishList(@AuthenticationPrincipal User session, @RequestParam("productId") Product product) throws Exception {
 
         if (wishListService.addToWishList(userService.getUserById(session.getId()), product)){
             return "Добавлено в избранное";

@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import freemarker.template.TemplateException;
 import kostuchenkov.rgr.model.domain.order.Order;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.CartService;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -55,7 +58,7 @@ public class OrderController {
                                 @RequestParam("contact") List<String> contact,
                                 @RequestParam("phone") String phone,
                                 @RequestParam("payment") String payment,
-                                @RequestParam("address") String address) {
+                                @RequestParam("address") String address) throws TemplateException, IOException, MessagingException {
         User user = userService.getUserById(session.getId());
         if (orderService.createOrder(user, contact.toString().replace(","," "),phone, address,payment)){
             return "redirect:/user/orders";

@@ -7,5 +7,7 @@ async function setStatus(orderId,status){
         xhr.setRequestHeader(header, token);
         xhr.send(`orderId=${orderId}&status=${status}`);
 
-    	alert(this);
+
+
+
 }

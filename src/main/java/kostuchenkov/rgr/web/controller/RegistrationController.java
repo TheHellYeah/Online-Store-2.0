@@ -38,7 +38,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) {
+    public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) throws Exception {
 
         if(bindingResult.hasErrors()) {
             Map<String, String> errors = new HashMap<>();

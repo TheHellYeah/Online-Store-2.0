@@ -2,6 +2,7 @@ package kostuchenkov.rgr.service;
 
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
+import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.model.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +13,7 @@ public class WishListService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean addToWishList(User user, Product product){
+    public boolean addToWishList(User user, Product product) throws Exception {
         if(user.getWishList().contains(product)){
             return false;
         }else {

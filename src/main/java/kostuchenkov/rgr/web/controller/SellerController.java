@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import freemarker.template.TemplateException;
 import kostuchenkov.rgr.model.domain.order.Order;
 import kostuchenkov.rgr.model.domain.order.OrderStatus;
 import kostuchenkov.rgr.model.domain.user.User;
@@ -10,6 +11,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.mail.MessagingException;
+import java.io.IOException;
 
 @Controller
 @PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
@@ -45,7 +49,7 @@ public class SellerController {
 
     @PostMapping("/seller/order/setstatus")
     @ResponseBody
-    public String orderIsDone(@RequestParam("orderId") Order order, @RequestParam("status") OrderStatus orderStatus){
+    public String orderIsDone(@RequestParam("orderId") Order order, @RequestParam("status") OrderStatus orderStatus) throws TemplateException, IOException, MessagingException {
         orderService.setStatus(order,orderStatus);
         return "ok";
     }

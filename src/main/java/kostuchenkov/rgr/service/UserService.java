@@ -31,7 +31,7 @@ public class UserService implements UserDetailsService {
     @Value("${user.image.default}")
     private String defaultAvatarPath;
 
-    public void registerFromUserForm(UserRegistrationForm userForm) {
+    public void registerFromUserForm(UserRegistrationForm userForm) throws Exception {
 
         User user = new User();
         BeanUtils.copyProperties(userForm, user);
@@ -40,10 +40,8 @@ public class UserService implements UserDetailsService {
         user.setAvatar(defaultAvatarPath);
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-
-        userRepository.save(user);
-
         mailService.sendActivationMail(user);
+        userRepository.save(user);
     }
 
     @Override
