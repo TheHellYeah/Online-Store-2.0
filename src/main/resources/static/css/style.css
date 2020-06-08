@@ -55,3 +55,28 @@ input.cart-size-input {
     background: #343a40;
 }
 
+.img-thumbnail {
+    background: #343a40;
+    border-color: #343a40;
+}
+
+.page-item.active .page-link {
+    color: #343a40;
+    background: #ffc107;
+    border-color: white;
+}
+
+.page-item .page-link,
+.page-item.disabled .page-link {
+    color: white;
+    background: #343a40;
+}
+
+.page-item:hover .page-link {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.page-item.active:hover .page-link {
+    color: #343a40;
+ }

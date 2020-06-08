@@ -46,7 +46,6 @@ public class UserService implements UserDetailsService {
         mailService.sendActivationMail(user);
     }
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -81,17 +80,21 @@ public class UserService implements UserDetailsService {
         return userRepository.findByRoles(role);
     }
 
-    public boolean dismiss(Integer userID){
-        User user = userRepository.findById(userID).get();
+    public void dismiss(User user){
         user.getRoles().remove(UserRole.SELLER);
         userRepository.save(user);
-        return true;
     }
 
-    public boolean appoint(Integer userID){
-        User user = userRepository.findById(userID).get();
+    public void appoint(User user) {
         user.getRoles().add(UserRole.SELLER);
         userRepository.save(user);
-        return true;
+    }
+
+    public boolean isUserExistsWithEmail(String email) {
+        return userRepository.findByEmail(email) != null;
+    }
+
+    public boolean isUserExistsWithUsername(String username) {
+        return userRepository.findByUsername(username) != null;
     }
 }

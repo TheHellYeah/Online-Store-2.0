@@ -32,7 +32,6 @@ public class StorageController {
     }
 
     @PostMapping("/storage/addsize")
-
     public  String storageadd(HttpServletRequest request,
                               @RequestParam("id")Product product,
                               @RequestParam("_csrf")String _csrf,
@@ -43,7 +42,7 @@ public class StorageController {
         for(Map.Entry<String,String> temp : ps.entrySet()){
             product.getSizes().put(ProductSize.valueOf(temp.getKey()),Integer.valueOf(temp.getValue()));
         }
-        product.getSizes().put(ProductSize.SIZE_40,100);
+
         productService.update(product);
         return "redirect:"+ request.getHeader("referer");
     }

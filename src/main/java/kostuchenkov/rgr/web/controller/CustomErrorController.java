@@ -23,14 +23,14 @@ public class CustomErrorController implements ErrorController {
             if(statusCode == HttpStatus.NOT_FOUND.value()) {
                 model.addAttribute("error", "Запрашиваемая вами страница не найдена!");
             }
-            if(statusCode == HttpStatus.FORBIDDEN.value()) {
+            else if(statusCode == HttpStatus.FORBIDDEN.value()) {
                 model.addAttribute("error", "У вас недостаточно прав для просмотора запрашиваемой страницы!");
             }
-            if(statusCode == HttpStatus.BAD_REQUEST.value()) {
+            else if(statusCode == HttpStatus.BAD_REQUEST.value()) {
                 model.addAttribute("error", "Ошибка сервера!");
             }
-            if(statusCode == HttpStatus.METHOD_NOT_ALLOWED.value()) {
-                model.addAttribute("error", "Ошибка сервера!");
+            else {
+                model.addAttribute("error", "Ошибка!");
             }
         }
         return "error";

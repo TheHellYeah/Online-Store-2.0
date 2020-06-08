@@ -7,10 +7,11 @@
     <#if missing??>
         <h3>Пользователя не найдено<br><a href="/" style="font-size: 20px;">На главную</a></h3>
     <#else>
+    <div class="row">
         <div class="col-2">
-            <img src="${user.avatar}" alt="Аватар пользователя">
+            <img src="http://localhost:8080/img/users/${user.avatar}" class="img-thumbnail" alt="Аватар пользователя">
         </div>
-        <div class="col-7 mx-auto">
+        <div class="col-7 ">
             <label>${user.username}</label>
             <label>${user.balance}</label>
             <label>${user.email}</label>
@@ -21,6 +22,7 @@
                 <button>Изменить</button>
             </div>
         </div>
+    </div>
     </#if>
 </div>
 </@html.skeleton>

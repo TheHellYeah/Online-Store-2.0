@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
@@ -7,13 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @PreAuthorize("hasRole('ADMIN')")
+@RequestMapping("/admin")
 public class AdminController {
 
     @Autowired
@@ -21,7 +20,7 @@ public class AdminController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/admin")
+    @GetMapping
     public String adminPage(@RequestParam(required = false) UserRole role, Model model) {
         if(role != null) {
             model.addAttribute("users", userService.getAllUsersByRole(role));
@@ -31,16 +30,19 @@ public class AdminController {
         return "admin";
     }
 
-    @PostMapping("/admin/dismiss")
+    @PostMapping("/dismiss")
     @ResponseBody
     public String dismiss(@RequestParam("id") Integer id){
-        userService.dismiss(id);
+        User user = userService.getUserById(id);
+        userService.dismiss(user);
         return "OK";
     }
-    @PostMapping("/admin/appoint")
+
+    @PostMapping("/appoint")
     @ResponseBody
     public String appoint(@RequestParam("id") Integer id){
-        userService.appoint(id);
+        User user = userService.getUserById(id);
+        userService.appoint(user);
         return "OK";
     }
 }

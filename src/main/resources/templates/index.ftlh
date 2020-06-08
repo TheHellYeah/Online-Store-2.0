@@ -1,9 +1,9 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
-<#import "components/product-card.ftlh" as p>
 <#import "components/side-menu.ftlh" as side>
 <#import "components/slider.ftlh" as slider>
 <#import "components/search.ftlh" as search>
+<#import "components/product-section.ftlh" as section>
 
 <@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи">
 <@bootstrap.navbar/>
@@ -17,14 +17,25 @@
             <@slider.slider/>
             <@search.form/>
             <div class="container mt-3 mb-5">
-                <div class="card-columns">
-                    <#if products??>
-                        <#list products as product>
-                            <@p.card product/>
-                         </#list>
-                    </#if>
-                 </div>
-             </div>
+                <#if products??>
+                    <@section.product_section products.content/>
+                <#else>
+                    <h3>К сожалению, по вашему запросу не найдено товаров</h3>
+                </#if>
+                <nav class="float-right mb-3">
+                    <ul class="pagination">
+                        <li class="page-item disabled"><a class="page-link" href="#">Страницы</a></li>
+                        <#list 1..products.getTotalPages() as page>
+                            <#if (page - 1) == products.getNumber()>
+                                <li class="page-item active"><a class="page-link" href="#">${page}</a></li>
+                            <#else>
+                                <li class="page-item"><a class="page-link" href="/?page=${page - 1}">${page}</a></li>
+                             </#if>
+                        </#list>
+                         <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
+                     </ul>
+                </nav>
+            </div>
         </div>
     </div>
 </div>

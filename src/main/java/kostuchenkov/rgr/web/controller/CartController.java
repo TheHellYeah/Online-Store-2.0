@@ -44,7 +44,8 @@ public class CartController {
     @PostMapping("/clear")
     @ResponseBody
     public String clearCart(@AuthenticationPrincipal User session){
-        cartService.clearCart(userService.getUserById(session.getId()));
+        User user = userService.getUserById(session.getId());
+        cartService.clearCart(user);
         return "Корзина очищена";
     }
 

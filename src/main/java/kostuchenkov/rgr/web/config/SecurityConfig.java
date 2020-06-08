@@ -42,7 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .loginPage("/login")
                     .permitAll()
                 .and()
-                     .logout().logoutUrl("/logout").logoutSuccessUrl("/");
+                     .logout()
+                     .logoutUrl("/logout")
+                     .logoutSuccessUrl("/")
+                     .deleteCookies("JSESSIONID")
+                .and()
+                    .rememberMe().key("rememberMeKey");
     }
 
     @Override

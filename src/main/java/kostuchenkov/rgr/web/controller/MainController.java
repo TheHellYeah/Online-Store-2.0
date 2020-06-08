@@ -3,6 +3,11 @@ package kostuchenkov.rgr.web.controller;
 import kostuchenkov.rgr.model.domain.product.*;
 import kostuchenkov.rgr.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +24,9 @@ public class MainController {
     private ProductService productService;
 
     @GetMapping("/")
-    public String indexPage(Model model) {
+    public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable, Model model) {
 
-        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("products", productService.getAllProducts(pageable));
         model.addAttribute("subcategories", ProductSubcategory.values());
         model.addAttribute("brands", ProductBrand.values());
         model.addAttribute("seasons", ProductSeason.values());

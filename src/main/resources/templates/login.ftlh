@@ -20,8 +20,12 @@
             <label for="password">Пароль</label>
             <input type="password" name="password" class="form-control" id="password" placeholder="Введите пароль" required>
         </div>
-        <button type="submit" class="btn btn-warning">Войти</button>
-        <a href="/registration">Регистрация</a>
+        <div class="form-check mb-1">
+            <input type="checkbox" name="remember-me" class="form-check-input" id="remember">
+            <label class="form-check-label" for="remember">Запомнить меня</label>
+        </div>
+        <button type="submit" class="btn btn-warning mb-1">Войти</button>
+        <p style="color: white;">Нет аккаунта? <a href="/registration">Регистрация</a></p>
     </form>
 </div>
 </@component.skeleton>
