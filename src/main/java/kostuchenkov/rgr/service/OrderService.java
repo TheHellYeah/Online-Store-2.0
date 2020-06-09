@@ -29,7 +29,7 @@ public class OrderService {
     @Autowired
     private CartService cartService;
     @Autowired
-    MailService mailService;
+    private MailService mailService;
 
     public boolean createOrder(User user, String contact,String phone, String address, String payment) throws TemplateException, IOException, MessagingException {
         user = userRepository.findByUsername(user.getUsername());

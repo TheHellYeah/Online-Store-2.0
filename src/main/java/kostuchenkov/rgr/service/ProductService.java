@@ -2,14 +2,13 @@ package kostuchenkov.rgr.service;
 
 import kostuchenkov.rgr.model.domain.product.*;
 import kostuchenkov.rgr.model.repository.ProductRepository;
+import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
-import lombok.SneakyThrows;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -52,7 +51,7 @@ public class ProductService {
         try {
             int id = Integer.parseInt(productId);
             return productRepository.findById(id);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             return Optional.empty();
         }
     }
@@ -68,32 +67,14 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public List<Product> getProductsByFilter(ProductCategory category, List<ProductSubcategory> subcategories,
-                                             List<ProductBrand> brands, List<ProductSeason> seasons) {
-        if(subcategories == null) {
-            subcategories = Arrays.asList(ProductSubcategory.values());
-        }
-        if(brands == null) {
-            brands = Arrays.asList(ProductBrand.values());
-        }
-        if(seasons == null) {
-            seasons = Arrays.asList(ProductSeason.values());
-        }
-        if(category == null) {
-            return productRepository.findBySubcategoryInAndBrandInAndSeasonIn(subcategories, brands, seasons);
-        } else {
-            return productRepository.findByCategoryAndSubcategoryInAndBrandInAndSeasonIn(category, subcategories, brands, seasons);
-        }
-    }
-
-    public void update(Product product){
+    public void update(Product product) {
         productRepository.save(product);
     }
 
     private void saveProductImages(List<MultipartFile> files, Product product) {
 
         if (files != null && !files.get(0).isEmpty()) { //Лист файлов в контроллер приходит
-                                                        // почему то с одним итемом с названием "", поэтому еще проверка
+            // почему то с одним итемом с названием "", поэтому еще проверка
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
@@ -101,11 +82,11 @@ public class ProductService {
 
             for (MultipartFile file : files) {
                 String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
-                 try {
-                     file.transferTo(new File(uploadPath + "/" + resultFileName));
-                 } catch (IOException e) {
-                     e.printStackTrace();
-                 }
+                try {
+                    file.transferTo(new File(uploadPath + "/" + resultFileName));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 product.getImages().add(resultFileName);
             }
         } else {
@@ -119,5 +100,38 @@ public class ProductService {
             sizeMap.put(form.getSizes().get(i), form.getAmount().get(i));
         }
         return sizeMap;
+    }
+
+    public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
+
+        if (filter.getSubcategory().isEmpty()) {
+            filter.setSubcategory(Arrays.asList(ProductSubcategory.values()));
+        }
+        if (filter.getBrand().isEmpty()) {
+            filter.setBrand(Arrays.asList(ProductBrand.values()));
+        }
+        if (filter.getSeason().isEmpty()) {
+            filter.setSeason(Arrays.asList(ProductSeason.values()));
+        }
+        if (filter.getMaterial().isEmpty()) {
+            filter.setMaterial(Arrays.asList(ProductMaterial.values()));
+        }
+        if (filter.getSearchQuery() != null) {
+            return productRepository.findByNameContainingAndSubcategoryInAndSeasonInAndMaterialInAndBrandIn
+                    (filter.getSearchQuery(), filter.getSubcategory(), filter.getSeason(), filter.getMaterial(), filter.getBrand(), pageable);
+        } else {
+            return productRepository.findBySubcategoryInAndSeasonInAndMaterialInAndBrandIn
+                    (filter.getSubcategory(), filter.getSeason(), filter.getMaterial(), filter.getBrand(), pageable);
+        }
+    }
+
+    public Page<Product> getProductsFilteredByPrice(Integer min, Integer max) {
+        if(min != null && max != null) {
+
+        } else if(min == null) {
+
+        } else {
+
+        }
     }
 }

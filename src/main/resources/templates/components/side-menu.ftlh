@@ -1,7 +1,7 @@
 <#import "form-check.ftlh" as form>
 
 <#macro menu>
-<form method="get" action="/filter" class="mb-5">
+<form method="get" action="/" class="mb-5">
     <div class="category">
         <h3>Категории</h3>
         <#list subcategories as subcategory>
@@ -16,8 +16,8 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">от</span>
                 </div>
-                <input type="text" class="form-control">
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" name="minPrice">
+                <input type="text" class="form-control" name="maxPrice">
                 <div class="input-group-append">
                     <span class="input-group-text">до</span>
                 </div>

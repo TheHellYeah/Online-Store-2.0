@@ -42,8 +42,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserWishListAccess wishListAccess;
-    @Enumerated(EnumType.STRING)
-    private UserLocale userLocale;
 
     @ManyToMany
     @JoinTable(name = "wishlist",

@@ -102,3 +102,9 @@ input.cart-size-input {
     overflow-y: auto;
     font-size: 18px;
  }
+
+ .input-group-text {
+    background: #3f454a;
+    border-color: white;
+    color: white;
+ }

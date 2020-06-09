@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
     searchForm.addEventListener('input', function() {
          setTimeout(filterHandler, 500)
     });
-    document.querySelector('.search-group button').addEventListener('click', searchHandler)
 });
 
 function filterHandler() {

@@ -19,13 +19,18 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     //List используем для POST метода, когда мы вбиваем запрос в поисковую строку чтобы вернуть список товаров найденных
     List<Product> findByNameContaining(String name);
 
-
     List<Product> findByCategory(ProductCategory category);
-    List<Product> findByCategoryAndSubcategoryInAndBrandInAndSeasonIn(ProductCategory category,
-                                                                      List<ProductSubcategory> subcategories,
-                                                                      List<ProductBrand> brands,
-                                                                      List<ProductSeason> seasons);
-    List<Product> findBySubcategoryInAndBrandInAndSeasonIn(List<ProductSubcategory> subcategories,
-                                                           List<ProductBrand> brands,
-                                                           List<ProductSeason> seasons);
+
+    Page<Product> findByNameContainingAndSubcategoryInAndSeasonInAndMaterialInAndBrandIn(String name,
+                                                                                         List<ProductSubcategory> subcategories,
+                                                                                         List<ProductSeason> seasons,
+                                                                                         List<ProductMaterial> materials,
+                                                                                         List<ProductBrand> brands,
+                                                                                         Pageable pageable);
+
+    Page<Product> findBySubcategoryInAndSeasonInAndMaterialInAndBrandIn(List<ProductSubcategory> subcategories,
+                                                                        List<ProductSeason> seasons,
+                                                                        List<ProductMaterial> materials,
+                                                                        List<ProductBrand> brands,
+                                                                        Pageable pageable);
 }

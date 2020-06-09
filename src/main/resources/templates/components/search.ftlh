@@ -2,7 +2,7 @@
 <div class="container mt-3">
     <div class="row">
         <div class="dropdown">
-            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdown_coins" data-toggle="dropdown" aria-haspopup="true"
+            <button class="btn btn-warning dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
                 Поиск
                 <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +13,7 @@
             <div id="dropdown-search" class="dropdown-menu dropdown-search">
                 <form class="px-4 py-2" action="/">
                     <div class="input-group">
-                        <input type="search" class="form-control" name="search" id="product-search-input" placeholder="Введите название товара" autofocus="autofocus">
+                        <input type="search" class="form-control" name="searchQuery" id="product-search-input" placeholder="Введите название товара" autofocus="autofocus">
                         <div class="input-group-append">
                             <button class="btn btn-warning" type="submit">Найти</button>
                         </div>
