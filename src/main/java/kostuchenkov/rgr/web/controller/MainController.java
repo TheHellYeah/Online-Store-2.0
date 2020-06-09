@@ -24,9 +24,17 @@ public class MainController {
     private ProductService productService;
 
     @GetMapping("/")
-    public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable, Model model) {
+    public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,
+                            @RequestParam(required = false) String search, Model model) {
 
-        model.addAttribute("products", productService.getAllProducts(pageable));
+        Page<Product> products;
+        if(search != null) {
+            products = productService.getProductsContainingString(search, pageable);
+        } else {
+            products = productService.getAllProducts(pageable);
+        }
+
+        model.addAttribute("products", products);
         model.addAttribute("subcategories", ProductSubcategory.values());
         model.addAttribute("brands", ProductBrand.values());
         model.addAttribute("seasons", ProductSeason.values());
@@ -34,6 +42,14 @@ public class MainController {
         return "index";
     }
 
+    @ResponseBody
+    @PostMapping(value = "/")
+    public List<Product> search(@RequestParam String name) {
+        return productService.getAllProductsContainingString(name);
+    }
+
+
+    //FIXME доделать
     @GetMapping(value = "/filter")
     public String filter(@RequestParam(required = false) ProductCategory category,
                          @RequestParam(required = false) List<ProductSubcategory> subcategory,
@@ -54,22 +70,4 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/search")
-    public String searchResult(@RequestParam String name, Model model) {
-        model.addAttribute("products", productService.getProductsContainingString(name));
-        model.addAttribute("subcategories", ProductSubcategory.values());
-        model.addAttribute("brands", ProductBrand.values());
-        model.addAttribute("seasons", ProductSeason.values());
-        model.addAttribute("materials", ProductMaterial.values());
-        return "index";
-    }
-
-    //TODO  РАБОТАЕТ, скрипт поста в search.js, пришлось через xhr, fetch не захотел. В скрипте получаем список объектов по поиску, осталось сделать
-    //всплывающие подсказки для поиска
-
-    @ResponseBody
-    @PostMapping(value = "/search")
-    public List<Product> search(@RequestParam String name) {
-        return productService.getProductsContainingString(name);
-    }
 }

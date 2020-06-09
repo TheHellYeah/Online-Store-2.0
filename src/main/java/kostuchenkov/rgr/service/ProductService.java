@@ -36,6 +36,14 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
+    public List<Product> getAllProductsContainingString(String name) {
+        return productRepository.findByNameContaining(name);
+    }
+
+    public Page<Product> getProductsContainingString(String name, Pageable pageable) {
+        return productRepository.findByNameContaining(name, pageable);
+    }
+
     public List<Product> getAllProductsInCategory(ProductCategory category) {
         return productRepository.findByCategory(category);
     }
@@ -76,10 +84,6 @@ public class ProductService {
         } else {
             return productRepository.findByCategoryAndSubcategoryInAndBrandInAndSeasonIn(category, subcategories, brands, seasons);
         }
-    }
-
-    public List<Product> getProductsContainingString(String name) {
-        return productRepository.findByNameContaining(name);
     }
 
     public void update(Product product){
