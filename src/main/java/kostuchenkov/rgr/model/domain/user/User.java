@@ -108,7 +108,7 @@ public class User implements UserDetails {
     public int getCartTotal() {
         int cartTotal = 0;
         for(CartItem cartItem : cart) {
-            cartTotal += cartItem.getProduct().getPrice();
+            cartTotal += cartItem.getProduct().getPrice() * cartItem.getAmount();
         }
         return cartTotal;
     }
@@ -119,7 +119,6 @@ public class User implements UserDetails {
 
     //Возвращает cartItem c корзины если таковой имеется, иначе null
     public CartItem getProductFromCart(CartItem item) {
-
         return this.getCart().stream()
                     .filter(cartItem -> cartItem.equals(item))
                     .findFirst()

@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -122,16 +123,6 @@ public class ProductService {
         } else {
             return productRepository.findBySubcategoryInAndSeasonInAndMaterialInAndBrandIn
                     (filter.getSubcategory(), filter.getSeason(), filter.getMaterial(), filter.getBrand(), pageable);
-        }
-    }
-
-    public Page<Product> getProductsFilteredByPrice(Integer min, Integer max) {
-        if(min != null && max != null) {
-
-        } else if(min == null) {
-
-        } else {
-
         }
     }
 }

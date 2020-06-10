@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -42,7 +43,6 @@ public class MainController {
             }
             products = productService.getAllProductsByFilter(filter, pageable);
         }
-       // products = new PageImpl<>(products.stream().filter(p -> p.getPrice() > 100).collect(Collectors.toList()), pageable, products.getSize());
 
         model.addAttribute("products", products);
         model.addAttribute("subcategories", ProductSubcategory.values());

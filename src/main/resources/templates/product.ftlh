@@ -6,33 +6,32 @@
 
 <#import "components/rating-mini.ftlh" as mini>
 
-<@component.skeleton title="${product.name}">
+<@component.skeleton title=(product.name)!"Продукт не найден">
 <@bootstrap.navbar/>
 
-<div class="container row mt-4">
-    <div class="col-7">
+<#if product??>
+<div class="row mt-4 w-100">
+    <div class="col-1"></div>
+    <div class="col-4">
         <@slider.productslider product.images/>
     </div>
-    <div class="col">
-        <#if product??>
-            <div class="">
-                <h1 class="item-name text-primary ">${product.name}</h1>
-                <a class="text-white mb-4">Отзывы(${product.revSize()})</a><br>
-                <a class="text-white">Рейтинг: <@mini.ratingmini product.rating/></a>
-                <h3 class="item-price mt-4 ml-4 mb-4">${product.price} ₽</h3>
-                    <@sizebar.sizes product.sizes />
-                </div>
-                <div class="item-add-cart">
-                    <button class="btn-warning btn-lg" onclick="inCart(${product.id})">В корзину</button>
-                    <button  class="btn-warning btn-lg" onclick="addWishlist(${product.id})">♥</button>
-                </div>
-            </div>
-        <#else>
-            <div class="container">
-                <h1>К сожалению, товара не найдено</h1>
-            </div>
-        </#if>
-
+    <div class="col-7">
+        <div>
+            <h1 class="item-name text-warning ">${product.name}</h1>
+            <span class="text-white" style="">
+                <a href="/?category=${product.category.name()}">${product.category}</a> /
+                <a href="/?subcategory=${product.subcategory.name()}">${product.subcategory}</a> /
+                <a href="/?season=${product.season.name()}">${product.season}</a>
+            </span>
+            <a class="text-white">Отзывы(${product.revSize()})</a><br>
+            <a class="text-white">Рейтинг: <@mini.ratingmini product.rating/></a>
+            <h3 class="item-price  ml-4 mb-4">${product.price} ₽</h3>
+            <@sizebar.bar sizes />
+        </div>
+        <div class="item-add-cart">
+            <button class="btn-warning btn-lg" onclick="inCart(${product.id})">В корзину</button>
+            <button  class="btn-warning btn-lg" onclick="addWishlist(${product.id})">♥</button>
+        </div>
     </div>
 </div>
 <div class="mt-5">
@@ -40,20 +39,16 @@
         <div class="m-auto">
 
             <ul class="nav nav-tabs">
-                <li class="active border border-warning bg-warning mr-2 p-2"><a class="text-dark" data-toggle="tab" href="#home">Описание</a></li>
+                <li class="active border border-warning bg-warning mr-2 p-2"><a class="text-dark active" data-toggle="tab" href="#home">Описание</a></li>
                 <li class="border border-warning bg-warning p-2"><a class="text-dark" data-toggle="tab" href="#menu1">Отзывы</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
+                <div id="home" class="tab-pane fade in active show">
                     <h3>Описание</h3>
                     <div class="info">
-                        <p class="text-white">Категория: ${product.category}</p>
-                        <p class="text-white">Вид: ${product.subcategory}</p>
-                        <p class="text-white">Сезон: ${product.season}</p>
-                        <p class="text-white">Материал: ${product.material}</p>
+                        <p class="text-white">${product.description}</p>
                     </div>
-                    <p class="text-white">${product.description}</p>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <h3>Отзывы</h3>
@@ -64,18 +59,12 @@
                         <#else>
                             <div class="border">Отзывов пока никто не оставил, будь первым!</div>
                     </#if>
-
             <button type="button" class="btn btn-warning m-auto" data-toggle="modal" data-target="#myModal">Добавить отзыв</button>
                 </div>
-
             </div>
-
-
         </div>
-
     </div>
 </div>
-
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -100,10 +89,13 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
-         </div>
+        </div>
     </div>
 </div>
-
-
-
+<#else>
+<div class="container mt-4">
+    <h3>К сожалению, товара не найдено</h3>
+    <h3 class="float-none"><a href="/">На главную</a></h3>
+</div>
+</#if>
 </@component.skeleton>

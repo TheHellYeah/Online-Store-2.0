@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.product.ProductSize;
 import kostuchenkov.rgr.model.domain.user.User;
@@ -7,6 +8,8 @@ import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +40,11 @@ public class CartController {
                             @RequestParam(name = "id") Product product) {
 
         User user = userService.getUserById(session.getId());
-        cartService.addToCart(user, product, size);
-        return "Товар добавлен в корзину";
+        if(cartService.addToCart(user, product, size)) {
+            return "Товар добавлен в корзину";
+        } else {
+            return "Товар не может быть добавлен: превышено количество товара на складе";
+        }
     }
 
     @PostMapping("/clear")
@@ -49,13 +55,21 @@ public class CartController {
         return "Корзина очищена";
     }
 
-    @PostMapping("delete")
+    @PostMapping("/delete")
     @ResponseBody
-    public String deleteFromCart(@AuthenticationPrincipal User session,
-                                 @RequestParam Integer cartId
-
-        ){
+    public String deleteFromCart(@AuthenticationPrincipal User session, @RequestParam Integer cartId){
         cartService.deleteFromCart(session, cartId);
         return "Товар удален";
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public ResponseEntity updateCart(@AuthenticationPrincipal User session, @RequestParam("cartId") CartItem cartItem, @RequestParam Integer value) {
+        User user = userService.getUserById(session.getId());
+        if(cartService.updateCart(cartItem, value)) {
+            return ResponseEntity.status(HttpStatus.OK).body(user.getCartTotal());
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user.getCartTotal());
+        }
     }
 }

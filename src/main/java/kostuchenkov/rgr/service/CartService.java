@@ -19,18 +19,24 @@ public class CartService {
     @Autowired
     private CartRepository cartRepository;
 
-    public void addToCart(User user, Product product, ProductSize size){
+    public boolean addToCart(User user, Product product, ProductSize size){
 
         CartItem cartItem = new CartItem(user, product, size, 1);
         CartItem existingItem = user.getProductFromCart(cartItem);
 
         if (existingItem != null) {
-            existingItem.incrementAmount();
-            cartRepository.save(existingItem);
+            if(existingItem.canBeBought()) {
+                existingItem.incrementAmount();
+                cartRepository.save(existingItem);
+                return true;
+            } else {
+                return false;
+            }
         } else {
             user.getCart().add(cartItem);
             cartRepository.save(cartItem);
             userRepository.save(user);
+            return true;
         }
     }
 
@@ -46,5 +52,16 @@ public class CartService {
         user.getCart().remove(cartItem);
         userRepository.save(user);
         cartRepository.deleteById(cartId);
+    }
+
+    public boolean updateCart(CartItem cartItem, int value) {
+        if(value <= cartItem.maxItemsAmount()) {
+            cartItem.setAmount(value);
+            cartRepository.save(cartItem);
+            return true;
+        } else {
+            cartItem.setAmount(cartItem.maxItemsAmount());
+            return false;
+        }
     }
 }

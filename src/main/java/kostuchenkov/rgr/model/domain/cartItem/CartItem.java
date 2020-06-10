@@ -61,4 +61,12 @@ public class CartItem {
     public void incrementAmount() {
         this.amount++;
     }
+
+    public boolean canBeBought() {
+        return amount < maxItemsAmount();
+    }
+
+    public int maxItemsAmount() {
+        return this.product.getSizes().get(size);
+    }
 }

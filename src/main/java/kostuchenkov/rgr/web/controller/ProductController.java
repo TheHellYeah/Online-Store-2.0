@@ -19,10 +19,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collector;
 
 @Controller
 public class ProductController {
@@ -34,9 +32,11 @@ public class ProductController {
 
     @GetMapping("/product/{id:\\d+}")
     public String productPage(@PathVariable("id") Product product, Model model) {
-
-        model.addAttribute("product", product);
-        model.addAttribute("reviews", product.getReviews());
+        if(product != null) {
+            model.addAttribute("product", product);
+            model.addAttribute("reviews", product.getReviews());
+            model.addAttribute("sizes", new TreeMap<>(product.getSizes()));
+        }
         return "product";
     }
 

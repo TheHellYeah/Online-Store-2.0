@@ -1,12 +1,23 @@
 
-function updateTotal(){
-    let rows = document.querySelectorAll(`tbody > tr`)
-    let total = 0;
-    for(let row of rows){
-        var price = parseInt(row.cells[2].innerHTML.replace(/&nbsp;/g, ''));
-        total +=  row.cells[1].children[0].value * parseInt(price,10) ;
+function updateTotal(cartId, input){
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', '/user/cart/update', true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.responseType = "text";
+    xhr.setRequestHeader(header, token);
+    xhr.send(`cartId=${cartId}&value=${input.value}`);
+
+    xhr.onload = function() {
+        let div = document.createElement("div");
+         if(xhr.status != 200) {
+             div.className += "alert alert-danger" ;
+             div.innerHTML = `<strong>Ошибка! Максимальное количество данного товара в корзине: ${input.max}</strong>`;
+             document.getElementById("alert").append(div);
+             setTimeout(() => div.remove(), 2500);
+             input.value = input.max;
+         }
+         document.querySelector('#total1').innerHTML = xhr.response;
     }
-    document.getElementById(`total1`).innerHTML = total.toLocaleString('ru-RU') ;
 }
 
 async function clearCart() {
@@ -20,7 +31,7 @@ async function clearCart() {
      xhr.onload = function() {
          let div = document.createElement("div");
          if(xhr.status != 200) {
-             div.className += "alert alert-danger" ;
+             div.className += "alert alert-danger";
              div.innerHTML = `<strong>Ошибка!</strong>`;
          } else {
              div.className += "alert alert-success" ;
