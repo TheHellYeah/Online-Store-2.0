@@ -38,6 +38,7 @@ public class SellerController {
     @GetMapping("/seller/orders/{id:\\d+}")
     public String orderPage(@AuthenticationPrincipal User user, @PathVariable("id") Order order, Model model) {
         model.addAttribute("order", order);
+        model.addAttribute("seller", true);
         return "order";
     }
 
