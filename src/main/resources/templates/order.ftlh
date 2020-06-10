@@ -30,7 +30,7 @@
                 <@spring.message code="status"/>:
                 <label id="order_status">${order.orderStatus.toString()}</label>
             </div>
-            <#if seller??>
+            <#if seller>
             <div class="mt-2">
                 <button class="btn btn-warning mt-" value="IN_TRANSIT" onclick="setStatus(this.value, ${order.id})"><@spring.message code="order.button.approve"/></button>
                 <button class="btn btn-warning" value="DELIVERED" onclick="setStatus(this.value, ${order.id})"><@spring.message code="order.button.delivered"/></button>

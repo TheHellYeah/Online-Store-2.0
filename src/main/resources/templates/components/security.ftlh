@@ -6,5 +6,7 @@
         user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
         name = user.getUsername()
         userId = user.getId()
- >
+        admin = user.isAdmin()
+        seller = user.isSeller()
+>
 </#if>

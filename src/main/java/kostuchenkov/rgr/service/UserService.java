@@ -2,6 +2,7 @@ package kostuchenkov.rgr.service;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
+import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.BeanUtils;
@@ -37,6 +38,7 @@ public class UserService implements UserDetailsService {
         BeanUtils.copyProperties(userForm, user);
 
         user.setRoles(Collections.singleton(UserRole.CUSTOMER));
+        user.setWishListAccess(UserWishListAccess.PUBLIC);
         user.setAvatar(defaultAvatarPath);
         user.setActivationCode(UUID.randomUUID().toString());
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

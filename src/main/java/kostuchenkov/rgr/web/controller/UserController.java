@@ -39,11 +39,10 @@ public class UserController {
             return "user";
         }
 
-        if(user.getId() == session.getId()){
+        if(user.getId() == session.getId()) {
             model.addAttribute("currentUser", true);
-        }
-        else {
-            if(user.getWishListAccess() == UserWishListAccess.PUBLIC) {
+        } else {
+            if(user.getWishListAccess() == UserWishListAccess.PUBLIC || session.isAdmin()) {
                 model.addAttribute("public", true);
             }
             model.addAttribute("username", user.getUsername());
