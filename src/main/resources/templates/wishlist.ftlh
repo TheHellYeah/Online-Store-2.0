@@ -14,6 +14,9 @@
         </#if>
     </#if>
     <#if currentUser?? || public??>
+    <#if !(wishlist?has_content)>
+        <h3>Пусто...</h3>
+    <#else>
             <table class="table table-dark table-hover mt-3">
                 <thead>
                     <tr>
@@ -34,6 +37,7 @@
                 </#if>
                 </tbody>
             </table>
+    </#if>
     </#if>
 </div>
 </@html.skeleton>

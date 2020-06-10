@@ -117,6 +117,8 @@ public class User implements UserDetails {
         return roles.contains(UserRole.SELLER);
     }
 
+    public boolean isAdmin() { return roles.contains(UserRole.ADMIN); }
+
     //Возвращает cartItem c корзины если таковой имеется, иначе null
     public CartItem getProductFromCart(CartItem item) {
         return this.getCart().stream()
