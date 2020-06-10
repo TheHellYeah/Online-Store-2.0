@@ -69,4 +69,10 @@ public class CartItem {
     public int maxItemsAmount() {
         return this.product.getSizes().get(size);
     }
+
+    //Вычисляем новое количество обуви на складе после оформления заказа(вычитаем из нужного размера количество в карт итеме)
+    public void subtractFromProduct() {
+        int newValue = this.product.getSizes().get(size) - amount;
+        this.product.getSizes().put(size, newValue);
+    }
 }

@@ -37,6 +37,7 @@ public class OrderService {
         for (CartItem cartItem : user.getCart() ){
             sum += cartItem.getProduct().getPrice() * cartItem.getAmount();
         }
+
         Order order = new Order();
         order.setAddress(address);
         order.setPhone(phone);
@@ -48,12 +49,16 @@ public class OrderService {
         order.setOrderPayment(OrderPayment.valueOf(payment));
         order.setOrderStatus(OrderStatus.PENDING);
 
+        //Забирем нужное количество обуви со склада
+        order.getProducts().forEach(CartItem::subtractFromProduct);
+
         if(OrderPayment.valueOf(payment) == OrderPayment.BALANCE){
             if (user.getBalance() < order.getTotal())
                 return false;
             else
                 user.setBalance(user.getBalance()-order.getTotal());
         }
+
         mailService.createOrderMail(order);
         cartService.clearCart(user);
         orderRepository.save(order);
@@ -72,11 +77,13 @@ public class OrderService {
     public List<Order> getAllOrdersWithStatus(OrderStatus orderStatus){
         return orderRepository.findByOrderStatus(orderStatus);
     }
+
     public void setStatus(Order order, OrderStatus orderStatus) throws TemplateException, IOException, MessagingException {
         order.setOrderStatus(orderStatus);
         mailService.changeStatusOrder(order);
         orderRepository.save(order);
     }
+
     public Optional<Order> getOrderById(int orderId){
         return orderRepository.findById(orderId);
     }
