@@ -59,7 +59,7 @@ public class OrderService {
                 user.setBalance(user.getBalance()-order.getTotal());
         }
 
-        mailService.createOrderMail(order);
+        //mailService.createOrderMail(order);
         cartService.clearCart(user);
         orderRepository.save(order);
         return true;

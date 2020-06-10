@@ -1,5 +1,5 @@
-<#macro navbar>
 <#import "/spring.ftl" as spring>
+<#macro navbar>
 <#include "security.ftlh">
 <nav class="navbar navbar-expand-lg sticky-top">
     <a class="navbar-brand" href="/"><span class="text-white">Shoe</span><span class="text-dark bg-warning rounded">Hub</span></a>

@@ -2,6 +2,7 @@
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/product-order-card.ftlh" as p>
 <#import "spring.ftl" as spring>
+<#include "components/security.ftlh">
 <@component.skeleton title="Страница заказа">
 <@bootstrap.navbar/>
 
