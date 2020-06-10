@@ -1,5 +1,10 @@
 package kostuchenkov.rgr.model.domain.product;
 
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum ProductCategory {
     MAN,
     WOMAN,
@@ -7,8 +12,8 @@ public enum ProductCategory {
 
     @Override
     public String toString() {
-        if(this.equals(MAN)) return "Мужчинам";
-        if(this.equals(WOMAN)) return "Девушкам";
-        else return "Детям";
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/enum",locale);
+        return bundle.getString(this.name());
     }
 }

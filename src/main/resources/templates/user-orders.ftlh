@@ -1,6 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/product-order-card.ftlh" as p>
+<#import "spring.ftl" as spring>
 
 <@component.skeleton title="Мои заказы">
 <@bootstrap.navbar/>
@@ -9,11 +10,11 @@
     <table class="table table-dark table-hover mt-3" style="font-size: 18px;">
         <thead>
             <tr>
-                <th>Заказ №</th>
-                <th>Дата</th>
-                <th>Статус</th>
-                <th>Сумма</th>
-                <th>Вид оплаты</th>
+                <th><@spring.message code="order"/> №</th>
+                <th><@spring.message code="date"/></th>
+                <th><@spring.message code="status"/></th>
+                <th><@spring.message code="summa"/></th>
+                <th><@spring.message code="type.of.payment"/></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,6 @@
         </#list>
         </tbody>
     </table>
-    <p class="text-white">(кликните по заказу для получения детальной информации)</p>
+    <p class="text-white">(<@spring.message code="user.orders.info"/>)</p>
 </div>
 </@component.skeleton>

@@ -1,4 +1,5 @@
 <#include "rating-mini.ftlh">
+<#import "/spring.ftl" as spring>
 <#macro product_section products>
 
 <div class="card-columns">
@@ -14,8 +15,8 @@
                     <a href="/filter?season=${product.season.name()}">${product.season.toString()}</a>
                 </p>
                 <p><@ratingmini product.rating /></p>
-                <p class="card-text">Цена: ${product.price} ₽</p>
-                <button class="btn btn-lg text-danger btn-warning" style="position:absolute;right:25px;bottom:25px;z-index:10ж" onclick="addWishlist(${product.id})">
+                <p class="card-text">${product.price} ₽</p>
+                <button class="btn btn-lg btn-warning" style="position:absolute;right:25px;bottom:25px;z-index:10ж" onclick="addWishlist(${product.id})">
                     <svg class="bi bi-heart-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="rgb(52, 58, 64)" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                     </svg>

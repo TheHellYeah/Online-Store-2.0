@@ -1,5 +1,6 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "spring.ftl" as spring>
 
 <@component.skeleton title="Склад товаров">
 <@bootstrap.navbar/>
@@ -41,12 +42,12 @@
         <thead>
         <tr>
             <th class="text-white">ID</th>
-            <th class="text-white">Наименование</th>
-            <th class="text-white">Стоимость</th>
-            <th class="text-white">Рейтинг</th>
-            <th class="text-white">Категория</th>
-            <th class="text-white">Вид</th>
-            <th class="text-white">Наличие</th>
+            <th class="text-white"><@spring.message code="name"/></th>
+            <th class="text-white"><@spring.message code="price"/></th>
+            <th class="text-white"><@spring.message code="rating"/></th>
+            <th class="text-white"><@spring.message code="category"/></th>
+            <th class="text-white"><@spring.message code="kind"/></th>
+            <th class="text-white"><@spring.message code="presence"/></th>
             <th> </th>
         </tr>
         </thead>
@@ -94,7 +95,7 @@
                                 </tr>
                                 </tbody>
                             </table>
-                                    <button class=" mt-3 p-1 btn btn-success  btn-block">Сохранить</button>
+                                    <button class=" mt-3 p-1 btn btn-success  btn-block"><@spring.message code="save"/></button>
                      </form>
                     </td>
                     <td><button class="btn btn-success btn-lg"><a class="text-dark" href="/product/edit/${product.id}">

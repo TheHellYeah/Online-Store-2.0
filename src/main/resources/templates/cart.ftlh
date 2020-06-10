@@ -1,21 +1,22 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "spring.ftl" as spring>
 
 <@component.skeleton title="Корзина">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if !(cart?has_content)>
-        <h1>Корзина пуста...</h1>
-        <h3>Добавить товар в корзину можно на странице товара</h3>
+        <h1><@spring.message code="cart.empty"/></h1>
+        <h3><@spring.message code="cart.empty.info"/></h3>
     <#else>
         <table class="table table-dark table-hover mt-3">
             <thead>
                 <tr>
-                    <th>Товар</th>
-                    <th>Количество</th>
-                    <th>Цена</th>
-                    <th>Размер</th>
-                    <th>Удалить</th>
+                    <th><@spring.message code="product"/></th>
+                    <th><@spring.message code="count"/></th>
+                    <th><@spring.message code="price"/></th>
+                    <th><@spring.message code="size"/></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -25,14 +26,14 @@
                         <td><input class="cart-size-input" type="number" min="1" max=${cartItem.maxItemsAmount()} onchange="updateTotal(${cartItem.id}, this)" value="${cartItem.amount}"></td>
                         <td class="cart-price">${cartItem.product.price} ₽</td>
                         <td>${cartItem.size.toString()}</td>
-                        <td><button class="btn btn-primary" onclick="delInCart(${cartItem.id}, this)"> Удалить из корзины</button></td>
+                        <td><button class="btn btn-primary" onclick="delInCart(${cartItem.id}, this)"><@spring.message code="cart.button.delete"/></button></td>
                     </tr>
                 </#list>
             </tbody>
         </table>
-    <h3 class="text-white">Итого: <strong id="total1">${total}</strong> ₽</h3>
-    <button type="button" class="btn btn-danger" onclick="clearCart()">Очистить корзину</button>
-    <a href="/user/order/checkout" class="btn btn-warning text-dark" role="button">Перейти к оформлению заказа</a>
+    <h3 class="text-white"><@spring.message code="cart.total"/>: <strong id="total1">${total}</strong> ₽</h3>
+        <button type="button" class="btn btn-danger" onclick="clearCart()"><@spring.message code="cart.button.clear"/></button>
+         <a href="/user/order/checkout" class="btn btn-warning text-dark" role="button"><@spring.message code="cart.button.create"/></a>
     </#if>
 </div>
 

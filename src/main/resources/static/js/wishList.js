@@ -22,6 +22,7 @@ async function delInWishlist(idProduct,obj){
 }
 
 async function addWishlist(idProduct){
+    event.stopPropagation();
      let xhr = new XMLHttpRequest();
         xhr.open('POST', '/user/wishlist/add', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

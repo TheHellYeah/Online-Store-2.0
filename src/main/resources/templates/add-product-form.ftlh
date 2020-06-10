@@ -1,38 +1,39 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "/spring.ftl" as spring>
 
 <@component.skeleton title="Добавление продукта">
 <@bootstrap.navbar/>
 
 <div class="container">
     <form class="mt-3 mb-5" action="/product/add" method="post" enctype="multipart/form-data">
-        <h3>Данные о товаре</h3>
+        <h3><@spring.message code="add.product.details"/></h3>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
 
         <div class="form-group">
-            <label for="name">Название</label>
+            <label for="name"><@spring.message code="add.product.name"/></label>
             <input type="text" name="name" class="form-control" id="name"
                    placeholder="Введите название товара">
         </div>
 
         <div class="form-group">
-            <label for="description">Описание</label>
+            <label for="description"><@spring.message code="add.product.description"/></label>
             <textarea name="description" class="form-control" id="description"
                       placeholder="Введите описание товара"></textarea>
         </div>
 
         <div class="form-group">
-            <label for="price">Цена</label>
+            <label for="price"><@spring.message code="price"/></label>
             <input type="number" name="price" class="form-control" id="price"
                       placeholder="Введите цену товара">
         </div>
 
         <div class="form-group">
-            <label for="images">Фотографии</label>
+            <label for="images"><@spring.message code="add.product.photos"/></label>
             <div class="form-group">
                 <div class="custom-file">
                     <input type="file" name="images" multiple="multiple" class="custom-file-input form-control-file" id="images" accept="image">
-                    <label class="custom-file-label" for="images">Выберите файлы</label>
+                    <label class="custom-file-label" for="images"><@spring.message code="add.product.image.select"/></label>
                 </div>
                 <div class="preview p-2 bg-white">
                     <p>Файлы для загрузки не выбраны</p>
@@ -41,17 +42,17 @@
         </div>
         <style>img {height: 64px;}</style>
         <div class="form-group">
-            <label for="category">Категория обуви:</label>
+            <label for="category"><@spring.message code="add.product.shoe.category"/>:</label>
             <select class="form-control" name="category" id="category" onchange="getValue(this.value);">
                 <option disabled selected>Выберите категорию</option>
                 <#list categories as category>
-                    <option value=${category.name()}>${category.toString()}</option>
+                    <option value=${category.name()}>${category}</option>
                 </#list>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="brand">Бренд:</label>
+            <label for="brand"><@spring.message code="add.product.brand"/>:</label>
             <select class="form-control" name="brand" id="brand">
                 <option disabled selected>Выберите бренд</option>
                 <#list brands as brand>
@@ -61,7 +62,7 @@
         </div>
 
         <div class="form-group">
-            <label for="subcategory">Вид обуви:</label>
+            <label for="subcategory"><@spring.message code="add.product.kind"/>:</label>
             <select class="form-control" name="subcategory" id="subcategory">
                 <option disabled selected>Выберите вид</option>
                 <#list subcategories as subcategory>
@@ -71,7 +72,7 @@
         </div>
 
         <div class="form-group">
-            <label for="season">Сезон:</label>
+            <label for="season"><@spring.message code="add.product.season"/>:</label>
             <select class="form-control" name="season" id="season">
                 <option disabled selected>Выберите сезон</option>
                 <#list seasons as season>
@@ -81,7 +82,7 @@
         </div>
 
         <div class="form-group">
-            <label for="material">Материал:</label>
+            <label for="material"><@spring.message code="add.product.material"/>:</label>
             <select class="form-control" name="material" id="material">
                 <option disabled selected>Выберите материал</option>
                 <#list materials as material>
@@ -91,12 +92,12 @@
         </div>
 
         <div class="form-group">
-            <label>Количество товара на вашем складе:</label>
+            <label><@spring.message code="add.product.quantity"/>:</label>
             <table>
                 <thead>
                 <tr>
-                    <th>Размер</th>
-                    <th>Количество</th>
+                    <th><@spring.message code="size"/></th>
+                    <th><@spring.message code="count"/></th>
                 </tr>
                 </thead>
                 <tbody id="size">
@@ -104,7 +105,7 @@
                 </tbody>
             </table>
         </div>
-        <button type="submit" class="btn btn-warning">Добавить товар</button>
+        <button type="submit" class="btn btn-warning"><@spring.message code="add.product.button"/></button>
     </form>
 </div>
 <script src="/static/js/size.js"></script>

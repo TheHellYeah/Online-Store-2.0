@@ -1,5 +1,10 @@
 package kostuchenkov.rgr.model.domain.product;
 
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum ProductSeason {
     SUMMER,
     AUTUMN,
@@ -8,9 +13,8 @@ public enum ProductSeason {
 
     @Override
     public String toString() {
-        if(this.equals(SUMMER)) return "Лето";
-        if(this.equals(AUTUMN)) return "Осень";
-        if(this.equals(WINTER)) return "Зима";
-        else return "Весна";
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/enum",locale);
+        return bundle.getString(this.name());
     }
 }

@@ -1,6 +1,10 @@
 package kostuchenkov.rgr.model.domain.user;
 
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public enum UserRole implements GrantedAuthority {
     CUSTOMER,
@@ -9,9 +13,9 @@ public enum UserRole implements GrantedAuthority {
 
     @Override
     public String toString() {
-        if(this.equals(CUSTOMER)) return "Покупатель";
-        if(this.equals(SELLER)) return "Продавец";
-        else return "Администратор";
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/enum", locale);
+        return bundle.getString(this.name());
     }
 
     @Override

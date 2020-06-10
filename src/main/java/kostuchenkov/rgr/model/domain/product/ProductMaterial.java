@@ -1,5 +1,10 @@
 package kostuchenkov.rgr.model.domain.product;
 
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum  ProductMaterial {
     TEXTILE,
     LEATHER,
@@ -8,9 +13,8 @@ public enum  ProductMaterial {
 
     @Override
     public String toString() {
-        if(this.equals(TEXTILE)) return "Текстиль";
-        if(this.equals(LEATHER)) return "Кожа";
-        if(this.equals(POLYESTER)) return "Полиэстер";
-        else return "Синтетика";
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/enum",locale);
+        return bundle.getString(this.name());
     }
 }

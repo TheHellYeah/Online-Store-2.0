@@ -1,5 +1,10 @@
 package kostuchenkov.rgr.model.domain.product;
 
+import org.springframework.context.i18n.LocaleContextHolder;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 public enum ProductSubcategory {
     SNEAKERS,
     GUMSHOES,
@@ -9,10 +14,8 @@ public enum ProductSubcategory {
 
     @Override
     public String toString() {
-        if(this.equals(SNEAKERS)) return "Кроссовки";
-        if(this.equals(GUMSHOES)) return "Кеды";
-        if(this.equals(LOW_SHOES)) return "Туфли";
-        if(this.equals(SANDALS)) return "Сандали";
-        else return "Шлёпанцы";
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/enum", locale);
+        return bundle.getString(this.name());
     }
 }

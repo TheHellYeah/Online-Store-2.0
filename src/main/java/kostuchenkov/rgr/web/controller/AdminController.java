@@ -27,6 +27,7 @@ public class AdminController {
         } else {
             model.addAttribute("users", userService.getAllUsers());
         }
+        model.addAttribute("roles",UserRole.values());
         return "admin";
     }
 

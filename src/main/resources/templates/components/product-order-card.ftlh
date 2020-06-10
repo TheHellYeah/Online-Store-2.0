@@ -1,3 +1,4 @@
+<#import "/spring.ftl" as spring>
 <#macro product products, idForCollapse>
 
 <div class="accordion" id="accordionExample">

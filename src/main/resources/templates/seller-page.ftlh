@@ -1,28 +1,30 @@
-    <#import "components/skeleton.ftlh" as component>
+<#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/product-order-card.ftlh" as p>
+<#import "spring.ftl" as spring>
 
-<@component.skeleton title="Страница продавца">
+<@component.skeleton title= "2">
 <@bootstrap.navbar/>
 <div class="container">
     <form action="/seller/orders" method="get" class="mt-3">
         <select name="status" id="inputID" class="form-control">
-            <option selected >Все</option>
-            <option value="PENDING">Ожидает подтверждения</option>
-            <option value="IN_TRANSIT">В пути</option>
-            <option value="DELIVERED">Доставлено</option>
+            <option selected value=""><@spring.message code="all"/></option>
+            <#list ordersStatus as status>
+            <option value=${status.name()}>${status.toString()}</option>
+            </#list>
+
         </select>
-        <button class="btn-warning text-dark">Показать</button>
+        <button class="btn-warning text-dark"><@spring.message code="show"/></button>
     </form>
     <table class="table table-dark table-hover mt-3">
         <thead>
             <tr >
-                <th>Заказ №</th>
-                <th>Пользователь</th>
-                <th>Дата</th>
-                <th>Статус</th>
-                <th>Сумма</th>
-                <th>Вид оплата</th>
+                <th><@spring.message code="order"/> №</th>
+                <th><@spring.message code="user"/></th>
+                <th><@spring.message code="date"/></th>
+                <th><@spring.message code="status"/></th>
+                <th><@spring.message code="summa"/></th>
+                <th><@spring.message code="type.of.payment"/></th>
             </tr>
         </thead>
         <tbody>
@@ -38,7 +40,7 @@
         </#list>
         </tbody>
     </table>
-    <p class="text-white">(кликните по заказу для получение детальной информации и изменении статуса заказа)</p>
+    <p class="text-white">(<@spring.message code="seller.orders.info"/>)</p>
 </div>
 
     <script src="/static/js/seller.js"></script>

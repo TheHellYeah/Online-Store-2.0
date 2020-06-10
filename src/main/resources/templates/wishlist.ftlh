@@ -1,24 +1,26 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@html.skeleton title="Список желаемого">
+<#import "spring.ftl" as spring>
+
+<@html.skeleton title= "">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if currentUser??>
-        <h3>Ваш список желаемого</h3>
+        <h3><@spring.message code="wishlist.info"/></h3>
     <#else>
         <#if public??>
-            <h3>Список желаемого пользователя ${username}</h3>
+            <h3><@spring.message code="wishlist.user.info"/> ${username}</h3>
         <#else>
-            <h3>Пользователь ${username} закрыл доступ к своему списку желаемого</h3>
+            <h3>${username}<@spring.message code="wishlist.user.close"/></h3>
         </#if>
     </#if>
     <#if currentUser?? || public??>
             <table class="table table-dark table-hover mt-3">
                 <thead>
                     <tr>
-                        <th>Товар</th>
-                        <th>Цена</th>
+                        <th><@spring.message code="wishlist.tovar"/></th>
+                        <th><@spring.message code="price"/></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -28,7 +30,7 @@
                     <tr>
                         <td><a href="/product/${product.id}">${product.name}</a></td>
                         <td>${product.price}</td>
-                        <td><button class="btn btn-primary" onclick="delInWishlist(${product.id},this)">Убрать из списка</button></td>
+                        <td><button class="btn btn-primary" onclick="delInWishlist(${product.id},this)"><@spring.message code="wishlist.button"/></button></td>
                     </tr>
                     </#list>
                 </#if>

@@ -21,9 +21,6 @@ import java.util.Map;
 @Service
 public class MailService {
     @Autowired
-    private JavaMailSender mailSender;
-
-    @Autowired
     private JavaMailSender sender;
 
     @Autowired

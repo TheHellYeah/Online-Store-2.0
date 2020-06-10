@@ -4,6 +4,7 @@ import freemarker.template.TemplateException;
 import kostuchenkov.rgr.model.domain.order.Order;
 import kostuchenkov.rgr.model.domain.order.OrderStatus;
 import kostuchenkov.rgr.model.domain.user.User;
+import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,11 +26,12 @@ public class SellerController {
     @GetMapping("/seller/orders")
     public String sellerPage(@AuthenticationPrincipal User user, @RequestParam(required = false) OrderStatus status, Model model) {
 
-        if (status != null) {
+        if (status != null ) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(status));
         } else {
             model.addAttribute("orders", orderService.getAllOrders());
         }
+        model.addAttribute("ordersStatus", OrderStatus.values());
         return "seller-page";
     }
 

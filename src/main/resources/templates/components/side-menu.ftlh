@@ -1,16 +1,16 @@
 <#import "form-check.ftlh" as form>
-
+<#import "/spring.ftl" as spring>
 <#macro menu>
 <form method="get" action="/" class="mb-5">
     <div class="category">
-        <h3>Категории</h3>
+        <h3><@spring.message code="category"/></h3>
         <#list subcategories as subcategory>
             <a href="/filter?subcategory=${subcategory.name()}">${subcategory.toString()}</a><br>
         </#list>
     </div>
 
     <div class="price">
-        <h3>Цена</h3>
+        <h3><@spring.message code="price"/></h3>
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -33,25 +33,25 @@
     </div>
 
     <div class="brand">
-        <h3>Бренд</h3>
+        <h3><@spring.message code="add.product.brand"/></h3>
         <#list brands as brand>
             <@form.checkbox name="brand" value=brand.name() text=brand.toString() />
         </#list>
     </div>
 
     <div class="season">
-        <h3>Сезон</h3>
+        <h3><@spring.message code="add.product.season"/></h3>
         <#list seasons as season>
             <@form.checkbox name="season" value=season.name() text=season.toString() />
         </#list>
     </div>
 
     <div class="material">
-        <h3>Материал</h3>
+        <h3><@spring.message code="add.product.material"/></h3>
         <#list materials as material>
             <@form.checkbox name="material" value=material.name() text=material.toString() />
         </#list>
     </div>
-    <button type="submit" class="btn btn-warning mt-2">Фильтровать</button>
+    <button type="submit" class="btn btn-warning mt-2"><@spring.message code="filter"/></button>
 </form>
 </#macro>

@@ -1,5 +1,7 @@
+<#import "/spring.ftl" as spring>
 <#macro bar hashmap>
-<h3>Таблица размеров:</h3>
+
+<h3><@spring.message code="table.sizes"/>:</h3>
 <div class="row item-size mb-3 ml-1 btn-group-toggle" data-toggle="buttons">
     <#list hashmap as size,count>
         <#if count gt 0>

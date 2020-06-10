@@ -1,4 +1,5 @@
 <#macro navbar>
+<#import "/spring.ftl" as spring>
 <#include "security.ftlh">
 <nav class="navbar navbar-expand-lg sticky-top">
     <a class="navbar-brand" href="/"><span class="text-white">Shoe</span><span class="text-dark bg-warning rounded">Hub</span></a>
@@ -8,30 +9,36 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="/?category=MAN">Мужчинам<span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="/catalog/man"><@spring.message code="navbar.man"/><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/?category=WOMAN">Девушкам</a>
+                <a class="nav-link text-white" href="/catalog/woman"><@spring.message code="navbar.woman"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/?category=CHILD">Детям</a>
+                <a class="nav-link text-white" href="/catalog/child"><@spring.message code="navbar.child"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/product/add">Добавление продукта</a>
+                <a class="nav-link text-white" href="/product/add"><@spring.message code="navbar.add.product"/></a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/admin">Панель администратора</a>
+                <a class="nav-link text-white" href="/admin"><@spring.message code="navbar.admin.panel"/></a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/seller/orders">Заказы пользователей</a>
+                <a class="nav-link text-white" href="/seller/orders"><@spring.message code="navbar.orders"/></a>
             </li>
             <li  class="nav-item">
-                <a class="nav-link text-white" href="/storage">Склад товаров</a>
+                <a class="nav-link text-white" href="/storage"><@spring.message code="navbar.storage"/></a>
+            </li>
+            <li  class="nav-item">
+                <a class="nav-link text-white" href="?lang=ru">RU</a>
+            </li>
+            <li  class="nav-item">
+                <a class="nav-link text-white" href="?lang=en">EN</a>
             </li>
         </ul>
 
         <#if !known>
-            <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" >Войти</a></button>
+            <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" ><@spring.message code="sign.in"/></a></button>
             <#else>
                 <div class="mr-3">
                     <span class="text-warning">${user.balance} ₽</span>
@@ -41,7 +48,7 @@
                     </svg>
                 </div>
                 <div class="mr-3">
-                    <a href="/user/cart" style="text-decoration: none;">Корзина
+                    <a href="/user/cart" style="text-decoration: none;"><@spring.message code="navbar.cart"/>
                         <svg class="bi bi-cart4" width="2em" height="2em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
                         </svg>
@@ -56,20 +63,20 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right mt-0 mr-2 bg-dark text-warning" aria-labelledby="dropdown">
-                        <a class="dropdown-item" href="/user/${userId}">Личный кабинет</a>
-                        <a class="dropdown-item" href="/user/${userId}/wishlist">Избранное
+                        <a class="dropdown-item" href="/user/${userId}"><@spring.message code="navbar.dropdown.personal"/></a>
+                        <a class="dropdown-item" href="/user/${userId}/wishlist"><@spring.message code="navbar.dropdown.wishlist"/>
                             <svg class="bi bi-star-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.283.95l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
                             </svg>
                         </a>
-                        <a class="dropdown-item" href="/user/orders">Список заказов
+                        <a class="dropdown-item" href="/user/orders"><@spring.message code="navbar.dropdown.orders.list"/>
                             <svg class="bi bi-card-checklist" width="1em" height="1em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
                                 <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
                                 <path fill-rule="evenodd" d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
                             </svg>
                         </a>
                         <form action="/logout" method="post">
-                            <a class="dropdown-item" href="#" onclick="this.parentNode.submit();">Выйти
+                            <a class="dropdown-item" href="#" onclick="this.parentNode.submit();"><@spring.message code="navbar.dropdown.logout"/>
                                 <svg class="bi bi-box-arrow-in-left" width="1em" height="1em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M7.854 11.354a.5.5 0 0 0 0-.708L5.207 8l2.647-2.646a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708 0z"/>
                                     <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0 0 1h9A.5.5 0 0 0 15 8z"/>
