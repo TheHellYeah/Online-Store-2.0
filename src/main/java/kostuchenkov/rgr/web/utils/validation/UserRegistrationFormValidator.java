@@ -23,10 +23,10 @@ public class UserRegistrationFormValidator implements Validator {
         UserRegistrationForm userForm = (UserRegistrationForm)o;
 
         if(userService.isUserExistsWithEmail(userForm.getEmail())) {
-            errors.rejectValue("email", "Пользователь с данным email уже существует");
+            errors.rejectValue("email", "userExistsLogin", "registration.email.exists");
         }
         if(userService.isUserExistsWithUsername(userForm.getUsername())) {
-            errors.rejectValue("username", "Пользователь с данным логином уже существует");
+            errors.rejectValue("username", "userExistsEmail", "registration.username.exists");
         }
     }
 }

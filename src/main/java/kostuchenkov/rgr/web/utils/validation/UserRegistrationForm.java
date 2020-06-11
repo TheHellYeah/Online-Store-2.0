@@ -15,35 +15,35 @@ import java.util.Locale;
 @NoArgsConstructor
 public class UserRegistrationForm {
 
-    @NotEmpty(message = "Заполните это поле")
-    @Size(min = 8, message = "Минимальная длина логина - 8 символов")
-    @Size(max = 20, message = "Максимальная длина логина - 20 символов")
+    @NotBlank(message = "registration.blank")
+    @Size(min = 8, message = "registration.less8")
+    @Size(max = 20, message = "registration.max20")
     private String username;
 
-    @NotBlank(message = "Заполните это поле")
-    @Size(min = 8, message = "Минимальная длина пароля - 8 символов")
-    @Size(max = 20, message = "Максимальная длина пароля - 20 символов")
+    @NotBlank(message = "registration.blank")
+    @Size(min = 8, message = "registration.less8")
+    @Size(max = 20, message = "registration.max20")
     private String password;
 
-    @NotNull(message = "Пароли должны совпадать")
+    @NotNull(message = "registration.password.null")
     private String passwordConfirmation;
 
-    @Email(message = "Некорректный адрес электронной почты")
-    @NotBlank(message = "Заполните это поле")
+    @Email(message = "registration.email")
+    @NotBlank(message = "registration.blank")
     private String email;
 
-    @NotBlank(message = "Заполните это поле")
-    @Size(max = 20, message = "Максимальная длина поля - 20 символов")
+    @NotBlank(message = "registration.blank")
+    @Size(max = 20, message = "registration.max20")
     private String firstName;
 
-    @NotBlank(message = "Заполните это поле")
-    @Size(max = 20, message = "Максимальная длина поля - 20 символов")
+    @NotBlank(message = "registration.blank")
+    @Size(max = 20, message = "registration.max20")
     private String secondName;
 
-    @Size(max = 20, message = "Максимальная длина поля - 20 символов")
+    @Size(max = 20, message = "registration.max20")
     private String patronymic;
 
-    @NotNull(message = "Введите корректную дату")
+    @NotNull(message = "registration.date")
     private Date birthday;
 
     public void setPasswordConfirmation(String passwordConfirmation) {
@@ -57,6 +57,9 @@ public class UserRegistrationForm {
         try {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-M-dd", Locale.ENGLISH);
             this.birthday = formatter.parse(birthday);
+            if(this.birthday.after(new Date())) {
+                this.birthday = null;
+            }
         } catch (ParseException e) {
             this.birthday = null;
         }

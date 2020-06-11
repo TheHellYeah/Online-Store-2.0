@@ -36,7 +36,7 @@ public class MailService {
         model.put("user", user);
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message);
-            freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
+          //  freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
             Template t = freemarkerConfig.getTemplate("activationCode.ftlh");
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
             helper.setFrom(username);
@@ -44,11 +44,7 @@ public class MailService {
             helper.setText(text, true);
             helper.setSubject("Регистрация на ShoeHub");
             sender.send(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (TemplateException e) {
-            e.printStackTrace();
-        } catch (MessagingException e) {
+        } catch (IOException | TemplateException | MessagingException e) {
             e.printStackTrace();
         }
     }
@@ -60,7 +56,7 @@ public class MailService {
         model.put("order", order);
 
             MimeMessageHelper helper = new MimeMessageHelper(message);
-            freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
+           // freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
             Template t = freemarkerConfig.getTemplate("createOrder.ftlh");
             String text = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
             helper.setFrom(username);
@@ -76,7 +72,7 @@ public class MailService {
         Map < String, Object > model = new HashMap<>();
         model.put("order", order);
         MimeMessageHelper helper = new MimeMessageHelper(message);
-        freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
+     //   freemarkerConfig.setClassForTemplateLoading(this.getClass(), "/templates");
         Template t = freemarkerConfig.getTemplate("changeStatusOrder.ftlh");
         String text = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
         helper.setFrom(username);

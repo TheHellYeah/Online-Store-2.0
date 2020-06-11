@@ -49,10 +49,7 @@ public class ProductController {
                              Model model)  {
 
         if(bindingResult.hasErrors()) {
-            Map<String, String> errors = new HashMap<>();
-            bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", e.getDefaultMessage()));
-            model.mergeAttributes(errors); //TODO доделать отображение ошибок в view
-
+            ControllerUtils.putErrorsIntoModel(model, bindingResult);
             ControllerUtils.putEnumsIntoModel(model);
             return "form-add-product";
         }

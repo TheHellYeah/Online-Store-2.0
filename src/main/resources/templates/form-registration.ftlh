@@ -10,30 +10,60 @@
             <label for="username"><@spring.message code="login.name"/></label>
             <input type="text" name="username" class="form-control" id="username"
                    placeholder='<@spring.message code="login.name.placeholder"/>'>
+            <#if usernameError??>
+                <div class="invalid-feedback">
+                    ${usernameError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="password"><@spring.message code="login.password"/></label>
             <input type="password" name="password" class="form-control" id="password" placeholder='<@spring.message code="login.password.placeholder"/>'>
+            <#if passwordError??>
+                <div class="invalid-feedback">
+                    ${passwordError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="passwordConfirmation"><@spring.message code="reg.password.confirm"/></label>
             <input type="password" name="passwordConfirmation" class="form-control" id="passwordConfirmation"
                    placeholder='<@spring.message code="reg.password.confirm"/>'>
+            <#if passwordConfirmationError??>
+                <div class="invalid-feedback">
+                    ${passwordConfirmationError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" class="form-control" id="email"
                    placeholder='<@spring.message code="reg.email.placeholder"/>'>
+            <#if emailError??>
+                <div class="invalid-feedback">
+                    ${emailError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="firstName"><@spring.message code="reg.firstname"/></label>
             <input type="text" name="firstName" class="form-control" id="firstName"
                    placeholder='<@spring.message code="reg.firstname.placeholder"/>'>
+            <#if firstNameError??>
+                <div class="invalid-feedback">
+                    ${firstNameError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="secondName"><@spring.message code="reg.secondname"/></label>
             <input type="text" name="secondName" class="form-control" id="secondName"
                    placeholder='<@spring.message code="reg.secondname.placeholder"/>'>
+            <#if secondNameError??>
+                <div class="invalid-feedback">
+                    ${secondNameError}
+                </div>
+            </#if>
         </div>
         <div class="form-group">
             <label for="patronymic"><@spring.message code="reg.patronymic"/></label>
@@ -43,6 +73,11 @@
         <div class="form-group">
             <label for="date"><@spring.message code="reg.birthday"/></label>
             <input type="date" name="birthday" class="form-control" id="date">
+            <#if birthdayError??>
+                <div class="invalid-feedback">
+                    ${birthdayError}
+                </div>
+            </#if>
         </div>
         <button type="submit" class="btn btn-warning"><@spring.message code="login.href.registration"/></button>
         <a href="/"><@spring.message code="home"/></a>

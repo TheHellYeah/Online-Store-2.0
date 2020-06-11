@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,20 +35,18 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registrationPage(Model model) {
-        return "user-registration";
+        return "form-registration";
     }
 
     @PostMapping("/registration")
     public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) throws Exception {
 
         if(bindingResult.hasErrors()) {
-            Map<String, String> errors = new HashMap<>();
-            bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", e.getDefaultMessage()));
-            model.mergeAttributes(errors); //TODO доделать отображение ошибок в view
+            ControllerUtils.putErrorsIntoModel(model, bindingResult);
             return "form-registration";
         }
-
         userService.registerFromUserForm(userForm);
+        model.addAttribute("message", "Успех! Проверьте указанный почтовый ящик и перейдите по ссылке в письме для завершения регистрации");
         return "redirect:/login";
     }
 

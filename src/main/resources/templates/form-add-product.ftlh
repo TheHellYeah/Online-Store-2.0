@@ -14,18 +14,33 @@
             <label for="name"><@spring.message code="add.product.name"/></label>
             <input type="text" name="name" class="form-control" id="name"
                    placeholder="Введите название товара">
+            <#if nameError??>
+                <div class="invalid-feedback">
+                    ${nameError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
             <label for="description"><@spring.message code="add.product.description"/></label>
             <textarea name="description" class="form-control" id="description"
                       placeholder="Введите описание товара"></textarea>
+            <#if descriptionError??>
+                <div class="invalid-feedback">
+                    ${descriptionError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
             <label for="price"><@spring.message code="price"/></label>
             <input type="number" name="price" class="form-control" id="price"
                       placeholder="Введите цену товара">
+            <#if priceError??>
+                <div class="invalid-feedback">
+                    ${priceError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -49,6 +64,11 @@
                     <option value=${category.name()}>${category}</option>
                 </#list>
             </select>
+            <#if categoryError??>
+                <div class="invalid-feedback">
+                    ${categoryError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -59,6 +79,11 @@
                     <option value=${brand.name()}>${brand.toString()}</option>
                 </#list>
             </select>
+            <#if brandError??>
+                <div class="invalid-feedback">
+                    ${brandError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -69,6 +94,11 @@
                     <option value=${subcategory.name()}>${subcategory.toString()}</option>
                 </#list>
             </select>
+            <#if subcategoryError??>
+                <div class="invalid-feedback">
+                    ${subcategoryError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -79,6 +109,11 @@
                     <option value=${season.name()}>${season.toString()}</option>
                 </#list>
             </select>
+            <#if seasonError??>
+                <div class="invalid-feedback">
+                    ${seasonError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -89,6 +124,11 @@
                     <option value=${material.name()}>${material.toString()}</option>
                 </#list>
             </select>
+            <#if materialError??>
+                <div class="invalid-feedback">
+                    ${materialError}
+                </div>
+            </#if>
         </div>
 
         <div class="form-group">
@@ -101,9 +141,13 @@
                 </tr>
                 </thead>
                 <tbody id="size">
-
                 </tbody>
             </table>
+            <#if sizesError??>
+                <div class="invalid-feedback">
+                    ${sizesError}
+                </div>
+            </#if>
         </div>
         <button type="submit" class="btn btn-warning"><@spring.message code="add.product.button"/></button>
     </form>

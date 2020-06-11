@@ -119,4 +119,11 @@ input.cart-size-input {
     color: #343a40 !important;
 }
 
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 90%;
+    color: #ff6776;
+}
 
