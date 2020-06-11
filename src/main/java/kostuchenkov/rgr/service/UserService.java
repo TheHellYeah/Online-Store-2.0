@@ -13,7 +13,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +34,8 @@ public class UserService implements UserDetailsService {
 
     @Value("${user.image.default}")
     private String defaultAvatarPath;
+    @Value("${upload.path.user}")
+    private String userAvatarsFolder;
 
     public void registerFromUserForm(UserRegistrationForm userForm) throws Exception {
 
@@ -96,5 +101,23 @@ public class UserService implements UserDetailsService {
 
     public boolean isUserExistsWithUsername(String username) {
         return userRepository.findByUsername(username) != null;
+    }
+
+    public void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access) {
+        if(avatar != null) {
+            changeUserAvatar(avatar, user);
+        }
+        user.setWishListAccess(access);
+        userRepository.save(user);
+    }
+
+    private void changeUserAvatar(MultipartFile file, User user) {
+        String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+        try {
+            file.transferTo(new File(userAvatarsFolder + "/" + resultFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        user.setAvatar(resultFileName);
     }
 }

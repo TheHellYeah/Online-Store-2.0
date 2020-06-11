@@ -3,9 +3,9 @@ package kostuchenkov.rgr.web.controller;
 import kostuchenkov.rgr.model.domain.product.*;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collector;
 
 @Controller
 public class ProductController {
@@ -44,12 +39,8 @@ public class ProductController {
     @GetMapping("/product/add")
     public String page(Model model) {
 
-        model.addAttribute("subcategories", ProductSubcategory.values());
-        model.addAttribute("categories", ProductCategory.values());
-        model.addAttribute("brands", ProductBrand.values());
-        model.addAttribute("seasons", ProductSeason.values());
-        model.addAttribute("materials", ProductMaterial.values());
-        return "add-product-form";
+        ControllerUtils.putEnumsIntoModel(model);
+        return "form-add-product";
     }
 
     @PostMapping("/product/add")
@@ -62,12 +53,8 @@ public class ProductController {
             bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", e.getDefaultMessage()));
             model.mergeAttributes(errors); //TODO доделать отображение ошибок в view
 
-            model.addAttribute("subcategories", ProductSubcategory.values());
-            model.addAttribute("categories", ProductCategory.values());
-            model.addAttribute("brands", ProductBrand.values());
-            model.addAttribute("seasons", ProductSeason.values());
-            model.addAttribute("materials", ProductMaterial.values());
-            return "add-product-form";
+            ControllerUtils.putEnumsIntoModel(model);
+            return "form-add-product";
         }
         productService.addProductFromForm(productForm);
         return "redirect:/";

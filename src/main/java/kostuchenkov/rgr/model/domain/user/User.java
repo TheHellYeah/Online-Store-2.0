@@ -119,6 +119,8 @@ public class User implements UserDetails {
 
     public boolean isAdmin() { return roles.contains(UserRole.ADMIN); }
 
+    public boolean isWishListPublic() { return this.wishListAccess.equals(UserWishListAccess.PUBLIC); }
+
     //Возвращает cartItem c корзины если таковой имеется, иначе null
     public CartItem getProductFromCart(CartItem item) {
         return this.getCart().stream()

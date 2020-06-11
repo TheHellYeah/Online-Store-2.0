@@ -61,7 +61,7 @@ public class OrderController {
         User user = userService.getUserById(session.getId());
         model.addAttribute("user", user);
         model.addAttribute("total", user.getCartTotal());
-        return "checkout";
+        return "form-checkout";
     }
 
     @PostMapping("/user/order/checkout")
@@ -80,7 +80,7 @@ public class OrderController {
             model.addAttribute("message","error");
             model.addAttribute("user", user);
             model.addAttribute("total", user.getCartTotal());
-            return "checkout";
+            return "order-checkout";
         }
     }
 }

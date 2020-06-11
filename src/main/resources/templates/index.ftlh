@@ -17,6 +17,19 @@
         <div class="col-md-10 col-lg-10 col-sm-8 col-xs-12 mt-2">
             <@slider.slider/>
             <@search.form/>
+            <div class="row">
+                <#if searchQuery??>
+                    <h3>Результаты поиска по запросу: ${searchQuery}</h3>
+                </#if>
+                <#if filters??>
+                    <h3>Фильтры:
+                    <#list filters as filter>
+                        ${filter}<#sep> /
+                    </#list>
+                    <a href="/" class="ml-3 mt-2" style="font-size: 18px;">Очистить фильтр</a>
+                    </h3>
+                </#if>
+            </div>
             <div class="container mt-3 mb-5">
                 <#if products??>
                     <@section.product_section products.content/>

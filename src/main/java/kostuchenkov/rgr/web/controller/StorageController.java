@@ -28,11 +28,11 @@ public class StorageController {
     @GetMapping("/storage")
     public  String storage(Model model){
         model.addAttribute("products", productService.getAllProducts());
-        return "storage";
+        return "product-storage";
     }
 
     @PostMapping("/storage/addsize")
-    public  String storageadd(HttpServletRequest request,
+    public  String storageAdd(HttpServletRequest request,
                               @RequestParam("id")Product product,
                               @RequestParam("_csrf")String _csrf,
                               @RequestParam HashMap<String, String> ps){//TODO Удалить этот коммент на проде.

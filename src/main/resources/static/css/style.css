@@ -103,8 +103,20 @@ input.cart-size-input {
     font-size: 18px;
  }
 
- .input-group-text {
+.input-group-text {
     background: #3f454a;
     border-color: white;
     color: white;
- }
+}
+
+.preview {
+     background: #343a40;
+     color:  #ffc107;
+}
+
+.wish-list-access label.active {
+    background-color: #ffc107 !important;
+    color: #343a40 !important;
+}
+
+

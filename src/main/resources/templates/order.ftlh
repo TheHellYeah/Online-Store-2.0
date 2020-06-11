@@ -36,10 +36,14 @@
                 <button class="btn btn-warning mt-" value="IN_TRANSIT" onclick="setStatus(this.value, ${order.id})"><@spring.message code="order.button.approve"/></button>
                 <button class="btn btn-warning" value="DELIVERED" onclick="setStatus(this.value, ${order.id})"><@spring.message code="order.button.delivered"/></button>
             </div>
-            </#if>
             <div>
                 <h3><a class="text-warning" href="/seller/orders"><@spring.message code="back"/></a></h3>
             </div>
+            <#else>
+            <div>
+                <h3><a class="text-warning" href="/user/orders"><@spring.message code="back"/></a></h3>
+            </div>
+             </#if>
         </div>
     </#if>
 </div>

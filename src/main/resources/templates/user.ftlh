@@ -1,26 +1,24 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
+<#import "spring.ftl" as spring>
 
 <@html.skeleton title="Личный кабинет">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if missing??>
-        <h3>Пользователя не найдено<br><a href="/" style="font-size: 20px;">На главную</a></h3>
+        <h3><@spring.message code="user.profile.missing"/><br><a href="/" style="font-size: 20px;"><@spring.message code="user.profile.main"/></a></h3>
     <#else>
     <div class="row">
         <div class="col-2">
-            <img src="http://localhost:8080/img/users/${user.avatar}" class="img-thumbnail" alt="Аватар пользователя">
+            <img src="http://localhost:8080/img/users/${user.avatar}" class="img-thumbnail">
         </div>
         <div class="col-7 ">
-            <label>${user.username}</label>
-            <label>${user.balance}</label>
-            <label>${user.email}</label>
-            <div class="border">
-                <label>Имя <input type="text" value="${user.firstName}"></label>
-                <label>Фамилия <input type="text" value="${user.secondName}"></label>
-                <label>Отчество <input type="text" value="${user.patronymic}"></label>
-                <button>Изменить</button>
-            </div>
+            <h3><@spring.message code="user.profile.username"/> <span class="text-warning">${user.username}</span></h3>
+            <h3>${user.secondName} ${user.firstName} ${user.patronymic!}</h3>
+            <a href="/user/${user.id}/wishlist"><@spring.message code="user.profile.wishlist"/></a><br/>
+            <#if currentUser??>
+                <a href="/user/settings"><@spring.message code="user.profile.settings"/></a>
+            </#if>
         </div>
     </div>
     </#if>

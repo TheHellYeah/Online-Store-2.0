@@ -34,7 +34,7 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registrationPage(Model model) {
-        return "registration";
+        return "user-registration";
     }
 
     @PostMapping("/registration")
@@ -44,7 +44,7 @@ public class RegistrationController {
             Map<String, String> errors = new HashMap<>();
             bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", e.getDefaultMessage()));
             model.mergeAttributes(errors); //TODO доделать отображение ошибок в view
-            return "registration";
+            return "form-registration";
         }
 
         userService.registerFromUserForm(userForm);
@@ -60,7 +60,7 @@ public class RegistrationController {
         } else {
             model.addAttribute("message", "Что то пошло не так.\n  Попробуйте снова позже.");
         }
-        return "login";
+        return "form-login";
     }
 }
 

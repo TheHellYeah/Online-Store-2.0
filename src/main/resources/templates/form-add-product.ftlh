@@ -35,8 +35,8 @@
                     <input type="file" name="images" multiple="multiple" class="custom-file-input form-control-file" id="images" accept="image">
                     <label class="custom-file-label" for="images"><@spring.message code="add.product.image.select"/></label>
                 </div>
-                <div class="preview p-2 bg-white">
-                    <p>Файлы для загрузки не выбраны</p>
+                <div class="preview p-2">
+                    <p><@spring.message code="add.product.photos.none"/></p>
                 </div>
             </div>
         </div>

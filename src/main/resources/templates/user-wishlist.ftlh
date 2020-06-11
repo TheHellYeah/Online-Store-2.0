@@ -17,7 +17,7 @@
     </#if>
     <#if currentUser?? || public??>
     <#if !(wishlist?has_content)>
-        <h3>Пусто...</h3>
+        <h3><@spring.message code="wishlist.user.empty"/></h3>
     <#else>
             <table class="table table-dark table-hover mt-3">
                 <thead>

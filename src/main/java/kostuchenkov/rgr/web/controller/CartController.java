@@ -31,7 +31,7 @@ public class CartController {
         User user = userService.getUserById(session.getId());
         model.addAttribute("cart", user.getCart());
         model.addAttribute("total", user.getCartTotal());
-        return "cart";
+        return "user-cart";
     }
 
     @PostMapping("/add")

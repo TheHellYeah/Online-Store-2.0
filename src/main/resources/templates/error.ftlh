@@ -4,7 +4,7 @@
 <@html.skeleton title="Ошибка">
 <@bootstrap.navbar/>
 <div class="container mt-3">
-        <h1><@spring.message code="error"/>
+        <h1><@spring.message code="error.header"/>
             <svg class="bi bi-emoji-frown" width="1em" height="1em" viewBox="0 0 16 16" fill="rgb(255, 193, 7)" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                 <path fill-rule="evenodd" d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683z"/>
