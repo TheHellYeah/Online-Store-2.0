@@ -9,10 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -50,16 +47,18 @@ public class RegistrationController {
         return "redirect:/login";
     }
 
-    @GetMapping("/activate/{code}")
-    public String activate(Model model, @PathVariable String code) {
+    @GetMapping("/activate")
+    public String activateCode(Model model, @RequestParam(required = false) String code) {
+        if (code==null){
+            return "activate";
+        }else {
+            if ( userService.verifyUser(code)){
+                return "redirect:/login";
+            }else {//TODO сообщение об ошибке
+                return "activate";
+            }
 
-        boolean isVerified = userService.verifyUser(code);
-        if (isVerified) {
-            model.addAttribute("message", "Ваш аккаунт успешно активирован.\nМожете авторизороваться.");
-        } else {
-            model.addAttribute("message", "Что то пошло не так.\n  Попробуйте снова позже.");
         }
-        return "form-login";
     }
 }
 

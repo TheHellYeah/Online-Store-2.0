@@ -31,6 +31,13 @@ public class AdminController {
         return "admin";
     }
 
+    @PostMapping("/edit/balance")
+    @ResponseBody
+    public String editBalance(@RequestParam("id") Integer id, @RequestParam("balance") Integer balance){
+        userService.editBalance(id, balance);
+        return "OK";
+    }
+
     @PostMapping("/dismiss")
     @ResponseBody
     public String dismiss(@RequestParam("id") Integer id){

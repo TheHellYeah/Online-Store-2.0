@@ -6,38 +6,6 @@
 <@bootstrap.navbar/>
 <input id="_csrf" type="hidden" name="_csrf" value="${_csrf.token}">
 <div>
-<!--    <form action="" method="get" class="mt-3">-->
-<!--        <select class="form-control" name="brand" id="brand">-->
-<!--            <option disabled selected>Выберите бренд</option>-->
-<!--            <option value="NIKE">Nike</option>-->
-<!--            <option value="ADIDAS">Adidas</option>-->
-<!--            <option value="RIEKER">Rieker</option>-->
-<!--            <option value="PUMA">Puma</option>-->
-<!--            <option value="RALPH_RINGER">Ralph Ringer</option>-->
-<!--        </select>-->
-<!--        <select class="form-control" name="category" id="category" onchange="getValue(this.value);">-->
-<!--            <option disabled selected>Выберите категорию</option>-->
-<!--            <option value="MAN">Мужская</option>-->
-<!--            <option value="WOMAN">Женская</option>-->
-<!--            <option value="CHILD">Детская</option>-->
-<!--        </select>-->
-<!--        <select class="form-control" name="subcategory" id="subcategory">-->
-<!--            <option disabled selected>Выберите вид</option>-->
-<!--            <option value="SNEAKERS">Кроссовки</option>-->
-<!--            <option value="GUMSHOES">Спортивная обувь</option>-->
-<!--            <option value="LOW_SHOES">Полуботинки</option>-->
-<!--            <option value="SANDALS">Сандалии</option>-->
-<!--            <option value="SLIPPERS">Тапочки</option>-->
-<!--        </select>-->
-<!--        <select class="form-control" name="season" id="season">-->
-<!--            <option disabled selected>Выберите сезон</option>-->
-<!--            <option value="SUMMER">Лето</option>-->
-<!--            <option value="AUTUMN">Осень</option>-->
-<!--            <option value="WINTER">Зима</option>-->
-<!--            <option value="SPRING">Весна</option>-->
-<!--        </select>-->
-<!--        <button class="btn-warning text-dark">Показать</button>-->
-<!--    </form>-->
     <table class="table table-bordered table-hover">
         <thead>
         <tr>

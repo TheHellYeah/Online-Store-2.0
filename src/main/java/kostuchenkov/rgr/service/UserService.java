@@ -120,4 +120,11 @@ public class UserService implements UserDetailsService {
         }
         user.setAvatar(resultFileName);
     }
+
+    public boolean editBalance(Integer id, Integer balance){
+        User user = userRepository.findById(id).get();
+        user.setBalance(balance);
+        userRepository.save(user);
+        return true;
+    }
 }

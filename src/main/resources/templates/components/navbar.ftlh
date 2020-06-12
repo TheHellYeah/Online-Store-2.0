@@ -26,7 +26,8 @@
         </ul>
 
         <#if !known>
-            <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" ><@spring.message code="sign.in"/></a></button>
+        <button class="btn-sm btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/activate" ><@spring.message code="activate.button"/></a></button>
+        <button class="btn btn-warning  my-2 my-sm-0 mr-2"><a class="text-dark" href="/login" ><@spring.message code="sign.in"/></a></button>
         <#else>
         <div class="mr-3">
             <span class="text-warning">${user.balance} ₽</span>
