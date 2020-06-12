@@ -13,17 +13,19 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService  {
 
     @Autowired
     private UserRepository userRepository;
@@ -49,15 +51,6 @@ public class UserService implements UserDetailsService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         mailService.sendActivationMail(user);
         userRepository.save(user);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return user;
     }
 
     public boolean verifyUser(String code) {
@@ -121,10 +114,11 @@ public class UserService implements UserDetailsService {
         user.setAvatar(resultFileName);
     }
 
-    public boolean editBalance(Integer id, Integer balance){
-        User user = userRepository.findById(id).get();
-        user.setBalance(balance);
-        userRepository.save(user);
+    public boolean editBalance(User user, Integer balance){
+        if(user != null) {
+            user.setBalance(balance);
+            userRepository.save(user);
+        }
         return true;
     }
 }

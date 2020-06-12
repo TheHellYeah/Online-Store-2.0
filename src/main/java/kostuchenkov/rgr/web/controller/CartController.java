@@ -7,6 +7,7 @@ import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.service.principal.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,9 @@ public class CartController {
     private UserService userService;
 
     @GetMapping
-    public String cartPage(@AuthenticationPrincipal User session, Model model){
-        User user = userService.getUserById(session.getId());
+    public String cartPage(@AuthenticationPrincipal UserDetailsImpl session, Model model){
+
+        User user = userService.getUserById(session.getUserId());
         model.addAttribute("cart", user.getCart());
         model.addAttribute("total", user.getCartTotal());
         return "user-cart";
@@ -36,10 +38,9 @@ public class CartController {
 
     @PostMapping("/add")
     @ResponseBody
-    public String addToCart(@AuthenticationPrincipal User session, @RequestParam ProductSize size,
+    public String addToCart(@AuthenticationPrincipal UserDetailsImpl session, @RequestParam ProductSize size,
                             @RequestParam(name = "id") Product product) {
-
-        User user = userService.getUserById(session.getId());
+        User user = userService.getUserById(session.getUserId());
         if(cartService.addToCart(user, product, size)) {
             return "Товар добавлен в корзину";
         } else {
@@ -49,23 +50,25 @@ public class CartController {
 
     @PostMapping("/clear")
     @ResponseBody
-    public String clearCart(@AuthenticationPrincipal User session){
-        User user = userService.getUserById(session.getId());
+    public String clearCart(@AuthenticationPrincipal UserDetailsImpl session){
+        User user = userService.getUserById(session.getUserId());
         cartService.clearCart(user);
         return "Корзина очищена";
     }
 
     @PostMapping("/delete")
     @ResponseBody
-    public String deleteFromCart(@AuthenticationPrincipal User session, @RequestParam Integer cartId){
-        cartService.deleteFromCart(session, cartId);
+    public String deleteFromCart(@AuthenticationPrincipal UserDetailsImpl session, @RequestParam Integer cartId){
+        User user = userService.getUserById(session.getUserId());
+        cartService.deleteFromCart(user, cartId);
         return "Товар удален";
     }
 
     @PostMapping("/update")
     @ResponseBody
-    public ResponseEntity updateCart(@AuthenticationPrincipal User session, @RequestParam("cartId") CartItem cartItem, @RequestParam Integer value) {
-        User user = userService.getUserById(session.getId());
+    public ResponseEntity updateCart(@AuthenticationPrincipal UserDetailsImpl session,
+                                     @RequestParam("cartId") CartItem cartItem, @RequestParam Integer value) {
+        User user = userService.getUserById(session.getUserId());
         if(cartService.updateCart(cartItem, value)) {
             return ResponseEntity.status(HttpStatus.OK).body(user.getCartTotal());
         } else {

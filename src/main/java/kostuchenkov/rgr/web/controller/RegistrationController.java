@@ -23,8 +23,6 @@ public class RegistrationController {
     @Autowired
     private UserRegistrationFormValidator validator;
 
-
-    //TODO валидатор который проверяет уникальность логина и емейла юзера,вывод ошибок еще не сделан
     @InitBinder("userRegistrationForm")
     private void initBinder(WebDataBinder binder) {
         binder.addValidators(validator);
@@ -38,7 +36,7 @@ public class RegistrationController {
     @PostMapping("/registration")
     public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) throws Exception {
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             ControllerUtils.putErrorsIntoModel(model, bindingResult);
             return "form-registration";
         }
@@ -49,12 +47,12 @@ public class RegistrationController {
 
     @GetMapping("/activate")
     public String activateCode(Model model, @RequestParam(required = false) String code) {
-        if (code==null){
+        if (code == null) {
             return "activate";
-        }else {
-            if ( userService.verifyUser(code)){
+        } else {
+            if (userService.verifyUser(code)) {
                 return "redirect:/login";
-            }else {//TODO сообщение об ошибке
+            } else {//TODO сообщение об ошибке
                 return "activate";
             }
 

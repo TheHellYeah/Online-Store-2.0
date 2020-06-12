@@ -1,8 +1,8 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.user.User;
-import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.service.principal.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -17,14 +17,14 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/{id:\\d+}")
-    public String userPage(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
+    public String userPage(@AuthenticationPrincipal UserDetailsImpl session, @PathVariable("id") User user, Model model) {
 
         if (user == null) {
             model.addAttribute("missing", true);
             return "user";
         }
 
-        if (user.getId() == session.getId()) {
+        if (user.getId() == session.getUserId()) {
             model.addAttribute("currentUser", true);
         }
         model.addAttribute("user", user);
@@ -32,17 +32,17 @@ public class UserController {
     }
 
     @GetMapping("/{id:\\d+}/wishlist")
-    public String wishlist(@AuthenticationPrincipal User session, @PathVariable("id") User user, Model model) {
+    public String wishlist(@AuthenticationPrincipal UserDetailsImpl session, @PathVariable("id") User user, Model model) {
 
         if (user == null) {
             model.addAttribute("missing", true);
             return "user-wishlist";
         }
 
-        if (user.getId() == session.getId()) {
+        if (user.getId() == session.getUserId()) {
             model.addAttribute("currentUser", true);
         } else {
-            if (user.isWishListPublic() || session.isAdmin()) {
+            if (user.isWishListPublic() || session.getUser().isAdmin()) {
                 model.addAttribute("public", true);
             }
             model.addAttribute("username", user.getUsername());

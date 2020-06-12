@@ -9,6 +9,8 @@ import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.OrderRepository;
 import kostuchenkov.rgr.model.repository.UserRepository;
+import kostuchenkov.rgr.web.utils.validation.OrderCheckoutForm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,28 +33,29 @@ public class OrderService {
     @Autowired
     private MailService mailService;
 
-    public boolean createOrder(User user, String contact,String phone, String address, String payment) throws TemplateException, IOException, MessagingException {
+    public boolean createOrder(User user, OrderCheckoutForm checkoutForm) throws TemplateException, IOException, MessagingException {
         user = userRepository.findByUsername(user.getUsername());
+
         int sum = 0 ;
         for (CartItem cartItem : user.getCart() ){
             sum += cartItem.getProduct().getPrice() * cartItem.getAmount();
         }
 
         Order order = new Order();
-        order.setAddress(address);
-        order.setPhone(phone);
+        BeanUtils.copyProperties(checkoutForm, order);
+
+        order.setContact(checkoutForm.getContact());
         order.setDate(new Date());
-        order.setContact(contact);
         order.setUser(user);
         order.setTotal(sum);
-        order.getProducts().addAll(user.getCart());
-        order.setOrderPayment(OrderPayment.valueOf(payment));
         order.setOrderStatus(OrderStatus.PENDING);
+
+        order.getProducts().addAll(user.getCart());
 
         //Забирем нужное количество обуви со склада
         order.getProducts().forEach(CartItem::subtractFromProduct);
 
-        if(OrderPayment.valueOf(payment) == OrderPayment.BALANCE){
+        if(order.getOrderPayment().equals(OrderPayment.BALANCE)){
             if (user.getBalance() < order.getTotal())
                 return false;
             else

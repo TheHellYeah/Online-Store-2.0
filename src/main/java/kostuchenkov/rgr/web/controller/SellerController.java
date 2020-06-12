@@ -24,7 +24,7 @@ public class SellerController {
     private OrderService orderService;
 
     @GetMapping("/seller/orders")
-    public String sellerPage(@AuthenticationPrincipal User user, @RequestParam(required = false) OrderStatus status, Model model) {
+    public String sellerPage(@RequestParam(required = false) OrderStatus status, Model model) {
 
         if (status != null ) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(status));
@@ -36,7 +36,7 @@ public class SellerController {
     }
 
     @GetMapping("/seller/orders/{id:\\d+}")
-    public String orderPage(@AuthenticationPrincipal User user, @PathVariable("id") Order order, Model model) {
+    public String orderPage(@PathVariable("id") Order order, Model model) {
         model.addAttribute("order", order);
         model.addAttribute("seller", true);
         return "order";

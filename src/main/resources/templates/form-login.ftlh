@@ -1,12 +1,18 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "spring.ftl" as spring>
+
 <@component.skeleton title="Вход в систему">
 <@bootstrap.navbar/>
 <div class="container col-4 mt-5">
     <#if message??>
         <div class="mb-3 p-2 border justify-content-center border-white">
             ${message}
+        </div>
+    </#if>
+    <#if RequestParameters.error??>
+        <div class="invalid-feedback">
+            <@spring.message code="login.error"/>
         </div>
     </#if>
     <form action="/login" method="post">

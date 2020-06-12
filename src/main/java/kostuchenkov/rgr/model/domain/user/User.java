@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
@@ -17,7 +19,9 @@ import java.util.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User implements UserDetails {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -1987177972808846853L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -54,43 +58,8 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
-    @OneToMany(fetch = FetchType.LAZY)//FIXME
+    @OneToMany(fetch = FetchType.LAZY)
     private List<CartItem> cart = new ArrayList<>();
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return getRoles();
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return isVerified();
-    }
 
     @Override
     public boolean equals(Object o) {

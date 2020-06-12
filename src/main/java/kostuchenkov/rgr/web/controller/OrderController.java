@@ -7,6 +7,8 @@ import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.OrderService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.service.principal.UserDetailsImpl;
+import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.OrderCheckoutForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,12 +18,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 public class OrderController {
@@ -36,16 +36,16 @@ public class OrderController {
     private UserService userService;
 
     @GetMapping("user/orders")
-    public String ordersListPage(@AuthenticationPrincipal User user, Model model){
+    public String ordersListPage(@AuthenticationPrincipal UserDetailsImpl session, Model model){
 
-        model.addAttribute("orders", orderService.getAllOrderOfUser(user));
+        model.addAttribute("orders", orderService.getAllOrderOfUser(session.getUser()));
         return "user-orders";
     }
 
     @GetMapping("/user/orders/{id:\\d+}")
-    public String orderPage(@AuthenticationPrincipal User session, @PathVariable("id") Order order, Model model) {
+    public String orderPage(@AuthenticationPrincipal UserDetailsImpl session, @PathVariable("id") Order order, Model model) {
         if(order != null) {
-            if(order.getUser().getId() == session.getId()) {
+            if(order.getUser().getId() == session.getUserId()) {
                 model.addAttribute("order", order);
             } else {
                 model.addAttribute("missing", "К сожалению, такого заказа не найдено");
@@ -57,26 +57,31 @@ public class OrderController {
     }
 
     @GetMapping("/user/order/checkout")
-    public String checkoutPage(@AuthenticationPrincipal User session, Model model) {
-        User user = userService.getUserById(session.getId());
+    public String checkoutPage(@AuthenticationPrincipal UserDetailsImpl session, Model model) {
+        User user = userService.getUserById(session.getUserId());
         model.addAttribute("user", user);
         model.addAttribute("total", user.getCartTotal());
-        return "form-checkout";
+        return "order-checkout";
     }
 
     @PostMapping("/user/order/checkout")
-    public String checkoutOrder(@AuthenticationPrincipal User session,
+    public String checkoutOrder(@AuthenticationPrincipal UserDetailsImpl session,
                                 @Valid OrderCheckoutForm checkoutForm,
                                 BindingResult bindingResult,
-                                Model model,
-                                @RequestParam("contact") List<String> contact,
-                                @RequestParam("phone") String phone,
-                                @RequestParam("payment") String payment,
-                                @RequestParam("address") String address) throws TemplateException, IOException, MessagingException {
-        User user = userService.getUserById(session.getId());
-        if (orderService.createOrder(user, contact.toString().replace(","," "),phone, address,payment)){
+                                Model model) throws TemplateException, IOException, MessagingException {
+
+        User user = userService.getUserById(session.getUserId());
+
+        if(bindingResult.hasErrors()) {
+            ControllerUtils.putErrorsIntoModel(model, bindingResult);
+            model.addAttribute("user", user);
+            model.addAttribute("total", user.getCartTotal());
+            return "order-checkout";
+        }
+
+        if (orderService.createOrder(user, checkoutForm)) {
             return "redirect:/user/orders";
-        }else {
+        } else {
             model.addAttribute("message","error");
             model.addAttribute("user", user);
             model.addAttribute("total", user.getCartTotal());
