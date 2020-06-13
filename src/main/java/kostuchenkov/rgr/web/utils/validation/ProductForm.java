@@ -17,12 +17,12 @@ import java.util.ResourceBundle;
 @Setter
 public class ProductForm {
 
-    @NotBlank(message = "product.blank")
-    @Size(min = 5, message = "product.min5")
-    @Size(max = 20, message = "product.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(min = 5, message = "validation.min5")
+    @Size(max = 20, message = "validation.max20")
     private String name;
 
-    @Size(max = 255, message = "product.max255")
+    @Size(max = 255, message = "validation.max255")
     private String description;
 
     @NotNull(message = "product.price.null")

@@ -20,7 +20,7 @@ public class UserDetailsImpl implements UserDetails {
     public UserDetailsImpl(User user) {
         this.user = user;
         for(UserRole role : user.getRoles()) {
-            GrantedAuthority auth = new SimpleGrantedAuthority(role.toString());
+            GrantedAuthority auth = new SimpleGrantedAuthority(role.name());
             roles.add(auth);
         }
     }

@@ -15,32 +15,32 @@ import java.util.Locale;
 @NoArgsConstructor
 public class UserRegistrationForm {
 
-    @NotBlank(message = "registration.blank")
-    @Size(min = 8, message = "registration.less8")
-    @Size(max = 20, message = "registration.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(min = 8, message = "validation.less8")
+    @Size(max = 20, message = "validation.max20")
     private String username;
 
-    @NotBlank(message = "registration.blank")
-    @Size(min = 8, message = "registration.less8")
-    @Size(max = 20, message = "registration.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(min = 8, message = "validation.less8")
+    @Size(max = 20, message = "validation.max20")
     private String password;
 
     @NotNull(message = "registration.password.null")
     private String passwordConfirmation;
 
     @Email(message = "registration.email")
-    @NotBlank(message = "registration.blank")
+    @NotBlank(message = "validation.blank")
     private String email;
 
-    @NotBlank(message = "registration.blank")
-    @Size(max = 20, message = "registration.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(max = 20, message = "validation.max20")
     private String firstName;
 
-    @NotBlank(message = "registration.blank")
-    @Size(max = 20, message = "registration.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(max = 20, message = "validation.max20")
     private String secondName;
 
-    @Size(max = 20, message = "registration.max20")
+    @Size(max = 20, message = "validation.max20")
     private String patronymic;
 
     @NotNull(message = "registration.date")

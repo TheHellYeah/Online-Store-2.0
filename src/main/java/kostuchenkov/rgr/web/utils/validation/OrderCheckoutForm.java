@@ -15,24 +15,24 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderCheckoutForm {
 
-    @NotBlank(message = "checkout.blank")
-    @Size(max = 20, message = "checkout.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(max = 20, message = "validation.max20")
     private String firstName;
 
-    @NotBlank(message = "checkout.blank")
-    @Size(max = 20, message = "checkout.max20")
+    @NotBlank(message = "validation.blank")
+    @Size(max = 20, message = "validation.max20")
     private String secondName;
 
-    @Size(max = 20, message = "checkout.max20")
+    @Size(max = 20, message = "validation.max20")
     private String patronymic;
 
-    @NotBlank
+    @NotBlank(message = "validation.blank")
     private String phone;
 
-    @NotBlank(message = "checkout.blank")
+    @NotBlank(message = "validation.blank")
     private String address;
 
-    @NotNull(message = "checkout.null")
+    @NotNull(message = "product.null")
     private OrderPayment payment;
 
     public String getContact() {
