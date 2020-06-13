@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 public class ProductFilter {
 
-    private String searchQuery;
     private Integer minPrice;
     private Integer maxPrice;
     private List<ProductBrand> brand;
@@ -30,7 +29,7 @@ public class ProductFilter {
     }
 
     public boolean isEmpty() {
-        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty() && season.isEmpty();
+        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty() && season.isEmpty() && minPrice == null && maxPrice == null;
     }
 
     public List<String> getFilters() {
@@ -40,12 +39,5 @@ public class ProductFilter {
         material.forEach(m -> filters.add(m.toString()));
         season.forEach(s -> filters.add(s.toString()));
         return filters;
-    }
-
-    public void setSearchQuery(String searchQuery) {
-        if (searchQuery.equals("")) {
-            this.searchQuery = null;
-        } else
-            this.searchQuery = searchQuery;
     }
 }

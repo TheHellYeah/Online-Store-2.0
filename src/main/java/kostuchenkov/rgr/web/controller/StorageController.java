@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@PreAuthorize("hasAuthority('CUSTOMER') or hasAuthority('ADMIN')")
+@PreAuthorize("hasRole('CUSTOMER') or hasRole('ADMIN')")
 public class StorageController {
 
     @Autowired

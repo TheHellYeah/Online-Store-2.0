@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.*;
+
 @Service
 public class ProductService {
 
@@ -36,16 +38,12 @@ public class ProductService {
         return productRepository.findAll(pageable);
     }
 
-    public List<Product> getAllProductsContainingString(String name) {
+    public List<Product> searchProductsList(String name) {
         return productRepository.findByNameContaining(name);
     }
 
-    public Page<Product> getProductsContainingString(String name, Pageable pageable) {
-        return productRepository.findByNameContaining(name, pageable);
-    }
-
-    public List<Product> getAllProductsInCategory(ProductCategory category) {
-        return productRepository.findByCategory(category);
+    public Page<Product> searchProductsPage(String search, Pageable pageable) {
+        return productRepository.findByNameContaining(search, pageable);
     }
 
     public Optional<Product> getProductById(String productId) {
@@ -105,24 +103,13 @@ public class ProductService {
 
     public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
 
-        if (filter.getSubcategory().isEmpty()) {
-            filter.setSubcategory(Arrays.asList(ProductSubcategory.values()));
-        }
-        if (filter.getBrand().isEmpty()) {
-            filter.setBrand(Arrays.asList(ProductBrand.values()));
-        }
-        if (filter.getSeason().isEmpty()) {
-            filter.setSeason(Arrays.asList(ProductSeason.values()));
-        }
-        if (filter.getMaterial().isEmpty()) {
-            filter.setMaterial(Arrays.asList(ProductMaterial.values()));
-        }
-        if (filter.getSearchQuery() != null) {
-            return productRepository.findByNameContainingAndSubcategoryInAndSeasonInAndMaterialInAndBrandIn
-                    (filter.getSearchQuery(), filter.getSubcategory(), filter.getSeason(), filter.getMaterial(), filter.getBrand(), pageable);
-        } else {
-            return productRepository.findBySubcategoryInAndSeasonInAndMaterialInAndBrandIn
-                    (filter.getSubcategory(), filter.getSeason(), filter.getMaterial(), filter.getBrand(), pageable);
-        }
+        Page products = productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())
+                        .and(inSubcategories(filter.getSubcategory()))
+                        .and(inBrands(filter.getBrand()))
+                        .and(inMaterials(filter.getMaterial()))
+                        .and(inSeasons(filter.getSeason()))
+                        ,pageable);
+
+        return products;
     }
 }

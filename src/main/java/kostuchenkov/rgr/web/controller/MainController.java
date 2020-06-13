@@ -31,19 +31,21 @@ public class MainController {
     @GetMapping("/")
     public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,
                             ProductFilter filter,
+                            String searchQuery,
                             Model model) {
 
         Page<Product> products;
-        if(filter.isEmpty() && filter.getSearchQuery() == null) {
-            products = productService.getAllProducts(pageable);
-        } else {
-            if(!filter.isEmpty()) {
-                model.addAttribute("filters", filter.getFilters());
-            }
-            if(filter.getSearchQuery() != null) {
-                model.addAttribute("searchQuery", filter.getSearchQuery());
-            }
+
+        if(!filter.isEmpty()) {
+            model.addAttribute("filters", filter.getFilters());
             products = productService.getAllProductsByFilter(filter, pageable);
+        }
+        else if(searchQuery != null && !searchQuery.equals("")) {
+            products = productService.searchProductsPage(searchQuery, pageable);
+            model.addAttribute("searchQuery", searchQuery);
+        }
+        else {
+            products = productService.getAllProducts(pageable);
         }
 
         model.addAttribute("products", products);
@@ -54,6 +56,6 @@ public class MainController {
     @ResponseBody
     @PostMapping("/")
     public List<Product> search(@RequestParam String name) {
-        return productService.getAllProductsContainingString(name);
+        return productService.searchProductsList(name);
     }
 }
