@@ -13,7 +13,7 @@ public class WishListService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean addToWishList(User user, Product product) throws Exception {
+    public boolean addToWishList(User user, Product product) {
         if(user.getWishList().contains(product)){
             return false;
         }else {

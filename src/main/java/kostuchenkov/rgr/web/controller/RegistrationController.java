@@ -32,7 +32,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/registration")
-    public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) throws Exception {
+    public String register(@Valid UserRegistrationForm userForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             ControllerUtils.putErrorsIntoModel(model, bindingResult);

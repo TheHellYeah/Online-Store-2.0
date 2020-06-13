@@ -2,10 +2,11 @@ package kostuchenkov.rgr.service;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
+import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -28,75 +28,67 @@ public class UserServiceTest {
     @MockBean
     private UserRepository userRepository;
     @MockBean
-    private MailService mailService;
-    @MockBean
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @MockBean
+    private MailService mailService;
 
     @Test
-    void registerFromUserForm() {
-
+    public void registerUserTest() throws Exception {
         UserRegistrationForm userForm = new UserRegistrationForm();
+        userForm.setPassword("1234");
+        userService.registerFromUserForm(userForm);
 
-
+        Mockito.verify(userRepository, Mockito.times(1)).save(new User());
+        Mockito.verify(bCryptPasswordEncoder, Mockito.times(1)).encode("1234");
+        Mockito.verify(mailService, Mockito.times(1)).sendActivationMail(new User());
     }
 
     @Test
-    void userExistenceTest() throws Exception {
-
+    public void userActivationTest() throws Exception {
         User user = new User();
-        user.setUsername("Artem");
-        user.setEmail("Mail");
+        user.setActivationCode("1");
+        Mockito.when(userRepository.findByActivationCode("1")).thenReturn(user);
+        Mockito.when(userRepository.findByActivationCode("2")).thenReturn(null);
 
-        Mockito.doReturn(user).when(userRepository).findByUsername("Artem");
-        Mockito.doReturn(user).when(userRepository).findByEmail("Mail");
-
-        boolean userExistsWithUsername = userService.isUserExistsWithUsername("Artem");
-        boolean userExistsWithEmail = userService.isUserExistsWithEmail("Mail");
-        boolean userDoesNotExistsWithEmail = userService.isUserExistsWithEmail("FakeMail");
-
-        Assert.assertTrue(userExistsWithEmail);
-        Assert.assertTrue(userExistsWithUsername);
-        Assert.assertFalse(userDoesNotExistsWithEmail);
+        Assert.assertTrue(userService.verifyUser("1"));
+        Assert.assertFalse(userService.verifyUser("2"));
     }
 
     @Test
-    void changeUserRole() {
+    public void changePrivilegesTest() throws Exception {
+
         User user = new User();
-        user.setRoles(Collections.singleton(UserRole.SELLER));
+        user.setRoles(new HashSet<>());
+        user.getRoles().add(UserRole.CUSTOMER);
+
+        userService.appoint(user);
+        Assert.assertTrue(user.isSeller());
 
         userService.dismiss(user);
         Assert.assertFalse(user.isSeller());
-        userService.appoint(user);
-        Assert.assertTrue(user.isSeller());
     }
 
     @Test
-    void verifyUser() {
+    public void changeSettingsTest() throws Exception {
+
+        User user = new User();
+        user.setWishListAccess(UserWishListAccess.PUBLIC);
+        MultipartFile avatar = Mockito.mock(MultipartFile.class);
+        Mockito.when(avatar.getOriginalFilename()).thenReturn("Avatar");
+
+        userService.changeProfileSettings(user, avatar, UserWishListAccess.PRIVATE);
+
+        Assert.assertFalse(user.isWishListPublic());
+        Assert.assertNotNull(user.getAvatar());
     }
 
     @Test
-    void getAllUsersTest() {
+    public void editBalanceTest() throws Exception {
+        User user = new User();
+        user.setBalance(100);
 
-        List<User> users = new ArrayList<>();
-        Mockito.doReturn(users).when(userRepository).findAll();
+        userService.editBalance(user, 200);
 
-        List<User> expected = userRepository.findAll();
-        Assert.assertSame(users, expected);
-    }
-
-    @Test
-    void getUserById() {
-    }
-
-    @Test
-    void getAllUsersByRole() {
-    }
-
-    @Test
-    void dismiss() {
-    }
-
-    @Test
-    void appoint() {
+        Assert.assertEquals(user.getBalance(), 200);
     }
 }

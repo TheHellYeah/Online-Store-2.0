@@ -31,7 +31,7 @@ public class ReviewService {
 
     public boolean addReviewToProduct(User user, int productId, String description, int mark ){
         Product product = productService.getProductById(String.valueOf(productId)).get();
-        Review review = new Review(); //МБ Заюзать конструктор
+        Review review = new Review();
         review.setDate(new Date());
         review.setMark(mark);
         review.setAuthor(user);

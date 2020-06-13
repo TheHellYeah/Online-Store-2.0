@@ -39,7 +39,7 @@ public class UserService  {
     @Value("${upload.path.user}")
     private String userAvatarsFolder;
 
-    public void registerFromUserForm(UserRegistrationForm userForm) throws Exception {
+    public void registerFromUserForm(UserRegistrationForm userForm) {
 
         User user = new User();
         BeanUtils.copyProperties(userForm, user);
