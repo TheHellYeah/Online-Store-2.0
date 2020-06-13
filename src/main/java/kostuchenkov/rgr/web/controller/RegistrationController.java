@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.service.UserService;
-import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
+import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationFormValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,6 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class RegistrationController {

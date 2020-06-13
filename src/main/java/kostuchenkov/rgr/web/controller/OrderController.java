@@ -8,7 +8,7 @@ import kostuchenkov.rgr.service.OrderService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import kostuchenkov.rgr.service.principal.UserDetailsImpl;
-import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
+import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.OrderCheckoutForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

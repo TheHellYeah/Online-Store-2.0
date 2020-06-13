@@ -6,9 +6,12 @@ import kostuchenkov.rgr.model.domain.product.ProductSeason;
 import kostuchenkov.rgr.model.domain.product.ProductSubcategory;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 @Getter
 @Setter
@@ -33,11 +36,20 @@ public class ProductFilter {
     }
 
     public List<String> getFilters() {
+
+        Locale locale = LocaleContextHolder.getLocale();
+        ResourceBundle bundle = ResourceBundle.getBundle("lang/messages",locale);
+
         List<String> filters = new ArrayList<>();
+
+        if(minPrice != null) filters.add(bundle.getString("filter.from") +  " " + minPrice.toString() + "₽");
+        if(maxPrice != null) filters.add(bundle.getString("filter.to") + " "    + maxPrice.toString() + "₽");
+
         brand.forEach(b -> filters.add(b.toString()));
         subcategory.forEach(s -> filters.add(s.toString()));
         material.forEach(m -> filters.add(m.toString()));
         season.forEach(s -> filters.add(s.toString()));
+
         return filters;
     }
 }

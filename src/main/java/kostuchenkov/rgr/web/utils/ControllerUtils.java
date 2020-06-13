@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.web.utils.controller;
+package kostuchenkov.rgr.web.utils;
 
 import kostuchenkov.rgr.model.domain.product.*;
 import org.springframework.context.i18n.LocaleContextHolder;

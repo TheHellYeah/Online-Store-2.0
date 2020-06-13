@@ -15,7 +15,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     //Pageable запросы нужны, когда мы просто заходим на индекс страницу, или нажимаем в форме поиска кнопку искать
     //тогда нам вовзращаются страницы с продуктами
-   // Page<Product> findAll(Pageable pageable);
     Page<Product> findByNameContaining(String name, Pageable pageable);
 
     //List используем для POST метода, когда мы вбиваем запрос в поисковую строку чтобы вернуть список товаров найденных

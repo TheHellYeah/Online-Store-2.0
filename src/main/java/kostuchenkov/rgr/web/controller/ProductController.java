@@ -3,7 +3,7 @@ package kostuchenkov.rgr.web.controller;
 import kostuchenkov.rgr.model.domain.product.*;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
-import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
+import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

@@ -1,16 +1,14 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.product.*;
-import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.service.ProductService;
-import kostuchenkov.rgr.web.utils.controller.ControllerUtils;
+import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

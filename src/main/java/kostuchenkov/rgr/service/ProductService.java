@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.service;
 
-import kostuchenkov.rgr.model.domain.product.*;
+import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.domain.product.ProductSize;
 import kostuchenkov.rgr.model.repository.ProductRepository;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
@@ -15,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.*;
 
@@ -103,13 +103,11 @@ public class ProductService {
 
     public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
 
-        Page products = productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())
+        return productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())
                         .and(inSubcategories(filter.getSubcategory()))
                         .and(inBrands(filter.getBrand()))
                         .and(inMaterials(filter.getMaterial()))
                         .and(inSeasons(filter.getSeason()))
                         ,pageable);
-
-        return products;
     }
 }

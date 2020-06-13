@@ -19,14 +19,14 @@
             <@search.form/>
             <div class="row">
                 <#if searchQuery??>
-                    <h3>Результаты поиска по запросу: ${searchQuery}</h3>
+                    <h3><@spring.message code="filter.search"/> ${searchQuery}</h3>
                 </#if>
                 <#if filters??>
-                    <h3>Фильтры:
+                    <h3><@spring.message code="filters"/>
                     <#list filters as filter>
                         ${filter}<#sep> /
                     </#list>
-                    <a href="/" class="ml-3 mt-2" style="font-size: 18px;">Очистить фильтр</a>
+                    <a href="/" class="ml-3 mt-2" style="font-size: 18px;"><@spring.message code="filter.clear"/></a>
                     </h3>
                 </#if>
             </div>
