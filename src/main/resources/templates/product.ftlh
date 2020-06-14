@@ -3,7 +3,6 @@
 <#import "components/review.ftlh" as r>
 <#import "components/size-bar.ftlh" as sizebar>
 <#import "components/product-slider.ftlh" as slider>
-<#import "/spring.ftl" as spring>
 <#import "components/rating-mini.ftlh" as mini>
 
 <@component.skeleton title=(product.name)!"Продукт не найден">

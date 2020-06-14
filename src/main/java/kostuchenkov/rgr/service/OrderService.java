@@ -44,7 +44,8 @@ public class OrderService {
         Order order = new Order();
         BeanUtils.copyProperties(checkoutForm, order);
 
-        order.setContact(checkoutForm.getContact());
+        order.setContact(checkoutForm.getContact().substring(1, checkoutForm.getContact().length()-1));
+        order.setOrderPayment(checkoutForm.getPayment());
         order.setDate(new Date());
         order.setUser(user);
         order.setTotal(sum);
@@ -62,7 +63,7 @@ public class OrderService {
                 user.setBalance(user.getBalance()-order.getTotal());
         }
 
-        //mailService.createOrderMail(order);
+        mailService.createOrderMail(order);
         cartService.clearCart(user);
         orderRepository.save(order);
         return true;

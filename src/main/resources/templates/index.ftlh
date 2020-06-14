@@ -4,7 +4,6 @@
 <#import "components/slider.ftlh" as slider>
 <#import "components/search.ftlh" as search>
 <#import "components/product-section.ftlh" as section>
-<#import "spring.ftl" as spring>
 
 <@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи">
 <@bootstrap.navbar/>

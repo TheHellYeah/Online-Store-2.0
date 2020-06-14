@@ -1,6 +1,6 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
-<#import "spring.ftl" as spring>
+
 <@html.skeleton title="Ошибка">
 <@bootstrap.navbar/>
 <div class="container mt-3">

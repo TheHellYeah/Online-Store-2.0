@@ -1,6 +1,6 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
-<#import "/spring.ftl" as spring>
+
 <@component.skeleton title="Панель администратора">
 <@bootstrap.navbar/>
 <div class="container mt-3">

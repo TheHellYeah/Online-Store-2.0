@@ -1,6 +1,5 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
-<#import "spring.ftl" as spring>
 <#include "components/security.ftlh">
 <@component.skeleton title="Страница заказа">
 <@bootstrap.navbar/>
