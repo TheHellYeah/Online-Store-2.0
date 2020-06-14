@@ -5,15 +5,15 @@
 <@component.skeleton title="Мои заказы">
 <@bootstrap.navbar/>
 
-<div class="container">
-    <table class="table table-dark table-hover mt-3" style="font-size: 18px;">
+<div class="container mt-4">
+    <table id="orders" class="table table-dark table-hover mt-3" style="font-size: 18px;">
         <thead>
             <tr>
                 <th><@spring.message code="order"/> №</th>
                 <th><@spring.message code="date"/></th>
                 <th><@spring.message code="status"/></th>
                 <th><@spring.message code="summa"/></th>
-                <th><@spring.message code="type.of.payment"/></th>
+                <th class="sorting_disabled"><@spring.message code="type.of.payment"/></th>
             </tr>
         </thead>
         <tbody>
@@ -30,4 +30,5 @@
     </table>
     <p class="text-white">(<@spring.message code="user.orders.info"/>)</p>
 </div>
+<script src="/static/js/user.js"></script>
 </@component.skeleton>

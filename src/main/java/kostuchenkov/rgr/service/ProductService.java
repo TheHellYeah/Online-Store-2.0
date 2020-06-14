@@ -101,6 +101,19 @@ public class ProductService {
         return sizeMap;
     }
 
+    public boolean editName(Product product, String newName){
+        product.setName(newName);
+        productRepository.save(product);
+        return true;
+    }
+
+    public boolean editPrice(Product product, Integer newPrice){
+        product.setPrice(newPrice);
+        productRepository.save(product);
+        return true;
+    }
+
+
     public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
 
         return productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())

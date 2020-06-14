@@ -6,33 +6,33 @@
 <div class="container mt-3">
     <div  class="col-9 m-auto ">
         <div class="row bg-dark">
-            <div class="input-group m-2 ">
-                <input type="text" class="form-control" placeholder="<@spring.message code="search"/>">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">
-                        <@spring.message code="search"/>
-                    </button>
-                </div>
-                <select class="form-control ml-5">
-                    <option><@spring.message code="all"/></option>
-                    <#list roles as role>
-                    <option value="${role.name()}">${role.toString()}</option>
-                    </#list>
+<!--            <div class="input-group m-2 ">-->
+<!--                <input type="text" class="form-control" placeholder="<@spring.message code="search"/>">-->
+<!--                <div class="input-group-append">-->
+<!--                    <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">-->
+<!--                        <@spring.message code="search"/>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <select class="form-control ml-5">-->
+<!--                    <option><@spring.message code="all"/></option>-->
+<!--                    <#list roles as role>-->
+<!--                    <option value="${role.name()}">${role.toString()}</option>-->
+<!--                    </#list>-->
 
 
-                </select>
-            </div>
+<!--                </select>-->
+<!--            </div>-->
         </div>
     </div>
     <#if users?has_content>
-        <table class="table table-dark table-hover mt-3">
+        <table id="users" class="table table-dark table-hover mt-3">
             <thead>
                 <tr>
                     <th><@spring.message code="login"/></th>
-                    <th><@spring.message code="email"/></th>
-                    <th><@spring.message code="balance"/></th>
-                    <th><@spring.message code="role"/></th>
-                    <th></th>
+                    <th class="sorting_disabled"><@spring.message code="email"/></th>
+                    <th class="sorting_disabled"><@spring.message code="balance"/></th>
+                    <th class="sorting_disabled"><@spring.message code="role"/></th>
+                    <th class="sorting_disabled"></th>
                 </tr>
             </thead>
             <tbody>

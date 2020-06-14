@@ -96,4 +96,5 @@
     <h3 class="float-none"><a href="/"<@spring.message code="home"/></a></h3>
 </div>
 </#if>
+<#include "/components/footer.ftlh">
 </@component.skeleton>

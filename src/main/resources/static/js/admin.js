@@ -1,4 +1,18 @@
 
+$(document).ready(function () {
+    $('#users').DataTable({
+        "language": {
+            "url": "/getLangDataTable"
+        },
+        "aoColumnDefs": [
+                   {
+                       "bSortable": false,
+                       "aTargets": ["sorting_disabled"]
+                   }
+    ]});
+    $('.dataTables_length').addClass('bs-select');
+});
+
 window.onload = function() {
     document.querySelector('select').addEventListener('change', roleFilterHandler);
     token = document.head.querySelector("meta[name='_csrf']").content;

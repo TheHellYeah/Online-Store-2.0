@@ -53,5 +53,7 @@
         </div>
     </div>
 </div>
+</div>
+<#include "/components/footer.ftlh">
 <script src="/static/js/search.js"></script>
 </@html.skeleton>

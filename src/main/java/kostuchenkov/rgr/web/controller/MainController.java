@@ -5,6 +5,7 @@ import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.List;
 
 @Controller
@@ -21,10 +23,17 @@ public class MainController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping("/locale")
+    @RequestMapping("/getLangDataTable")
     public String locale() {
-        return "locale";
+        System.out.println(LocaleContextHolder.getLocale().toString());
+        if(LocaleContextHolder.getLocale().toString().contains("ru")){
+            return new File("static/dataTables/Russian.json").toString();
+        }else{
+            return new File("static/dataTables/English.json").toString();
+        }
     }
+
+
 
     @GetMapping("/")
     public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,

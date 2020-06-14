@@ -4,18 +4,18 @@
 
 <@component.skeleton title= "2">
 <@bootstrap.navbar/>
-<div class="container">
-    <form action="/seller/orders" method="get" class="mt-3">
-        <select name="status" id="inputID" class="form-control">
-            <option selected value=""><@spring.message code="all"/></option>
-            <#list ordersStatus as status>
-            <option value=${status.name()}>${status.toString()}</option>
-            </#list>
+<div class="container mt-4">
+<!--    <form action="/seller/orders" method="get" class="mt-3">-->
+<!--        <select name="status" id="inputID" class="form-control">-->
+<!--            <option selected value=""><@spring.message code="all"/></option>-->
+<!--            <#list ordersStatus as status>-->
+<!--            <option value=${status.name()}>${status.toString()}</option>-->
+<!--            </#list>-->
 
-        </select>
-        <button class="btn-warning text-dark"><@spring.message code="show"/></button>
-    </form>
-    <table class="table table-dark table-hover mt-3">
+<!--        </select>-->
+<!--        <button class="btn-warning text-dark"><@spring.message code="show"/></button>-->
+<!--    </form>-->
+    <table id="orders" class="table table-dark table-hover mt-3">
         <thead>
             <tr >
                 <th><@spring.message code="order"/> №</th>
@@ -23,7 +23,7 @@
                 <th><@spring.message code="date"/></th>
                 <th><@spring.message code="status"/></th>
                 <th><@spring.message code="summa"/></th>
-                <th><@spring.message code="type.of.payment"/></th>
+                <th class="sorting_disabled"><@spring.message code="type.of.payment"/></th>
             </tr>
         </thead>
         <tbody>

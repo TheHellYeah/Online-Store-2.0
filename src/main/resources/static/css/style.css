@@ -127,3 +127,16 @@ input.cart-size-input {
     color: #ff6776;
 }
 
+footer {
+    width: 100%;
+    background-color: #343a40;
+}
+body{
+    width: 100%;
+}
+.dataTables_info{
+   color: white;
+}
+
+
+
