@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.mocks.WithMockAdmin;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +14,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import static org.hamcrest.core.StringContains.containsString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,19 +33,20 @@ class AdminControllerTest {
     private AdminController adminController;
 
     @Test
+    @WithMockAdmin
     public void accessGained() throws Exception {
         this.mockMvc.perform(get("/admin"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("Панель администратора")));
+                .andExpect(content().string(containsString("Панель администратора")))
+                .andExpect(content().string(containsString("admin")));
     }
 
     @Test
-    @WithMockUser(username = "person", authorities = { "SELLER", "CUSTOMER" })
+    @WithMockUser
     public void accessDenied() throws Exception {
         this.mockMvc.perform(get("/admin"))
                 .andDo(print())
-                .andExpect(status().isForbidden())
-                .andExpect(redirectedUrl("/error"));
+                .andExpect(status().isForbidden());
     }
 }
