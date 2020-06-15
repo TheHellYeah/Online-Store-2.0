@@ -5,7 +5,7 @@
 <@bootstrap.navbar/>
 
 <div class="container">
-    <form class="mt-3 mb-5 ml-5" action="/user/settings" method="post">
+    <form class="mt-3 mb-5 ml-5" enctype="multipart/form-data" action="/user/settings" method="post">
         <h3><@spring.message code="user.settings.header"/> <a href="/user/${user.id}" style="font-size: 18px;">
             <@spring.message code="user.settings.back"/></a></h3>
 

@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
@@ -26,11 +27,9 @@ public class UserSettingsController {
         return "user-settings";
     }
 
-    //Изображение null приходит хазе почему
     @PostMapping
     public String changeSettings(@AuthenticationPrincipal UserDetailsImpl session,
-                                MultipartFile avatar, UserWishListAccess access) {
-
+                                 MultipartFile avatar, UserWishListAccess access) {
         User user = userService.getUserById(session.getUserId());
         userService.changeProfileSettings(user, avatar, access);
         return "redirect:/user/" + session.getUserId();

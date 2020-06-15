@@ -20,9 +20,7 @@ window.onload = function() {
 }
 
 function editBalance(id){
-
     balance = document.getElementById(id).value;
-    alert(balance);
 
     let xhr = new XMLHttpRequest();
                 xhr.open('POST', '/admin/edit/balance', true);
@@ -48,17 +46,4 @@ function appoint(id){
             xhr.responseType = "text";
             xhr.setRequestHeader(header, token);
             xhr.send(`id=`+id);
-}
-
-
-function roleFilterHandler() {
-     let xhr = new XMLHttpRequest();
-     if(this.value != "Все") {
-        xhr.open('GET', `/admin?role=${this.value}`, true);
-     } else {
-        xhr.open('GET', '/admin', true);
-     }
-     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-     xhr.setRequestHeader(header, token);
-     xhr.send();
 }

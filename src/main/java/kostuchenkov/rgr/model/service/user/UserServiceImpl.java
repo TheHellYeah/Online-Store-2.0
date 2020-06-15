@@ -112,6 +112,11 @@ public class UserServiceImpl implements UserService {
 
     private void changeUserAvatar(MultipartFile file, User user) {
         String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
+
+        File uploadDir = new File(userAvatarsFolder);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdir();
+        }
         try {
             file.transferTo(new File(userAvatarsFolder + "/" + resultFileName));
         } catch (IOException e) {

@@ -22,7 +22,9 @@
                     <tr>
                         <th><@spring.message code="wishlist.tovar"/></th>
                         <th><@spring.message code="price"/></th>
+                        <#if currentUser??>
                         <th></th>
+                        </#if>
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +33,9 @@
                     <tr>
                         <td><a href="/product/${product.id}">${product.name}</a></td>
                         <td>${product.price}</td>
+                        <#if currentUser??>
                         <td><button class="btn btn-primary" onclick="delInWishlist(${product.id},this)"><@spring.message code="wishlist.button"/></button></td>
+                        </#if>
                     </tr>
                     </#list>
                 </#if>

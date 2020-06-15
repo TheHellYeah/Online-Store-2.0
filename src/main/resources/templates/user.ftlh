@@ -9,7 +9,7 @@
     <#else>
     <div class="row">
         <div class="col-2">
-            <img src="http://localhost:8080/img/users/${user.avatar}" class="img-thumbnail">
+            <img src="/avatars/${user.avatar}" class="img-thumbnail">
         </div>
         <div class="col-7 ">
             <h3><@spring.message code="user.profile.username"/> <span class="text-warning">${user.username}</span></h3>
