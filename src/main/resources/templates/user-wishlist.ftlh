@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@html.skeleton title= "">
+<@html.skeleton title= "user.wishlist">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if currentUser??>

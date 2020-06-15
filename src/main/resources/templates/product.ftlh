@@ -5,7 +5,7 @@
 <#import "components/product-slider.ftlh" as slider>
 <#import "components/rating-mini.ftlh" as mini>
 
-<@component.skeleton title=(product.name)!"Продукт не найден">
+<@component.skeleton title="product">
 <@bootstrap.navbar/>
 
 <#if product??>

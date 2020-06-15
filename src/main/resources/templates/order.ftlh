@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 <#include "components/security.ftlh">
-<@component.skeleton title="Страница заказа">
+<@component.skeleton title="order">
 <@bootstrap.navbar/>
 
 <div class="container mt-3">

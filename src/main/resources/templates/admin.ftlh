@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Панель администратора">
+<@component.skeleton title="admin">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <div  class="col-9 m-auto ">
