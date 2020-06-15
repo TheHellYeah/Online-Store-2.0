@@ -30,7 +30,7 @@
                 </#if>
             </div>
             <div class="container mt-3 mb-5">
-                <#if products??>
+                <#if products.getContent()?has_content>
                     <@section.product_section products.content/>
                 <#else>
                     <h3><@spring.message code="index.not.found"/></h3>

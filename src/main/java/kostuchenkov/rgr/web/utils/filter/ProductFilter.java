@@ -1,17 +1,12 @@
 package kostuchenkov.rgr.web.utils.filter;
 
-import kostuchenkov.rgr.model.domain.product.ProductBrand;
-import kostuchenkov.rgr.model.domain.product.ProductMaterial;
-import kostuchenkov.rgr.model.domain.product.ProductSeason;
-import kostuchenkov.rgr.model.domain.product.ProductSubcategory;
+import kostuchenkov.rgr.model.domain.product.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.data.domain.Sort;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @Getter
 @Setter
@@ -23,6 +18,9 @@ public class ProductFilter {
     private List<ProductSubcategory> subcategory;
     private List<ProductMaterial> material;
     private List<ProductSeason> season;
+    private ProductCategory category;
+    private String sortBy;
+    private String sortOrder;
 
     public ProductFilter() {
         this.brand = new ArrayList<>();
@@ -32,7 +30,13 @@ public class ProductFilter {
     }
 
     public boolean isEmpty() {
-        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty() && season.isEmpty() && minPrice == null && maxPrice == null;
+        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty()
+                && season.isEmpty() && minPrice == null && maxPrice == null
+                && category == null && sortOrder == null && sortBy == null;
+    }
+
+    public boolean isSorted() {
+        return sortBy != null && sortOrder != null;
     }
 
     public List<String> getFilters() {
@@ -42,6 +46,7 @@ public class ProductFilter {
 
         List<String> filters = new ArrayList<>();
 
+        if(category != null) filters.add(category.toString());
         if(minPrice != null) filters.add(bundle.getString("filter.from") +  " " + minPrice.toString() + "₽");
         if(maxPrice != null) filters.add(bundle.getString("filter.to") + " "    + maxPrice.toString() + "₽");
 

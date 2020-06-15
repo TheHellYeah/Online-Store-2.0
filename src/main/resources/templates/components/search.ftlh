@@ -23,11 +23,6 @@
                     <div class="text-white ml-3"><@spring.message code="search.result"/>:</div>
                 </div>
         </div>
-        <span style="font-size: 20px;">
-                <a href="/?sortOrder=ASC&sortBy=price"><@spring.message code="asc"/></a>
-                <a href="/?sortOrder=DESC&sortBy=price"><@spring.message code="desc"/></a>
-                <a href="/?sortOrder=DESC&sortBy=rating"><@spring.message code="popularity"/></a>
-        </span>
     </div>
 </div>
 </#macro>

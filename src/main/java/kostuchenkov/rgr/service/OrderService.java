@@ -44,8 +44,7 @@ public class OrderService {
         Order order = new Order();
         BeanUtils.copyProperties(checkoutForm, order);
 
-        order.setContact(checkoutForm.getContact().substring(1, checkoutForm.getContact().length()-1));
-        order.setOrderPayment(checkoutForm.getPayment());
+        order.setContact(checkoutForm.getContact());
         order.setDate(new Date());
         order.setUser(user);
         order.setTotal(sum);

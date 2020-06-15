@@ -36,7 +36,6 @@ public class User implements Serializable {
     private String contactInfo;
     private String avatar;
     private int balance;
-
     private boolean verified;
     private String activationCode;
 

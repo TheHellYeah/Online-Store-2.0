@@ -36,6 +36,6 @@ public class OrderCheckoutForm {
     private OrderPayment orderPayment;
 
     public String getContact() {
-        return firstName + secondName + patronymic;
+        return firstName + " " + secondName + " " + patronymic;
     }
 }

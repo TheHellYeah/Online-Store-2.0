@@ -26,7 +26,7 @@ public class ProductFilterSpecifications {
     public static Specification<Product> inSubcategories(List<ProductSubcategory> subcategories) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
             if(!subcategories.isEmpty()) {
-                return root.get("category").in(subcategories);
+                return root.get("subcategory").in(subcategories);
             }
             return null;
         };
@@ -58,4 +58,15 @@ public class ProductFilterSpecifications {
             return null;
         };
     }
+
+    public static Specification<Product> inCategory(ProductCategory category) {
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
+            if(category != null) {
+                return criteriaBuilder.equal(root.get("category"), category);
+            }
+            return null;
+        };
+    }
+
+
 }

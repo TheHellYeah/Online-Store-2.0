@@ -1,7 +1,7 @@
 <#macro checkbox name value text>
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" name=${name} value=${value} id=${value}>
-        <label class="form-check-label" for=${value}>
+    <div class="custom-control custom-checkbox">
+        <input class="custom-control-input" type="checkbox" name=${name} value=${value} id=${value}>
+        <label class="custom-control-label" for=${value}>
             ${text}
         </label>
     </div>

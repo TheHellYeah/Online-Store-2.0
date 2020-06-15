@@ -33,8 +33,6 @@ public class MainController {
         }
     }
 
-
-
     @GetMapping("/")
     public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,
                             ProductFilter filter,
@@ -42,6 +40,10 @@ public class MainController {
                             Model model) {
 
         Page<Product> products;
+        //FIXME страница юзера
+        //FIXME страница товара
+        //FIXME тесты
+        //FIXME сорт бай
 
         if(!filter.isEmpty()) {
             model.addAttribute("filters", filter.getFilters());

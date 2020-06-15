@@ -9,7 +9,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -116,11 +118,18 @@ public class ProductService {
 
     public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
 
+        if(filter.isSorted()) {
+            pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.Direction.valueOf(filter.getSortOrder()), filter.getSortBy());
+
+        }
+
         return productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())
                         .and(inSubcategories(filter.getSubcategory()))
                         .and(inBrands(filter.getBrand()))
                         .and(inMaterials(filter.getMaterial()))
                         .and(inSeasons(filter.getSeason()))
+                        .and(inCategory(filter.getCategory()))
                         ,pageable);
     }
 }
