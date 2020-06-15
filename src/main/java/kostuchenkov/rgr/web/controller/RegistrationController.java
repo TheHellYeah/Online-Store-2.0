@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.model.service.user.UserService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationFormValidator;

@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.service.ReviewService;
-import kostuchenkov.rgr.service.principal.UserDetailsImpl;
+import kostuchenkov.rgr.model.service.review.ReviewService;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

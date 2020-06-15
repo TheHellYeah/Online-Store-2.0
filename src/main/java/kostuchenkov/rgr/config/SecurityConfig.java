@@ -1,6 +1,6 @@
-package kostuchenkov.rgr.web.config;
+package kostuchenkov.rgr.config;
 
-import kostuchenkov.rgr.service.principal.UserDetailsServiceImpl;
+import kostuchenkov.rgr.model.service.principal.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

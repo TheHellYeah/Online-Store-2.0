@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.web.config;
+package kostuchenkov.rgr.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

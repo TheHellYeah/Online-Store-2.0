@@ -1,8 +1,8 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.product.*;
-import kostuchenkov.rgr.service.ProductService;
-import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.model.service.product.ProductService;
+import kostuchenkov.rgr.model.service.user.UserService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
 import org.springframework.beans.factory.annotation.Autowired;

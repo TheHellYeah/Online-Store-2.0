@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.service;
+package kostuchenkov.rgr.model.service.product;
 
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.product.ProductSize;
@@ -20,9 +20,10 @@ import java.io.IOException;
 import java.util.*;
 
 import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.*;
+import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.inCategory;
 
 @Service
-public class ProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductRepository productRepository;
@@ -32,22 +33,27 @@ public class ProductService {
     @Value("${product.image.default}")
     private String defaultImagePath;
 
+    @Override
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
+    @Override
     public Page<Product> getAllProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
     }
 
+    @Override
     public List<Product> searchProductsList(String name) {
         return productRepository.findByNameContaining(name);
     }
 
+    @Override
     public Page<Product> searchProductsPage(String search, Pageable pageable) {
         return productRepository.findByNameContaining(search, pageable);
     }
 
+    @Override
     public Optional<Product> getProductById(String productId) {
         try {
             int id = Integer.parseInt(productId);
@@ -57,6 +63,7 @@ public class ProductService {
         }
     }
 
+    @Override
     public void addProductFromForm(ProductForm productForm) {
 
         Product product = new Product();
@@ -68,6 +75,7 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    @Override
     public void update(Product product) {
         productRepository.save(product);
     }
@@ -103,12 +111,14 @@ public class ProductService {
         return sizeMap;
     }
 
+    @Override
     public boolean editName(Product product, String newName){
         product.setName(newName);
         productRepository.save(product);
         return true;
     }
 
+    @Override
     public boolean editPrice(Product product, Integer newPrice){
         product.setPrice(newPrice);
         productRepository.save(product);
@@ -116,6 +126,7 @@ public class ProductService {
     }
 
 
+    @Override
     public Page<Product> getAllProductsByFilter(ProductFilter filter, Pageable pageable) {
 
         if(filter.isSorted()) {
@@ -123,13 +134,12 @@ public class ProductService {
                     Sort.Direction.valueOf(filter.getSortOrder()), filter.getSortBy());
 
         }
-
         return productRepository.findAll(matchPrice(filter.getMinPrice(), filter.getMaxPrice())
                         .and(inSubcategories(filter.getSubcategory()))
                         .and(inBrands(filter.getBrand()))
                         .and(inMaterials(filter.getMaterial()))
                         .and(inSeasons(filter.getSeason()))
                         .and(inCategory(filter.getCategory()))
-                        ,pageable);
+                         ,pageable);
     }
 }

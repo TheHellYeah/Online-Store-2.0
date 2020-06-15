@@ -3,6 +3,7 @@ package kostuchenkov.rgr.service;
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.UserRepository;
+import kostuchenkov.rgr.model.service.wishList.WishListService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.jws.soap.SOAPBinding;
 import java.util.ArrayList;
 
 @RunWith(SpringRunner.class)

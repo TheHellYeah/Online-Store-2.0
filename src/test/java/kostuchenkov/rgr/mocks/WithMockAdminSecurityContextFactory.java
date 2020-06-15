@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.mocks;
 
 import kostuchenkov.rgr.model.domain.user.User;
-import kostuchenkov.rgr.service.principal.UserDetailsImpl;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;

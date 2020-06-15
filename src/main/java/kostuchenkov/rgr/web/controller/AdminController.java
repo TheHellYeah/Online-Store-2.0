@@ -2,12 +2,10 @@ package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
-import kostuchenkov.rgr.service.ProductService;
-import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.model.service.product.ProductService;
+import kostuchenkov.rgr.model.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

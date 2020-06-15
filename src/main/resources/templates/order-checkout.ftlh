@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label for="patronymic"><@spring.message code="check.patronymic"/></label>
-            <input type="text" name="patronymic" class="form-control" id="patronymic" value="${user.patronymic}"
+            <input type="text" name="patronymic" class="form-control" id="patronymic" value="${user.patronymic!}"
                    placeholder='<@spring.message code="check.patronymic.placeholder"/>'>
             <@v.validation patronymicError! />
         </div>

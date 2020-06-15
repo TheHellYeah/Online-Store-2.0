@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.web.config;
+package kostuchenkov.rgr.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

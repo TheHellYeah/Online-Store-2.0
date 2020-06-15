@@ -3,6 +3,8 @@ package kostuchenkov.rgr.service;
 import kostuchenkov.rgr.model.domain.order.Order;
 import kostuchenkov.rgr.model.domain.order.OrderStatus;
 import kostuchenkov.rgr.model.repository.OrderRepository;
+import kostuchenkov.rgr.model.service.mail.MailService;
+import kostuchenkov.rgr.model.service.order.OrderService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -11,8 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

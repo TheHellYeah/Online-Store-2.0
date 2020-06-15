@@ -2,8 +2,8 @@ package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
-import kostuchenkov.rgr.service.UserService;
-import kostuchenkov.rgr.service.principal.UserDetailsImpl;
+import kostuchenkov.rgr.model.service.user.UserService;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

@@ -1,14 +1,15 @@
-package kostuchenkov.rgr.service;
+package kostuchenkov.rgr.model.service.order;
 
 import freemarker.template.TemplateException;
 import kostuchenkov.rgr.model.domain.cartItem.CartItem;
 import kostuchenkov.rgr.model.domain.order.Order;
 import kostuchenkov.rgr.model.domain.order.OrderPayment;
 import kostuchenkov.rgr.model.domain.order.OrderStatus;
-import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.OrderRepository;
 import kostuchenkov.rgr.model.repository.UserRepository;
+import kostuchenkov.rgr.model.service.cart.CartService;
+import kostuchenkov.rgr.model.service.mail.MailService;
 import kostuchenkov.rgr.web.utils.validation.OrderCheckoutForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,10 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class OrderService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private UserRepository userRepository;
@@ -33,6 +33,7 @@ public class OrderService {
     @Autowired
     private MailService mailService;
 
+    @Override
     public boolean createOrder(User user, OrderCheckoutForm checkoutForm) throws TemplateException, IOException, MessagingException {
         user = userRepository.findByUsername(user.getUsername());
 
@@ -68,25 +69,30 @@ public class OrderService {
         return true;
     }
 
+    @Override
     public List<Order> getAllOrderOfUser(User user){
         user = userRepository.findByUsername(user.getUsername());
         return orderRepository.findByUser(user);
     }
 
+    @Override
     public List<Order> getAllOrders(){
         return (List<Order>) orderRepository.findAll();
     }
 
+    @Override
     public List<Order> getAllOrdersWithStatus(OrderStatus orderStatus){
         return orderRepository.findByOrderStatus(orderStatus);
     }
 
+    @Override
     public void setStatus(Order order, OrderStatus orderStatus) throws TemplateException, IOException, MessagingException {
         order.setOrderStatus(orderStatus);
         mailService.changeStatusOrder(order);
         orderRepository.save(order);
     }
 
+    @Override
     public Optional<Order> getOrderById(int orderId){
         return orderRepository.findById(orderId);
     }

@@ -1,7 +1,7 @@
 package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.product.*;
-import kostuchenkov.rgr.service.ProductService;
+import kostuchenkov.rgr.model.service.product.ProductService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import org.springframework.beans.factory.annotation.Autowired;

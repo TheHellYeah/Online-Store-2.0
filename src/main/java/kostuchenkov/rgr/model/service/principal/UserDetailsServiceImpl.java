@@ -1,4 +1,4 @@
-package kostuchenkov.rgr.service.principal;
+package kostuchenkov.rgr.model.service.principal;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.UserRepository;

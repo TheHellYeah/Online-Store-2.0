@@ -4,6 +4,8 @@ import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.model.repository.UserRepository;
+import kostuchenkov.rgr.model.service.mail.MailService;
+import kostuchenkov.rgr.model.service.user.UserService;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.junit.Assert;
 import org.junit.Test;

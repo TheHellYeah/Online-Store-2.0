@@ -6,6 +6,7 @@ import kostuchenkov.rgr.model.domain.product.ProductSize;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.CartRepository;
 import kostuchenkov.rgr.model.repository.UserRepository;
+import kostuchenkov.rgr.model.service.cart.CartService;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;

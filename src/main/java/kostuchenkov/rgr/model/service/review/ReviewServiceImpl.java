@@ -1,10 +1,10 @@
-package kostuchenkov.rgr.service;
-
+package kostuchenkov.rgr.model.service.review;
 
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.review.Review;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.repository.ReviewRepository;
+import kostuchenkov.rgr.model.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +12,16 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class ReviewService {
+public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ProductService productService;
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Override
     public  void recountRatingOfProduct(Product product){
-        List<Review>  reviews = reviewRepository.findByProduct(product);
+        List<Review> reviews = reviewRepository.findByProduct(product);
         float sum = 0;
         for(Review review : reviews){
             sum += review.getMark();
@@ -29,6 +30,7 @@ public class ReviewService {
         productService.update(product);
     }
 
+    @Override
     public boolean addReviewToProduct(User user, int productId, String description, int mark ){
         Product product = productService.getProductById(String.valueOf(productId)).get();
         Review review = new Review();

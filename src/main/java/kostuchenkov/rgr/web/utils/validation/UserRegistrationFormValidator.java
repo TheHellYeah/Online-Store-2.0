@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.web.utils.validation;
 
-import kostuchenkov.rgr.service.UserService;
+import kostuchenkov.rgr.model.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
