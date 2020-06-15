@@ -33,7 +33,7 @@ public class OrderCheckoutForm {
     private String address;
 
     @NotNull(message = "product.null")
-    private OrderPayment payment;
+    private OrderPayment orderPayment;
 
     public String getContact() {
         return firstName + secondName + patronymic;

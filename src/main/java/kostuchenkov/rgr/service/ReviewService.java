@@ -35,6 +35,9 @@ public class ReviewService {
         review.setDate(new Date());
         review.setMark(mark);
         review.setAuthor(user);
+        if(product.getReviews().contains(review)) {
+            //TODO
+        }
         review.setDescription(description);
         review.setProduct(product);
         reviewRepository.save(review);

@@ -34,15 +34,13 @@
         </div>
     </div>
 </div>
-<div class="mt-5">
+<div class="mt-5 mb-5">
     <div class="col-9   m-auto">
         <div class="m-auto">
-
             <ul class="nav nav-tabs">
                 <li class="active border border-warning bg-warning mr-2 p-2"><a class="text-dark active" data-toggle="tab" href="#home"><@spring.message code="add.product.description"/></a></li>
                 <li class="border border-warning bg-warning p-2"><a class="text-dark" data-toggle="tab" href="#menu1"><@spring.message code="product.reviews"/></a></li>
             </ul>
-
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active show">
                     <div class="info">

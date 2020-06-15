@@ -37,7 +37,6 @@ public class User implements Serializable {
     private String avatar;
     private int balance;
 
-    @Column(columnDefinition = "boolean default false")
     private boolean verified;
     private String activationCode;
 

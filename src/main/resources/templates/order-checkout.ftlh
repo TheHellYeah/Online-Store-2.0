@@ -48,8 +48,8 @@
             <@v.validation addressError! />
         </div>
         <div class="form-group">
-            <label for="payment"><@spring.message code="type.of.payment"/></label>
-            <select class="form-control" name="payment" id="payment">
+            <label for="orderPayment"><@spring.message code="type.of.payment"/></label>
+            <select class="form-control" name="orderPayment" id="orderPayment">
                 <option disabled selected><@spring.message code="check.select.type.of.payment"/></option>
                 <option value="CASH"><@spring.message code="check.cash"/></option>
                 <option value="BALANCE"><@spring.message code="check.balance"/></option>
