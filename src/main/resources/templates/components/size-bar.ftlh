@@ -1,4 +1,3 @@
-<#import "/spring.ftl" as spring>
 <#macro bar hashmap>
 
 <h3><@spring.message code="table.sizes"/>:</h3>

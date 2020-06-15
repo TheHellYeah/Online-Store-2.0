@@ -1,5 +1,4 @@
 <#import "form-check.ftlh" as form>
-<#import "/spring.ftl" as spring>
 <#macro menu>
 <form method="get" action="/" class="mb-5">
     <div class="category">

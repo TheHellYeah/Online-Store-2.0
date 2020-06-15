@@ -1,4 +1,3 @@
-<#import "/spring.ftl" as spring>
 <#macro navbar>
 <#include "security.ftlh">
 <nav class="navbar navbar-expand-lg sticky-top">

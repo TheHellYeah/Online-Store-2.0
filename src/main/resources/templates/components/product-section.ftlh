@@ -1,5 +1,4 @@
 <#include "rating-mini.ftlh">
-<#import "/spring.ftl" as spring>
 <#macro product_section products>
 
 <div class="card-columns">
