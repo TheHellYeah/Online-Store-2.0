@@ -1,5 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
+import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.service.review.ReviewService;
 import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,12 @@ public class ReviewController {
 
     @PostMapping("/review/create")
     public String reviewCreate(@AuthenticationPrincipal UserDetailsImpl session,
-                               @RequestParam("productId") int productId,
+                               @RequestParam("productId") Product product,
                                @RequestParam("mark") int mark,
                                @RequestParam("description") String description,
                                HttpServletRequest request) {
 
-        reviewService.addReviewToProduct(session.getUser(), productId, description, mark);
+        reviewService.addReviewToProduct(session.getUser(), product, description, mark);
         return "redirect:"+ request.getHeader("referer");
     }
 

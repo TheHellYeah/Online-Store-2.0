@@ -21,7 +21,7 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public  void recountRatingOfProduct(Product product){
-        List<Review> reviews = reviewRepository.findByProduct(product);
+        List<Review> reviews = product.getReviews();
         float sum = 0;
         for(Review review : reviews){
             sum += review.getMark();
@@ -31,19 +31,27 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public boolean addReviewToProduct(User user, int productId, String description, int mark ){
-        Product product = productService.getProductById(String.valueOf(productId)).get();
-        Review review = new Review();
-        review.setDate(new Date());
-        review.setMark(mark);
-        review.setAuthor(user);
-        if(product.getReviews().contains(review)) {
-            //TODO
+    public boolean addReviewToProduct(User user, Product product, String description, int mark ){
+        if(product != null) {
+
+            Review review = reviewRepository.findByProductAndAuthor(product, user);
+
+            if(review != null) {
+                review.setDescription(description);
+                review.setMark(mark);
+            } else {
+                review = new Review();
+                review.setDate(new Date());
+                review.setMark(mark);
+                review.setAuthor(user);
+                review.setDescription(description);
+                review.setProduct(product);
+                product.getReviews().add(review);
+            }
+            reviewRepository.save(review);
+            this.recountRatingOfProduct(product);
+            return true;
         }
-        review.setDescription(description);
-        review.setProduct(product);
-        reviewRepository.save(review);
-        this.recountRatingOfProduct(product);
-        return true;
+        return false;
     }
 }

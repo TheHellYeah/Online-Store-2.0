@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "reviews")
@@ -32,4 +33,18 @@ public class Review {
 
     @Temporal(value = TemporalType.DATE)
     private Date date;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Review review = (Review) o;
+        return Objects.equals(author, review.author) &&
+                Objects.equals(product, review.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(author, product);
+    }
 }

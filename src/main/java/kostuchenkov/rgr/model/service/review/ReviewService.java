@@ -16,5 +16,5 @@ public interface ReviewService {
 
     void recountRatingOfProduct(Product product);
 
-    boolean addReviewToProduct(User user, int productId, String description, int mark );
+    boolean addReviewToProduct(User user, Product product, String description, int mark );
 }

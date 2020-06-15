@@ -58,7 +58,7 @@ class ReviewServiceTest {
         Mockito.when(productService.getProductById("1")).thenReturn(Optional.of(product));
 
 
-        reviewService.addReviewToProduct(user, product.getId(), "Lalala", 5);
+        //reviewService.addReviewToProduct(user, product.getId(), "Lalala", 5);
         System.out.print(review.getMark());
     }
 }

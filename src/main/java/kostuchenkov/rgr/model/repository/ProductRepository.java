@@ -19,6 +19,4 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     //List используем для POST метода, когда мы вбиваем запрос в поисковую строку чтобы вернуть список товаров найденных
     List<Product> findByNameContaining(String name);
-
-    List<Product> findByCategory(ProductCategory category);
 }

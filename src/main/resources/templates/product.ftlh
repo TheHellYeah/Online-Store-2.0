@@ -42,8 +42,8 @@
             </ul>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active show">
-                    <div class="info">
-                        <p class="text-white">${product.description}</p>
+                    <div class="info mt-2">
+                        <h3 class="text-white">${product.description}</h3>
                     </div>
                 </div>
                 <div id="menu1" class="tab-pane fade">
