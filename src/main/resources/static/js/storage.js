@@ -37,10 +37,10 @@ async function editName(){
     xhr.onload = function() {
             let div = document.createElement("div");
             if(xhr.status != 200) {
-                div.className += "alert alert-danger" ;
+                div.className += "alert alert-info" ;
                 div.innerHTML = `<strong>Ошибка!</strong>`;
             } else {
-                div.className += "alert alert-success" ;
+                div.className += "alert alert-info" ;
                 document.getElementById(productId).text = newName;
                 div.innerHTML = `<strong>${xhr.response}</strong>`;
             }
@@ -63,10 +63,10 @@ async function editPrice(){
    xhr.onload = function() {
        let div = document.createElement("div");
        if(xhr.status != 200) {
-           div.className += "alert alert-danger" ;
+           div.className += "alert alert-info" ;
            div.innerHTML = `<strong>Ошибка!</strong>`;
        } else {
-           div.className += "alert alert-success" ;
+           div.className += "alert alert-info" ;
            document.getElementsByClassName(productId)[0].textContent = newPrice;
            div.innerHTML = `<strong>${xhr.response}</strong>`;
        }

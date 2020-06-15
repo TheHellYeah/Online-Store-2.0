@@ -45,7 +45,6 @@ async function clearCart() {
 }
 
 async function delInCart(cartId, obj){
-
     let xhr = new XMLHttpRequest();
     xhr.open('POST', '/user/cart/delete', true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -68,10 +67,10 @@ async function inCart(id)   {
     xhr.onload = function() {
         let div = document.createElement("div");
         if(xhr.status != 200) {
-            div.className += "alert alert-danger" ;
+            div.className += "alert alert-info" ;
             div.innerHTML = `<strong>Ошибка!</strong>`;
         } else {
-            div.className += "alert alert-success" ;
+            div.className += "alert alert-info" ;
             div.innerHTML = `<strong>${xhr.response}</strong>`;
         }
         document.getElementById("alert").append(div);

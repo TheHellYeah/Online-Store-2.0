@@ -35,9 +35,8 @@ public class StorageController {
     public  String storageAdd(HttpServletRequest request,
                               @RequestParam("id")Product product,
                               @RequestParam("_csrf")String _csrf,
-                              @RequestParam HashMap<String, String> ps){//TODO Удалить этот коммент на проде.
-                                                                        // С мапой этйо много дрочева было, проще сотавить стринг стринг, иначе большие проблемы ! если вторйо параметр интегер, то ерорр ((
-        ps.remove("id"); //Почему они блин в мапу попадают
+                              @RequestParam HashMap<String, String> ps){
+        ps.remove("id");
         ps.remove("_csrf");
         for(Map.Entry<String,String> temp : ps.entrySet()){
             product.getSizes().put(ProductSize.valueOf(temp.getKey()),Integer.valueOf(temp.getValue()));

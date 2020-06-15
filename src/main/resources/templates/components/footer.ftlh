@@ -32,7 +32,7 @@
                     </li>
                     <li>
                         <p class="text-warning">
-                            <i class="fas fa-envelope mr-3"></i> shoehubsture@yandex.ru</p>
+                            <i class="fas fa-envelope mr-3"></i> shoehubstore@yandex.ru</p>
                     </li>
                     <li>
                         <p class="text-warning">

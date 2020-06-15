@@ -8,6 +8,7 @@ import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.service.OrderService;
 import kostuchenkov.rgr.service.ProductService;
+import kostuchenkov.rgr.web.utils.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,10 +28,8 @@ public class SellerController {
     @Autowired
     private ProductService productService;
 
-
     @GetMapping("/seller/orders")
     public String sellerPage(@RequestParam(required = false) OrderStatus status, Model model) {
-
         if (status != null ) {
             model.addAttribute("orders", orderService.getAllOrdersWithStatus(status));
         } else {
@@ -50,19 +49,23 @@ public class SellerController {
     @PostMapping("/seller/product/edit/name")
     @ResponseBody
     public String editName(@RequestParam("productId") Product product, @RequestParam("newName") String newName){
-        System.out.println(product.getId());
-        productService.editName(product,newName);
-        return "ok";
+        if(productService.editName(product,newName)){
+            return ResponseStatus.SUCCESS.toString();
+        } else{
+            return ResponseStatus.ERROR.toString();
+        }
     }
 
     @PostMapping("/seller/product/edit/price")
     @ResponseBody
     public String editPrice(@RequestParam("productId") Product product, @RequestParam("newPrice") Integer newPrice){
-        System.out.println(product.getId());
-        productService.editPrice(product, newPrice);
-        return "ok";
-    }
+        if(productService.editPrice(product, newPrice)){
+            return ResponseStatus.SUCCESS.toString();
+        } else{
+            return ResponseStatus.ERROR.toString();
+        }
 
+    }
 
     @PostMapping("/seller/orders/{id:\\d+}")
     @ResponseBody

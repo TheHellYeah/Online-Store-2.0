@@ -33,10 +33,10 @@ async function addWishlist(idProduct){
         xhr.onload = function() {
                 let div = document.createElement("div");
                 if(xhr.status != 200) {
-                    div.className += "alert alert-danger" ;
+                    div.className += "alert alert-info" ;
                     div.innerHTML = `<strong>Ошибка!</strong>`;
                 } else {
-                    div.className += "alert alert-success" ;
+                    div.className += "alert alert-info" ;
                     div.innerHTML = `<strong>${xhr.response}</strong>`;
                 }
                 document.getElementById("alert").append(div);

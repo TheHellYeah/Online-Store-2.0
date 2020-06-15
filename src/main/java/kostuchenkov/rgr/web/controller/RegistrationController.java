@@ -50,7 +50,7 @@ public class RegistrationController {
         } else {
             if (userService.verifyUser(code)) {
                 return "redirect:/login";
-            } else {//TODO сообщение об ошибке
+            } else {
                 return "activate";
             }
 

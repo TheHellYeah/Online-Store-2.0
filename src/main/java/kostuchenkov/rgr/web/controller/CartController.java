@@ -8,6 +8,7 @@ import kostuchenkov.rgr.service.CartService;
 import kostuchenkov.rgr.service.ProductService;
 import kostuchenkov.rgr.service.UserService;
 import kostuchenkov.rgr.service.principal.UserDetailsImpl;
+import kostuchenkov.rgr.web.utils.ResponseStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,9 +43,9 @@ public class CartController {
                             @RequestParam(name = "id") Product product) {
         User user = userService.getUserById(session.getUserId());
         if(cartService.addToCart(user, product, size)) {
-            return "Товар добавлен в корзину";
+            return ResponseStatus.CART_ADD.toString();
         } else {
-            return "Товар не может быть добавлен: превышено количество товара на складе";
+            return ResponseStatus.CART_ERROR.toString();
         }
     }
 
@@ -53,7 +54,7 @@ public class CartController {
     public String clearCart(@AuthenticationPrincipal UserDetailsImpl session){
         User user = userService.getUserById(session.getUserId());
         cartService.clearCart(user);
-        return "Корзина очищена";
+        return ResponseStatus.CART_CLEAR.toString();
     }
 
     @PostMapping("/delete")
@@ -61,7 +62,7 @@ public class CartController {
     public String deleteFromCart(@AuthenticationPrincipal UserDetailsImpl session, @RequestParam Integer cartId){
         User user = userService.getUserById(session.getUserId());
         cartService.deleteFromCart(user, cartId);
-        return "Товар удален";
+        return ResponseStatus.CART_DELETE.toString();
     }
 
     @PostMapping("/update")
