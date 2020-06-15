@@ -6,22 +6,6 @@
 <div class="container mt-3">
     <div  class="col-9 m-auto ">
         <div class="row bg-dark">
-<!--            <div class="input-group m-2 ">-->
-<!--                <input type="text" class="form-control" placeholder="<@spring.message code="search"/>">-->
-<!--                <div class="input-group-append">-->
-<!--                    <button class="btn btn-outline-secondary bg-warning" type="button" id="button-addon2">-->
-<!--                        <@spring.message code="search"/>-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <select class="form-control ml-5">-->
-<!--                    <option><@spring.message code="all"/></option>-->
-<!--                    <#list roles as role>-->
-<!--                    <option value="${role.name()}">${role.toString()}</option>-->
-<!--                    </#list>-->
-
-
-<!--                </select>-->
-<!--            </div>-->
         </div>
     </div>
     <#if users?has_content>
@@ -43,13 +27,11 @@
                         <td class="">
                             <label class="sr-only" for="${user.id}">₽</label>
                             <div class="input-group">
-
                                 <input type="number" class="form-control bg-warning col-3 wr-1 p-0" id="${user.id}" value="${user.balance}" min="0" max="999999" step="50">
                                 <div class="input-group-append">
                                     <div class="input-group-text">₽</div>
                                 </div>
                                 <button class="btn btn-success" onclick="editBalance(${user.id})"><@spring.message code="user.settings.save"/></button>
-
                             </div>
                         </td>
                         <td>
@@ -62,8 +44,6 @@
                             <#else>
                             <button class="btn btn-success" onclick="appoint(${user.id})"><@spring.message code="appoint"/></button>
                             </#if>
-
-
                         </td>
                     </tr>
                 </#list>

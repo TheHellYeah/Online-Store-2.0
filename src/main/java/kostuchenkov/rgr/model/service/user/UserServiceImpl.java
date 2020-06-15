@@ -32,8 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Value("${user.image.default}")
     private String defaultAvatarPath;
-    @Value("${upload.path.user}")
-    private String userAvatarsFolder;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     @Override
     public void registerFromUserForm(UserRegistrationForm userForm) {
@@ -113,12 +114,12 @@ public class UserServiceImpl implements UserService {
     private void changeUserAvatar(MultipartFile file, User user) {
         String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
 
-        File uploadDir = new File(userAvatarsFolder);
+        File uploadDir = new File(uploadPath+"/users");
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
         try {
-            file.transferTo(new File(userAvatarsFolder + "/" + resultFileName));
+            file.transferTo(new File(uploadPath+"/users"+ "/" + resultFileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
