@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Мои заказы">
+<@component.skeleton title="user.orders">
 <@bootstrap.navbar/>
 
 <div class="container mt-4">

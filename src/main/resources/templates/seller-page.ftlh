@@ -1,19 +1,9 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title= "2">
+<@component.skeleton title= "seller.page">
 <@bootstrap.navbar/>
 <div class="container mt-4">
-<!--    <form action="/seller/orders" method="get" class="mt-3">-->
-<!--        <select name="status" id="inputID" class="form-control">-->
-<!--            <option selected value=""><@spring.message code="all"/></option>-->
-<!--            <#list ordersStatus as status>-->
-<!--            <option value=${status.name()}>${status.toString()}</option>-->
-<!--            </#list>-->
-
-<!--        </select>-->
-<!--        <button class="btn-warning text-dark"><@spring.message code="show"/></button>-->
-<!--    </form>-->
     <table id="orders" class="table table-dark table-hover mt-3">
         <thead>
             <tr >

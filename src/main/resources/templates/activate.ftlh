@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Активация профиля">
+<@component.skeleton title="activate">
 <@bootstrap.navbar/>
 <div class="container col-4 mt-5">
     <h3><@spring.message code="activate"/></h3>

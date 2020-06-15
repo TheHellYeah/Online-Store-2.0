@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Склад товаров">
+<@component.skeleton title="product.storage">
 <@bootstrap.navbar/>
 <input id="_csrf" type="hidden" name="_csrf" value="${_csrf.token}">
 <div class="col-11 mt-4 mx-auto">

@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@html.skeleton title="Ошибка">
+<@html.skeleton title="error">
 <@bootstrap.navbar/>
 <div class="container mt-3">
         <h1><@spring.message code="error.header"/>

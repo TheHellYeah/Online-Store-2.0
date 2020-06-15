@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as html>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@html.skeleton title="Настройки пользователя">
+<@html.skeleton title="user.settings">
 <@bootstrap.navbar/>
 
 <div class="container">

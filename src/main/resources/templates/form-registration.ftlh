@@ -2,7 +2,7 @@
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/validation-error.ftlh" as v>
 
-<@component.skeleton title="Регистрация">
+<@component.skeleton title="form.registration">
 <@bootstrap.navbar/>
 <div class="container">
     <form class="mt-5 mb-5" action="/registration" method="post">

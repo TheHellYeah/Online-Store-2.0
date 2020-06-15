@@ -5,7 +5,7 @@
 <#import "components/search.ftlh" as search>
 <#import "components/product-section.ftlh" as section>
 
-<@html.skeleton title="ShoeHub - интернет магазин обуви для всей семьи">
+<@html.skeleton title="index">
 <@bootstrap.navbar/>
 
 <div class="container-fluid mt-3">

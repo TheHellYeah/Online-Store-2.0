@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Корзина">
+<@component.skeleton title = "product">
 <@bootstrap.navbar/>
 <div class="container mt-3">
     <#if !(cart?has_content)>

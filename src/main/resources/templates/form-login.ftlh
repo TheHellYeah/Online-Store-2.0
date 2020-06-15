@@ -1,7 +1,7 @@
 <#import "components/skeleton.ftlh" as component>
 <#import "components/navbar.ftlh" as bootstrap>
 
-<@component.skeleton title="Вход в систему">
+<@component.skeleton title="form.login">
 <@bootstrap.navbar/>
 <div class="container col-4 mt-5">
     <#if message??>

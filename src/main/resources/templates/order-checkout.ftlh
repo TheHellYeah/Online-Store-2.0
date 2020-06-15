@@ -2,7 +2,7 @@
 <#import "components/navbar.ftlh" as bootstrap>
 <#import "components/validation-error.ftlh" as v>
 
-<@component.skeleton title="Оформление заказа">
+<@component.skeleton title="order.chekout">
 <@bootstrap.navbar/>
 
 <div class="container">
