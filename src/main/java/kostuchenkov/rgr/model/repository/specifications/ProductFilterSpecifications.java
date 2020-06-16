@@ -3,20 +3,21 @@ package kostuchenkov.rgr.model.repository.specifications;
 import kostuchenkov.rgr.model.domain.product.*;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductFilterSpecifications {
 
     public static Specification<Product> matchPrice(Integer min, Integer max) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
 
-            if(min != null && max != null) {
+            if (min != null && max != null) {
                 return criteriaBuilder.between(root.get("price"), min, max);
-            }
-            else if(min != null) {
+            } else if (min != null) {
                 return criteriaBuilder.greaterThan(root.get("price"), min);
-            }
-            else if(max != null) {
+            } else if (max != null) {
                 return criteriaBuilder.lessThan(root.get("price"), max);
             }
             return null;
@@ -25,7 +26,7 @@ public class ProductFilterSpecifications {
 
     public static Specification<Product> inSubcategories(List<ProductSubcategory> subcategories) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
-            if(!subcategories.isEmpty()) {
+            if (!subcategories.isEmpty()) {
                 return root.get("subcategory").in(subcategories);
             }
             return null;
@@ -34,7 +35,7 @@ public class ProductFilterSpecifications {
 
     public static Specification<Product> inSeasons(List<ProductSeason> seasons) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
-            if(!seasons.isEmpty()) {
+            if (!seasons.isEmpty()) {
                 return root.get("season").in(seasons);
             }
             return null;
@@ -43,7 +44,7 @@ public class ProductFilterSpecifications {
 
     public static Specification<Product> inBrands(List<ProductBrand> brands) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
-            if(!brands.isEmpty()) {
+            if (!brands.isEmpty()) {
                 return root.get("brand").in(brands);
             }
             return null;
@@ -52,7 +53,7 @@ public class ProductFilterSpecifications {
 
     public static Specification<Product> inMaterials(List<ProductMaterial> materials) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
-            if(!materials.isEmpty()) {
+            if (!materials.isEmpty()) {
                 return root.get("material").in(materials);
             }
             return null;
@@ -61,12 +62,23 @@ public class ProductFilterSpecifications {
 
     public static Specification<Product> inCategory(ProductCategory category) {
         return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
-            if(category != null) {
+            if (category != null) {
                 return criteriaBuilder.equal(root.get("category"), category);
             }
             return null;
         };
     }
 
+    public static Specification<Product> bySizes(List<ProductSize> sizes) {
+        return (Specification<Product>) (root, criteriaQuery, criteriaBuilder) -> {
+            if (!sizes.isEmpty()) {
+                MapJoin<Product, ProductSize, Integer> sizesRoot = root.joinMap("sizes");
+                Predicate atLeastOneProduct = criteriaBuilder.greaterThan(sizesRoot.value(), 0);
+                Predicate matchSelectedSizes = sizesRoot.key().in(sizes);
 
+                return criteriaBuilder.and(matchSelectedSizes, atLeastOneProduct);
+            }
+            return null;
+        };
+    }
 }

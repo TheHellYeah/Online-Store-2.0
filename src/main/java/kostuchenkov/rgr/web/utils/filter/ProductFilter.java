@@ -19,18 +19,20 @@ public class ProductFilter {
     private List<ProductMaterial> material;
     private List<ProductSeason> season;
     private ProductCategory category;
+    private List<ProductSize> size;
     private String sortBy;
     private String sortOrder;
 
     public ProductFilter() {
         this.brand = new ArrayList<>();
+        this.size = new ArrayList<>();
         this.subcategory = new ArrayList<>();
         this.material = new ArrayList<>();
         this.season = new ArrayList<>();
     }
 
     public boolean isEmpty() {
-        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty()
+        return brand.isEmpty() && subcategory.isEmpty() && material.isEmpty() && size.isEmpty()
                 && season.isEmpty() && minPrice == null && maxPrice == null
                 && category == null && sortOrder == null && sortBy == null;
     }

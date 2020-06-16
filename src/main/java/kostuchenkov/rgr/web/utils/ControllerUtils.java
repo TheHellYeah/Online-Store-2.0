@@ -19,6 +19,7 @@ public class ControllerUtils {
         model.addAttribute("brands", ProductBrand.values());
         model.addAttribute("seasons", ProductSeason.values());
         model.addAttribute("materials", ProductMaterial.values());
+        model.addAttribute("sizes", ProductSize.values());
     }
 
     public static void putErrorsIntoModel(Model model, BindingResult bindingResult) {

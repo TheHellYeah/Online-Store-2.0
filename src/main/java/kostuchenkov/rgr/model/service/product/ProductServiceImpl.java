@@ -140,6 +140,7 @@ public class ProductServiceImpl implements ProductService {
                         .and(inMaterials(filter.getMaterial()))
                         .and(inSeasons(filter.getSeason()))
                         .and(inCategory(filter.getCategory()))
+                        .and(bySizes(filter.getSize()))
                          ,pageable);
     }
 }
