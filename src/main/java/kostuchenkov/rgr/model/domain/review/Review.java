@@ -1,5 +1,7 @@
 package kostuchenkov.rgr.model.domain.review;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.user.User;
 import lombok.Getter;
@@ -26,6 +28,7 @@ public class Review {
     private User author;
 
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name = "product_id")
     private Product product;
     private String description;

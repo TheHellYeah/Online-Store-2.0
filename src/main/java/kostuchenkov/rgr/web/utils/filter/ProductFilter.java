@@ -18,7 +18,7 @@ public class ProductFilter {
     private List<ProductSubcategory> subcategory;
     private List<ProductMaterial> material;
     private List<ProductSeason> season;
-    private ProductCategory category;
+   private ProductCategory category;
     private List<ProductSize> size;
     private String sortBy;
     private String sortOrder;
@@ -48,15 +48,23 @@ public class ProductFilter {
 
         List<String> filters = new ArrayList<>();
 
-        if(category != null) filters.add(category.toString());
         if(minPrice != null) filters.add(bundle.getString("filter.from") +  " " + minPrice.toString() + "₽");
         if(maxPrice != null) filters.add(bundle.getString("filter.to") + " "    + maxPrice.toString() + "₽");
 
-        brand.forEach(b -> filters.add(b.toString()));
         subcategory.forEach(s -> filters.add(s.toString()));
-        material.forEach(m -> filters.add(m.toString()));
+        brand.forEach(b -> filters.add(b.toString()));
         season.forEach(s -> filters.add(s.toString()));
+        material.forEach(m -> filters.add(m.toString()));
+        size.forEach(s -> filters.add(bundle.getString("filter.size.text") + " " + s.toString()));
 
         return filters;
+    }
+
+    public void setCategory(String category) {
+        try {
+            this.category = ProductCategory.valueOf(category.toUpperCase());
+        } catch(IllegalArgumentException e) {
+            this.category = null;
+        }
     }
 }

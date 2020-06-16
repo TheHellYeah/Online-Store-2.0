@@ -1,6 +1,6 @@
 <#import "form-check.ftlh" as form>
 <#macro menu>
-<form method="get" action="/" class="mb-5">
+<form method="get" action="/" class="mb-5" id="side-form">
     <div class="category mb-2">
         <h3>
             <a data-toggle="collapse" href="#my-collapse-subcategory" aria-expanded="false" aria-controls="my-collapse-subcategory">

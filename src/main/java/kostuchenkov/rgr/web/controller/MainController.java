@@ -1,6 +1,6 @@
 package kostuchenkov.rgr.web.controller;
 
-import kostuchenkov.rgr.model.domain.product.*;
+import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.service.product.ProductService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
@@ -25,16 +25,16 @@ public class MainController {
 
     @RequestMapping("/getLangDataTable")
     public String locale() {
-        System.out.println(LocaleContextHolder.getLocale().toString());
-        if(LocaleContextHolder.getLocale().toString().contains("ru")){
+        if (LocaleContextHolder.getLocale().toString().contains("ru")) {
             return new File("static/dataTables/Russian.json").toString();
-        }else{
+        } else {
             return new File("static/dataTables/English.json").toString();
         }
     }
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/catalog/{category}"})
     public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,
+                            @PathVariable(value = "category", required = false) String category,
                             ProductFilter filter,
                             String searchQuery,
                             Model model) {
@@ -43,17 +43,14 @@ public class MainController {
         //FIXME страница юзера
         //FIXME страница товара
         //FIXME тесты
-        //FIXME сорт бай
 
-        if(!filter.isEmpty()) {
+        if (!filter.isEmpty()) {
             model.addAttribute("filters", filter.getFilters());
             products = productService.getAllProductsByFilter(filter, pageable);
-        }
-        else if(searchQuery != null && !searchQuery.equals("")) {
+        } else if (searchQuery != null && !searchQuery.equals("")) {
             products = productService.searchProductsPage(searchQuery, pageable);
             model.addAttribute("searchQuery", searchQuery);
-        }
-        else {
+        } else {
             products = productService.getAllProducts(pageable);
         }
 
@@ -63,7 +60,7 @@ public class MainController {
     }
 
     @ResponseBody
-    @PostMapping("/")
+    @PostMapping(value = "/")
     public List<Product> search(@RequestParam String name) {
         return productService.searchProductsList(name);
     }

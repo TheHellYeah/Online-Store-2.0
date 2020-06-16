@@ -4,6 +4,7 @@
 <#import "components/slider.ftlh" as slider>
 <#import "components/search.ftlh" as search>
 <#import "components/product-section.ftlh" as section>
+<#import "components/pagination.ftlh" as page>
 
 <@html.skeleton title="index">
 <@bootstrap.navbar/>
@@ -32,22 +33,10 @@
             <div class="container mt-3 mb-5">
                 <#if products.getContent()?has_content>
                     <@section.product_section products.content/>
+                    <@page.pagination products/>
                 <#else>
                     <h3><@spring.message code="index.not.found"/></h3>
                 </#if>
-                <nav class="float-right mb-3">
-                    <ul class="pagination">
-                        <li class="page-item disabled"><a class="page-link" href="#"><@spring.message code="pages"/></a></li>
-                        <#list 1..products.getTotalPages() as page>
-                            <#if (page - 1) == products.getNumber()>
-                                <li class="page-item active"><a class="page-link" href="#">${page}</a></li>
-                            <#else>
-                                <li class="page-item"><a class="page-link" style="z-index:1;" href="/?page=${page - 1}">${page}</a></li>
-                             </#if>
-                        </#list>
-                         <li class="page-item"><a class="page-link" href="#"><@spring.message code="next"/></a></li>
-                     </ul>
-                </nav>
             </div>
         </div>
     </div>

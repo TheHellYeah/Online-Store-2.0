@@ -8,13 +8,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link text-white" href="/?category=MAN"><@spring.message code="navbar.man"/><span class="sr-only">(current)</span></a>
+                <a class="nav-link text-white" href="/catalog/man"><@spring.message code="navbar.man"/><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/?category=WOMAN"><@spring.message code="navbar.woman"/></a>
+                <a class="nav-link text-white" href="/catalog/woman"><@spring.message code="navbar.woman"/></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/?category=CHILD"><@spring.message code="navbar.child"/></a>
+                <a class="nav-link text-white" href="/catalog/child"><@spring.message code="navbar.child"/></a>
             </li>
             <li  class="nav-item">
                 <a class="nav-link text-white" href="?lang=ru">RU</a>

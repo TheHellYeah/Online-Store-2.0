@@ -1,5 +1,7 @@
 package kostuchenkov.rgr.model.domain.product;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import kostuchenkov.rgr.model.domain.review.Review;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,7 +37,8 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductMaterial material;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 
     @ElementCollection

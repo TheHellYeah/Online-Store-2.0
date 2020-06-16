@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     searchForm.addEventListener('input', function() {
          setTimeout(filterHandler, 500)
     });
+    document.querySelector('#side-form').action = window.location;
 });
 
 function filterHandler() {
@@ -42,4 +43,9 @@ function filterHandler() {
 
 function searchHandler() {
      window.location.href = URL + `/search?name=${searchForm.value}`
+}
+
+function page(number) {
+
+    window.location.href = window.location.href
 }
