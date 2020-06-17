@@ -19,14 +19,12 @@
     <div class="col-7">
         <div>
             <h1 class="item-name text-warning ">${product.name}</h1>
-            <span class="text-white" style="">
+            <span class="text-white" style="font-size: 20px;">
                 <a href="/?category=${product.category.name()}">${product.category}</a> /
                 <a href="/?subcategory=${product.subcategory.name()}">${product.subcategory}</a> /
                 <a href="/?season=${product.season.name()}">${product.season}</a>
-            </span>
-            <a class="text-white"><@spring.message code="product.reviews"/> (${product.revSize()})</a><br>
-            <a class="text-white"><@spring.message code="rating"/>: <@mini.ratingmini product.rating/></a>
-            <h3 class="item-price  ml-4 mb-4">${product.price} ₽</h3>
+            </span> <@mini.ratingmini product.rating/><br/>
+            <h3 class="item-price my-2">${product.price} ₽</h3>
             <@sizebar.bar sizes />
         </div>
         <#if auth>
@@ -42,11 +40,13 @@
         <div class="m-auto">
             <ul class="nav nav-tabs">
                 <li class="active border border-warning bg-warning mr-2 p-2"><a class="text-dark active" data-toggle="tab" href="#home"><@spring.message code="add.product.description"/></a></li>
-                <li class="border border-warning bg-warning p-2"><a class="text-dark" data-toggle="tab" href="#menu1"><@spring.message code="product.reviews"/></a></li>
+                <li class="border border-warning bg-warning p-2"><a class="text-dark" data-toggle="tab" href="#menu1"><@spring.message code="product.reviews"/>(${product.revSize()})</a></li>
             </ul>
             <div class="tab-content">
                 <div id="home" class="tab-pane fade in active show">
                     <div class="info mt-2">
+                        <h3><@spring.message code="add.product.brand"/>: ${product.brand}</h3>
+                        <h3><@spring.message code="add.product.material"/>: ${product.material}</h3>
                         <h3 class="text-white">${product.description}</h3>
                     </div>
                 </div>

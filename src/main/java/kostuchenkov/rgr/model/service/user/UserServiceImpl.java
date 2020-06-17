@@ -108,11 +108,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access) {
-        if (avatar != null) {
+    public void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access, String contactInfo) {
+        if (avatar != null && !avatar.isEmpty()) {
             changeUserAvatar(avatar, user);
         }
         user.setWishListAccess(access);
+        user.setContactInfo(contactInfo);
         userRepository.save(user);
     }
 

@@ -36,7 +36,7 @@ public class MainController {
     }
 
     @GetMapping(value = {"/", "/catalog/{category}"})
-    public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 1) Pageable pageable,
+    public String indexPage(@PageableDefault(sort = "id", direction = Sort.Direction.DESC, value = 12) Pageable pageable,
                             @PathVariable(value = "category", required = false) String category,
                             ProductFilter filter,
                             String searchQuery,

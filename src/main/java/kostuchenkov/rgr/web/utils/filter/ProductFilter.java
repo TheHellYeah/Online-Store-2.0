@@ -48,6 +48,7 @@ public class ProductFilter {
 
         List<String> filters = new ArrayList<>();
 
+        if(category != null) filters.add(category.toString());
         if(minPrice != null) filters.add(bundle.getString("filter.from") +  " " + minPrice.toString() + "₽");
         if(maxPrice != null) filters.add(bundle.getString("filter.to") + " "    + maxPrice.toString() + "₽");
 

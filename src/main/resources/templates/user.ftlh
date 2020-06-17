@@ -21,9 +21,12 @@
                 </span>
             </h3>
             <h3>${user.secondName} ${user.firstName} ${user.patronymic!}</h3>
-            <a href="/user/${user.id}/wishlist"><@spring.message code="user.profile.wishlist"/></a><br/>
+            <#if user.contactInfo??>
+                <h3 style="font-size: 22px;">Контактная информация пользователя: ${user.contactInfo}</h3>
+            </#if>
+            <a href="/user/${user.id}/wishlist" style="font-size: 22px;"><@spring.message code="user.profile.wishlist"/></a><br/>
             <#if currentUser??>
-                <a href="/user/settings"><@spring.message code="user.profile.settings"/></a>
+                <a href="/user/settings" style="font-size: 22px;"><@spring.message code="user.profile.settings"/></a>
             </#if>
         </div>
     </div>

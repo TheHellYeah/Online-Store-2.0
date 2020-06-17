@@ -41,7 +41,7 @@ public interface UserService  {
 
     boolean isUserExistsWithUsername(String username);
 
-    void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access);
+    void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access, String contactInfo);
 
     boolean editBalance(User user, UserDetailsImpl auth, Integer balance);
 }

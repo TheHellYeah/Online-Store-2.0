@@ -42,7 +42,7 @@ function filterHandler() {
 }
 
 function searchHandler() {
-     window.location.href = URL + `/search?name=${searchForm.value}`
+     window.location.href = + `/search?name=${searchForm.value}`
 }
 
 function page(number) {

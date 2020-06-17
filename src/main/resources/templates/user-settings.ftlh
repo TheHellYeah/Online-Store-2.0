@@ -45,6 +45,10 @@
                 </#if>
             </div>
         </div>
+        <div class="form-group">
+            <label for="contactInfo"><@spring.message code="user.setting.contact"/></label>
+            <textarea name="contactInfo" class="form-control" id="contactInfo">${user.contactInfo!}</textarea>
+        </div>
         <button type="submit" class="btn btn-warning"><@spring.message code="user.settings.save"/></button>
     </form>
 </div>

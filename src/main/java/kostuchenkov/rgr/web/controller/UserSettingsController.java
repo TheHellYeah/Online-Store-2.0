@@ -29,9 +29,9 @@ public class UserSettingsController {
 
     @PostMapping
     public String changeSettings(@AuthenticationPrincipal UserDetailsImpl session,
-                                 MultipartFile avatar, UserWishListAccess access) {
+                                 MultipartFile avatar, UserWishListAccess access, String contactInfo) {
         User user = userService.getUserById(session.getUserId());
-        userService.changeProfileSettings(user, avatar, access);
+        userService.changeProfileSettings(user, avatar, access, contactInfo);
         return "redirect:/user/" + session.getUserId();
     }
 }
