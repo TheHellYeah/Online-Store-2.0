@@ -75,13 +75,15 @@ public class UserServiceTest {
 
         User user = new User();
         user.setWishListAccess(UserWishListAccess.PUBLIC);
+        user.setContactInfo("Ershov");
         MultipartFile avatar = Mockito.mock(MultipartFile.class);
         Mockito.when(avatar.getOriginalFilename()).thenReturn("Avatar");
 
-        //userService.changeProfileSettings(user, avatar, UserWishListAccess.PRIVATE);
+        userService.changeProfileSettings(user, avatar, UserWishListAccess.PRIVATE, "Saratov");
 
         Assert.assertFalse(user.isWishListPublic());
         Assert.assertNotNull(user.getAvatar());
+        Assert.assertEquals("Saratov", user.getContactInfo());
     }
 
     @Test
@@ -89,7 +91,7 @@ public class UserServiceTest {
         User user = new User();
         user.setBalance(100);
 
-       // userService.editBalance(user, 200);
+       userService.editBalance(user, 200);
 
         Assert.assertEquals(user.getBalance(), 200);
     }

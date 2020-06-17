@@ -133,7 +133,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean editBalance(User user, UserDetailsImpl auth, Integer balance) {
+    public boolean editBalance(User user, Integer balance) {
         if (user != null) {
             user.setBalance(balance);
             userRepository.save(user);

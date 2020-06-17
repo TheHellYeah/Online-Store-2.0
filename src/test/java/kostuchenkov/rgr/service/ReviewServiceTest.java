@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.ArgumentMatchers.any;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class ReviewServiceTest {
@@ -47,18 +49,21 @@ class ReviewServiceTest {
         Assert.assertEquals(3, product.getRating());
     }
 
-    //TODO
     @Test
     void addReviewToProductTest() throws Exception {
         Product product = new Product();
-        product.setId(1);
         User user = new User();
-        Review review = Mockito.spy(Review.class);
         user.setUsername("Artem");
         Mockito.when(productService.getProductById("1")).thenReturn(Optional.of(product));
 
 
-        //reviewService.addReviewToProduct(user, product.getId(), "Lalala", 5);
-        System.out.print(review.getMark());
+        reviewService.addReviewToProduct(user, product, "Lalala", 5);
+
+        Review review = product.getReviews().stream().findFirst().get();
+
+        Assert.assertEquals( "Lalala", review.getDescription());
+        Assert.assertEquals(5, review.getMark());
+        Assert.assertEquals(user, review.getAuthor());
+        Mockito.verify(reviewRepository, Mockito.times(1)).save(any());
     }
 }

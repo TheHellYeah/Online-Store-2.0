@@ -43,5 +43,5 @@ public interface UserService  {
 
     void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access, String contactInfo);
 
-    boolean editBalance(User user, UserDetailsImpl auth, Integer balance);
+    boolean editBalance(User user, Integer balance);
 }

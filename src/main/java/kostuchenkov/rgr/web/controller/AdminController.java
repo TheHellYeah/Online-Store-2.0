@@ -36,9 +36,8 @@ public class AdminController {
     @PostMapping("/edit/balance")
     @ResponseBody
     public String editBalance(@RequestParam("id") User user,
-                              @AuthenticationPrincipal UserDetailsImpl admin,
                               @RequestParam("balance") Integer balance){
-        userService.editBalance(user, admin, balance);
+        userService.editBalance(user, balance);
 
         return "OK";
     }
