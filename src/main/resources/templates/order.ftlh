@@ -17,7 +17,7 @@
                 <label><@spring.message code="order.address"/>: ${order.address}</label><br>
                 <label><@spring.message code="order.products"/>:<br>
                 <#list order.products as item>
-                    <img src="http://localhost:8080/img/${item.product.images[0]}" class="product-mini-thumbnail">
+                    <img src="/img/${item.product.images[0]}" class="product-mini-thumbnail">
                     <a href="/product/${item.product.id}">${item.product.name}</a>,
                     <@spring.message code="price"/>: ${item.product.price} ₽, <@spring.message code="size"/>: ${item.size}, <@spring.message code="count"/>: ${item.amount}
                     <hr class="mt-0"/>

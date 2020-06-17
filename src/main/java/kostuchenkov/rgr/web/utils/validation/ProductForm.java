@@ -22,7 +22,7 @@ public class ProductForm {
     @Size(max = 20, message = "validation.max20")
     private String name;
 
-    @Size(max = 255, message = "validation.max255")
+    @Size(max = 2048, message = "validation.max255")
     private String description;
 
     @NotNull(message = "product.price.null")

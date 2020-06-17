@@ -99,7 +99,7 @@ a[x-apple-data-detectors] {
 
                                                                     <#list order.getProducts() as cartItem>
                                                                         <tr style="border-collapse:collapse;">
-                                                                            <td style="color:white;padding:0;Margin:0;">${cartItem.product.name}</td>
+                                                                            <td style="color:white;padding:0;Margin:0;"><a style="color:white" href="http://shoehub.design/product/${cartItem.product.id}">${cartItem.product.name}</a></td>
                                                                             <td style="color:white;padding:0;Margin:0;">${cartItem.size} ${bundle.getString("size")}</td>
                                                                             <td style="color:white;padding:0;Margin:0;">${cartItem.amount} ${bundle.getString("pairs")}</td>
                                                                             <td style="color:white;padding:0;Margin:0;">${cartItem.product.price} ₽</td>

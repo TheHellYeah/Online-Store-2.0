@@ -25,8 +25,8 @@ create table order_products (
 
 create table orders (
    id integer not null,
-    address varchar(255),
-    contact varchar(255),
+    address varchar(1024),
+    contact varchar(512),
     date date,
     order_payment varchar(255),
     order_status varchar(255),
@@ -52,7 +52,7 @@ create table products (
    id integer not null,
     brand varchar(255),
     category varchar(255),
-    description varchar(255),
+    description varchar(2048),
     material varchar(255),
     name varchar(255),
     price integer not null,
@@ -65,7 +65,7 @@ create table products (
 create table reviews (
    id integer not null,
     date date,
-    description varchar(255),
+    description varchar(2048),
     mark integer not null,
     user_id integer,
     product_id integer,
