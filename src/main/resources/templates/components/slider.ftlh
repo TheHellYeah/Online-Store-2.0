@@ -13,12 +13,12 @@
         </div>
         <div class="carousel-item">
             <img class="d-block w-100"
-                 src="https://i.pinimg.com/736x/5d/f6/85/5df68530fd8ef14b471b11da3cf4c3fd.jpg"
+                 src="https://lh3.googleusercontent.com/proxy/0hhsr5jKeMujrstestamjfdxGtO2DULVRgPeUTyNpucc-sL5TTiEfdlRbSZ97yyKK1zmFvWb6LjDbm3gCG3awSNq11Xj1oweHaaIMp1zqCTm6LpGWUcQojCEVwAGZpeM"
                  alt="Второй слайд">
         </div>
         <div class="carousel-item">
             <img class="d-block w-100"
-                 src="https://new-retail.ru/upload/iblock/f6d/f6ddd4ee1d0d50f7f66b35d705e48401.jpg"
+                 src="https://cdn.freelance.ru/download/941427/%E11.jpg"
                  alt="Третий слайд">
         </div>
     </div>
