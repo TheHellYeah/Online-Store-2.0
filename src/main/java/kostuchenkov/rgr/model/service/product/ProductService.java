@@ -1,6 +1,7 @@
 package kostuchenkov.rgr.model.service.product;
 
 import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.dto.ProductJsonDTO;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,7 @@ public interface ProductService {
 
     Page<Product> getAllProducts(Pageable pageable);
 
-    List<Product> searchProductsList(String name);
+    List<ProductJsonDTO> searchProductsList(String name);
 
     Page<Product> searchProductsPage(String search, Pageable pageable);
 

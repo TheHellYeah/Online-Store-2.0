@@ -5,6 +5,7 @@ import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.model.service.mail.MailService;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,5 @@ public interface UserService  {
 
     void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access);
 
-    boolean editBalance(User user, Integer balance);
+    boolean editBalance(User user, UserDetailsImpl auth, Integer balance);
 }

@@ -18,7 +18,7 @@ public class ProductFilter {
     private List<ProductSubcategory> subcategory;
     private List<ProductMaterial> material;
     private List<ProductSeason> season;
-   private ProductCategory category;
+    private ProductCategory category;
     private List<ProductSize> size;
     private String sortBy;
     private String sortOrder;

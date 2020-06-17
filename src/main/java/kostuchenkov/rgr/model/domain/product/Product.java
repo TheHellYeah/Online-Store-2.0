@@ -37,7 +37,6 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductMaterial material;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Review> reviews = new ArrayList<>();
 

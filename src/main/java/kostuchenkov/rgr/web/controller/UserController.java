@@ -25,6 +25,8 @@ public class UserController {
         }
 
         if (user.getId() == session.getUserId()) {
+            session.setBalance(user.getBalance());
+            session.setRoles(user.getRoles());
             model.addAttribute("currentUser", true);
         }
         model.addAttribute("user", user);

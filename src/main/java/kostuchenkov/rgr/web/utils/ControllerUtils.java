@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 
 public class ControllerUtils {
 
-    //Чтобы в контроллерах по тысяче раз не писать одно и то же, кидаем в модель все текущие значения для всех енамов продукта
     public static void putEnumsIntoModel(Model model) {
         model.addAttribute("subcategories", ProductSubcategory.values());
         model.addAttribute("categories", ProductCategory.values());
@@ -27,8 +26,6 @@ public class ControllerUtils {
         ResourceBundle bundle = ResourceBundle.getBundle("lang/messages",locale);
 
         Map<String, String> errors = new HashMap<>();
-                                    //Мы так делаем потому что бандл нельзя вставить в сообщения аннотаций(они требуют константы),
-                                    //поэтому в мессадже находится ключ к локали в i18n бандле
         bindingResult.getFieldErrors().forEach(e -> errors.put(e.getField() + "Error", bundle.getString(e.getDefaultMessage())));
         model.mergeAttributes(errors);
     }

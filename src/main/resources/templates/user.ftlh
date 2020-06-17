@@ -11,8 +11,15 @@
         <div class="col-2">
             <img src="/avatars/${user.avatar}" class="img-thumbnail">
         </div>
-        <div class="col-7 ">
-            <h3><@spring.message code="user.profile.username"/> <span class="text-warning">${user.username}</span></h3>
+        <div class="col-10 ">
+            <h3><@spring.message code="user.profile.username"/>
+                <span class="text-warning">${user.username}</span> -
+                <span>
+                    <#list user.roles as role>
+                        ${role.toString()}<#sep>,
+                    </#list>
+                </span>
+            </h3>
             <h3>${user.secondName} ${user.firstName} ${user.patronymic!}</h3>
             <a href="/user/${user.id}/wishlist"><@spring.message code="user.profile.wishlist"/></a><br/>
             <#if currentUser??>

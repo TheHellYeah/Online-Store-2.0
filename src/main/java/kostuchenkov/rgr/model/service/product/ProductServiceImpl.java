@@ -2,6 +2,7 @@ package kostuchenkov.rgr.model.service.product;
 
 import kostuchenkov.rgr.model.domain.product.Product;
 import kostuchenkov.rgr.model.domain.product.ProductSize;
+import kostuchenkov.rgr.model.dto.ProductJsonDTO;
 import kostuchenkov.rgr.model.repository.ProductRepository;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
 import kostuchenkov.rgr.web.utils.validation.ProductForm;
@@ -14,13 +15,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.HtmlUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
 import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.*;
-import static kostuchenkov.rgr.model.repository.specifications.ProductFilterSpecifications.inCategory;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -44,8 +45,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> searchProductsList(String name) {
-        return productRepository.findByNameContaining(name);
+    public List<ProductJsonDTO> searchProductsList(String name) {
+        List<Product> products = productRepository.findByNameContaining(name);
+        List<ProductJsonDTO> jsonProducts = new ArrayList<>();
+
+        products.forEach(p -> {
+            ProductJsonDTO jsonProduct = new ProductJsonDTO();
+            BeanUtils.copyProperties(p, jsonProduct);
+            jsonProducts.add(jsonProduct);
+        });
+
+        return jsonProducts;
     }
 
     @Override

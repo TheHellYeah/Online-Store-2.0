@@ -5,10 +5,15 @@ import kostuchenkov.rgr.model.domain.user.UserRole;
 import kostuchenkov.rgr.model.domain.user.UserWishListAccess;
 import kostuchenkov.rgr.model.repository.UserRepository;
 import kostuchenkov.rgr.model.service.mail.MailService;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import kostuchenkov.rgr.web.utils.validation.UserRegistrationForm;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.server.Session;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,7 +86,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void dismiss(User user){
+    public void dismiss(User user) {
         user.getRoles().remove(UserRole.SELLER);
         userRepository.save(user);
     }
@@ -104,7 +109,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changeProfileSettings(User user, MultipartFile avatar, UserWishListAccess access) {
-        if(avatar != null) {
+        if (avatar != null) {
             changeUserAvatar(avatar, user);
         }
         user.setWishListAccess(access);
@@ -114,12 +119,12 @@ public class UserServiceImpl implements UserService {
     private void changeUserAvatar(MultipartFile file, User user) {
         String resultFileName = UUID.randomUUID().toString() + "." + file.getOriginalFilename();
 
-        File uploadDir = new File(uploadPath+"/users");
+        File uploadDir = new File(uploadPath + "/users");
         if (!uploadDir.exists()) {
             uploadDir.mkdir();
         }
         try {
-            file.transferTo(new File(uploadPath+"/users"+ "/" + resultFileName));
+            file.transferTo(new File(uploadPath + "/users" + "/" + resultFileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,8 +132,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean editBalance(User user, Integer balance){
-        if(user != null) {
+    public boolean editBalance(User user, UserDetailsImpl auth, Integer balance) {
+        if (user != null) {
             user.setBalance(balance);
             userRepository.save(user);
         }

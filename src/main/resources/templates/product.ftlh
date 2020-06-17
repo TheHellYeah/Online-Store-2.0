@@ -8,6 +8,8 @@
 <@component.skeleton title="product">
 <@bootstrap.navbar/>
 
+<#assign auth = Session.SPRING_SECURITY_CONTEXT??>
+
 <#if product??>
 <div class="row mt-4 w-100">
     <div class="col-1"></div>
@@ -27,10 +29,12 @@
             <h3 class="item-price  ml-4 mb-4">${product.price} ₽</h3>
             <@sizebar.bar sizes />
         </div>
-        <div class="item-add-cart">
-            <button class="btn-warning btn-lg" onclick="inCart(${product.id})"><@spring.message code="product.button.incart"/></button>
-            <button  class="btn-warning btn-lg" onclick="addWishlist(${product.id})">♥</button>
-        </div>
+        <#if auth>
+            <div class="item-add-cart">
+                <button class="btn-warning btn-lg" onclick="inCart(${product.id})"><@spring.message code="product.button.incart"/></button>
+                <button  class="btn-warning btn-lg" onclick="addWishlist(${product.id})">♥</button>
+            </div>
+        </#if>
     </div>
 </div>
 <div class="mt-5 mb-5">
@@ -54,7 +58,9 @@
                 <#else>
                 <div class="border"><@spring.message code="product.reviews.empty"/></div>
             </#if>
-            <button type="button" class="btn btn-warning m-auto" data-toggle="modal" data-target="#myModal"><@spring.message code="product.reviews.button"/></button>
+            <#if auth>
+                <button type="button" class="btn btn-warning m-auto" data-toggle="modal" data-target="#myModal"><@spring.message code="product.reviews.button"/></button>
+            </#if>
         </div>
     </div>
 </div>

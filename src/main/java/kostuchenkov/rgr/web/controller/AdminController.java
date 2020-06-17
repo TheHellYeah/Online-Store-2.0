@@ -2,10 +2,12 @@ package kostuchenkov.rgr.web.controller;
 
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.domain.user.UserRole;
+import kostuchenkov.rgr.model.service.principal.UserDetailsImpl;
 import kostuchenkov.rgr.model.service.product.ProductService;
 import kostuchenkov.rgr.model.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +35,10 @@ public class AdminController {
 
     @PostMapping("/edit/balance")
     @ResponseBody
-    public String editBalance(@RequestParam("id") User user, @RequestParam("balance") Integer balance){
-        userService.editBalance(user, balance);
+    public String editBalance(@RequestParam("id") User user,
+                              @AuthenticationPrincipal UserDetailsImpl admin,
+                              @RequestParam("balance") Integer balance){
+        userService.editBalance(user, admin, balance);
 
         return "OK";
     }

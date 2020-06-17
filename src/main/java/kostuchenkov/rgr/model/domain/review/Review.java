@@ -28,7 +28,6 @@ public class Review {
     private User author;
 
     @ManyToOne
-    @JsonManagedReference
     @JoinColumn(name = "product_id")
     private Product product;
     private String description;

@@ -89,7 +89,7 @@ public class UserServiceTest {
         User user = new User();
         user.setBalance(100);
 
-        userService.editBalance(user, 200);
+       // userService.editBalance(user, 200);
 
         Assert.assertEquals(user.getBalance(), 200);
     }

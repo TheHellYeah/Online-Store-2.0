@@ -3,10 +3,9 @@ package kostuchenkov.rgr.model.repository.specifications;
 import kostuchenkov.rgr.model.domain.product.*;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.*;
-import java.util.HashMap;
+import javax.persistence.criteria.MapJoin;
+import javax.persistence.criteria.Predicate;
 import java.util.List;
-import java.util.Map;
 
 public class ProductFilterSpecifications {
 

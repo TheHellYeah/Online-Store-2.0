@@ -1,6 +1,8 @@
 package kostuchenkov.rgr.web.controller;
 
+import freemarker.template.utility.HtmlEscape;
 import kostuchenkov.rgr.model.domain.product.Product;
+import kostuchenkov.rgr.model.dto.ProductJsonDTO;
 import kostuchenkov.rgr.model.service.product.ProductService;
 import kostuchenkov.rgr.web.utils.ControllerUtils;
 import kostuchenkov.rgr.web.utils.filter.ProductFilter;
@@ -13,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.HtmlUtils;
 
 import java.io.File;
 import java.util.List;
@@ -61,7 +64,7 @@ public class MainController {
 
     @ResponseBody
     @PostMapping(value = "/")
-    public List<Product> search(@RequestParam String name) {
+    public List<ProductJsonDTO> search(@RequestParam String name) {
         return productService.searchProductsList(name);
     }
 }

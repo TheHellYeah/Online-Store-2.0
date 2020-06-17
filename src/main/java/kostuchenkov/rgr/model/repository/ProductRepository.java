@@ -15,11 +15,7 @@ import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product> {
 
-    //Pageable запросы нужны, когда мы просто заходим на индекс страницу, или нажимаем в форме поиска кнопку искать
-    //тогда нам вовзращаются страницы с продуктами
     Page<Product> findByNameContaining(String name, Pageable pageable);
 
-    //List используем для POST метода, когда мы вбиваем запрос в поисковую строку чтобы вернуть список товаров найденных
-    @EntityGraph(attributePaths = {"id", "name", "price", "images"}, type = EntityGraph.EntityGraphType.LOAD)
     List<Product> findByNameContaining(String name);
 }
