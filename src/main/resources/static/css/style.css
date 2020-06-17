@@ -59,6 +59,9 @@ input.cart-size-input {
     background: #343a40;
     border-color: #343a40;
 }
+.page-item {
+    cursor: pointer;
+}
 
 .page-item.active .page-link {
     color: #343a40;

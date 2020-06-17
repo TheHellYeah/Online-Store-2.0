@@ -47,5 +47,7 @@ function searchHandler() {
 
 function page(number) {
 
-    window.location.href = window.location.href
+    let url = new URL(window.location.href);
+    url.searchParams.set("page", number);
+    window.location.href = url;
 }
