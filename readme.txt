@@ -7,6 +7,7 @@ spring.datasource.password=root
 
 2)Измените путь для сохраннения изображений
 upload.path = C:/img
+И переместите туда дефолтные изображения из папки img проекта
 
 3) При первом запуске программы в настройках hibernate укажите создание бд
 spring.jpa.hibernate.ddl-auto=create
