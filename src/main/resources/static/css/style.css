@@ -1,0 +1,167 @@
+body {
+    background : #3f454a;
+}
+
+.dropdown-item, a, h1 {
+    color: #ffc107;
+}
+
+.dropdown-item:hover {
+    background-color: #ffc107;
+}
+
+.dropdown-item:hover svg {
+    fill: #343a40;
+}
+
+.navbar {
+   background-color: #343a40 !important;
+   opacity: 0.97;
+}
+
+h3, label, a:hover {
+  color: white;
+}
+
+.accordion .card {
+    background: #343a40 !important;
+}
+
+.card img {
+    height: 230px;
+}
+
+.form-control:focus {
+    border-color: #ffca28;
+    box-shadow: 0 0 0 0.2rem rgba(255, 188, 0, 0.25);
+}
+
+.card-columns .card:hover {
+    border-color: #ffc107;
+    cursor: pointer;
+}
+
+input.cart-size-input {
+    text-align: center;
+    width: 70px;
+    color:white;
+    background: #343a40;
+}
+
+.update-size input{
+    text-align: center;
+    width:100%;
+    color:white;
+    background: #343a40;
+}
+
+.img-thumbnail {
+    background: #343a40;
+    border-color: #343a40;
+}
+.page-item {
+    cursor: pointer;
+}
+
+.page-item.active .page-link {
+    color: #343a40;
+    background: #ffc107;
+    border-color: white;
+}
+
+.page-item .page-link,
+.page-item.disabled .page-link {
+    color: white;
+    background: #343a40;
+}
+
+.page-item:hover .page-link {
+    border-color: #ffc107;
+    color: #ffc107;
+}
+
+.page-item.active:hover .page-link {
+    color: #343a40;
+ }
+
+.order-details {
+    background: #343a40;
+    font-size: 22px;
+ }
+
+.product-mini-thumbnail {
+    width: 30px;
+}
+
+.product-search-thumbnail {
+    width: 40px;
+    height: 40px;
+}
+
+.dropdown-search {
+    width: 600px;
+    background: #3f454a;
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 18px;
+ }
+
+.input-group-text {
+    background: #3f454a;
+    border-color: white;
+    color: white;
+}
+
+.preview {
+     background: #343a40;
+     color:  #ffc107;
+}
+
+.wish-list-access label.active {
+    background-color: #ffc107 !important;
+    color: #343a40 !important;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 90%;
+    color: #ff6776;
+}
+
+footer {
+    width: 100%;
+    background-color: #343a40;
+}
+body{
+    width: 100%;
+}
+.dataTables_info{
+   color: white;
+}
+
+.custom-checkbox input,
+.custom-checkbox label {
+    cursor: pointer;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+      border-color: #ffca28;
+      background-color: #ffca28;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before {
+    border-color: #ffca28;
+    box-shadow: 0 0 0 0.2rem rgba(255, 188, 0, 0.25);
+}
+
+
+svg.bi-arrow-down-short {
+    float: right;
+}
+
+div.size .btn-secondary:not(:disabled):not(.disabled).active {
+    border-color: #ffca28;
+    background-color: #ffca28;
+}
