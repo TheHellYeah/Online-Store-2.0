@@ -2,6 +2,7 @@ package kostuchenkov.rgr.web.controller;
 
 import freemarker.template.TemplateException;
 import kostuchenkov.rgr.model.domain.order.Order;
+import kostuchenkov.rgr.model.domain.order.OrderPayment;
 import kostuchenkov.rgr.model.domain.user.User;
 import kostuchenkov.rgr.model.service.cart.CartService;
 import kostuchenkov.rgr.model.service.order.OrderService;
@@ -80,6 +81,9 @@ public class OrderController {
         }
 
         if (orderService.createOrder(user, checkoutForm)) {
+            if(checkoutForm.getOrderPayment().equals(OrderPayment.BALANCE)) {
+                session.getUser().setBalance(user.getBalance());
+            }
             return "redirect:/user/orders";
         } else {
             model.addAttribute("message","error");

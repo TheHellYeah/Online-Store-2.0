@@ -40,7 +40,7 @@ public class RegistrationController {
         }
         userService.registerFromUserForm(userForm);
         model.addAttribute("message", "Успех! Проверьте указанный почтовый ящик и перейдите по ссылке в письме для завершения регистрации");
-        return "redirect:/login";
+        return "form-login";
     }
 
     @GetMapping("/activate")
